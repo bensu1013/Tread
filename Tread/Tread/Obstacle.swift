@@ -9,11 +9,19 @@
 import Foundation
 import SpriteKit
 
+enum ObstacleType {
+    case basic
+}
+
+
 class Obstacle: SKSpriteNode {
     
-    override init(texture: SKTexture?, color: UIColor, size: CGSize) {
+    var type: ObstacleType = .basic
+    
+    init(texture: SKTexture?, color: UIColor, size: CGSize, type: ObstacleType) {
         super.init(texture: texture, color: color, size: size)
         
+        createPhysicsBody()
         moveObject()
         
     }
@@ -32,5 +40,21 @@ class Obstacle: SKSpriteNode {
         
     }
     
+    
+}
+
+//PhysicsBody
+extension Obstacle {
+    
+    func createPhysicsBody() {
+        
+        self.physicsBody = SKPhysicsBody(rectangleOf: self.frame.size)
+        self.physicsBody?.isDynamic = false
+        self.physicsBody?.categoryBitMask = BitMask.obstacle
+        self.physicsBody?.collisionBitMask = 0
+        self.physicsBody?.contactTestBitMask = BitMask.player
+        self.physicsBody?.affectedByGravity = false
+        
+    }
     
 }

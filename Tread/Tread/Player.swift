@@ -14,10 +14,12 @@ class Player: SKSpriteNode {
     private var moveSpeed: CGFloat = 100
     var movePoint: CGPoint?
     
+    var health = HealthController()
+    
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
         
-        
+        createPhysicsBody()
         
     }
     
@@ -35,7 +37,7 @@ class Player: SKSpriteNode {
             
             //TODO: - Normalize duration
             
-            let dura = 0.5
+            let dura = 0.2
             
             let move = SKAction.move(to: point, duration: dura)
             
@@ -44,7 +46,37 @@ class Player: SKSpriteNode {
             })
             
         }
+    }
+    
+}
+
+//Contact methods
+extension Player {
+    
+    func touched(by type: ObstacleType) {
+        switch type {
+        case .basic:
+            self.health.gotHurt(by: type)
+        }
+    }
+    
+    
+}
+
+//PhysicsBody
+extension Player {
+    
+    func createPhysicsBody() {
+        
+        self.physicsBody = SKPhysicsBody(rectangleOf: self.frame.size)
+        self.physicsBody?.categoryBitMask = BitMask.player
+        self.physicsBody?.collisionBitMask = 0
+        self.physicsBody?.contactTestBitMask = BitMask.obstacle
+        self.physicsBody?.affectedByGravity = false
         
     }
     
 }
+
+
+

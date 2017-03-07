@@ -19,6 +19,8 @@
 		FDEF8C1A1E6DE41200492121 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF8C191E6DE41200492121 /* Obstacle.swift */; };
 		FDEF8C1C1E6DE89E00492121 /* HudLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF8C1B1E6DE89E00492121 /* HudLayer.swift */; };
 		FDEF8C1E1E6DE97A00492121 /* ObstacleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF8C1D1E6DE97A00492121 /* ObstacleFactory.swift */; };
+		FDEF8C201E6E239B00492121 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF8C1F1E6E239B00492121 /* Constants.swift */; };
+		FDEF8C221E6E62A600492121 /* HealthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF8C211E6E62A600492121 /* HealthController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,8 @@
 		FDEF8C191E6DE41200492121 /* Obstacle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
 		FDEF8C1B1E6DE89E00492121 /* HudLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HudLayer.swift; sourceTree = "<group>"; };
 		FDEF8C1D1E6DE97A00492121 /* ObstacleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObstacleFactory.swift; sourceTree = "<group>"; };
+		FDEF8C1F1E6E239B00492121 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FDEF8C211E6E62A600492121 /* HealthController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +77,9 @@
 				FDEF8C031E6DE35000492121 /* Actions.sks */,
 				FDEF8C051E6DE35000492121 /* GameScene.swift */,
 				FDEF8C071E6DE35000492121 /* GameViewController.swift */,
+				FDEF8C1F1E6E239B00492121 /* Constants.swift */,
 				FDEF8C171E6DE3D000492121 /* Player.swift */,
+				FDEF8C211E6E62A600492121 /* HealthController.swift */,
 				FDEF8C191E6DE41200492121 /* Obstacle.swift */,
 				FDEF8C1D1E6DE97A00492121 /* ObstacleFactory.swift */,
 				FDEF8C1B1E6DE89E00492121 /* HudLayer.swift */,
@@ -161,12 +167,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDEF8C181E6DE3D000492121 /* Player.swift in Sources */,
+				FDEF8C221E6E62A600492121 /* HealthController.swift in Sources */,
 				FDEF8C061E6DE35000492121 /* GameScene.swift in Sources */,
 				FDEF8C1A1E6DE41200492121 /* Obstacle.swift in Sources */,
 				FDEF8C1C1E6DE89E00492121 /* HudLayer.swift in Sources */,
 				FDEF8C081E6DE35000492121 /* GameViewController.swift in Sources */,
 				FDEF8C001E6DE35000492121 /* AppDelegate.swift in Sources */,
 				FDEF8C1E1E6DE97A00492121 /* ObstacleFactory.swift in Sources */,
+				FDEF8C201E6E239B00492121 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +338,7 @@
 				FDEF8C161E6DE35000492121 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

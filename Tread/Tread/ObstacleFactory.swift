@@ -9,10 +9,6 @@
 import Foundation
 import SpriteKit
 
-enum ObstacleType {
-    
-}
-
 class ObstacleFactory {
     
     var obstacles = Set<Obstacle>()
@@ -23,7 +19,7 @@ class ObstacleFactory {
         
         let seq = SKAction.sequence([
             SKAction.run { self.createNewObstacle() },
-            SKAction.wait(forDuration: 2.0)
+            SKAction.wait(forDuration: 1.0)
             ])
         
         let rep = SKAction.repeatForever(seq)
@@ -32,10 +28,13 @@ class ObstacleFactory {
         
     }
     
+    deinit {
+        print("good bye cruel world")
+    }
     
     func createNewObstacle() {
         
-        let obstacle = Obstacle(texture: nil, color: UIColor.red, size: CGSize(width: 32.0, height: 32.0))
+        let obstacle = Obstacle(texture: nil, color: UIColor.red, size: CGSize(width: 32.0, height: 32.0), type: .basic)
         
         let startX = CGFloat(arc4random_uniform(UInt32(scene.frame.width))) - (scene.frame.width / 2)
         
