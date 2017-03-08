@@ -45,7 +45,20 @@ class ObstacleFactory {
         
     }
     
-    
+    func pulsate() {
+        
+        for obstacle in obstacles {
+            
+            let large = SKAction.scale(to: 1.3, duration: 0.25)
+            let medium = SKAction.scale(to: 1.0, duration: 0.25)
+            let small = SKAction.scale(to: 0.8, duration: 0.25)
+            let sequence = SKAction.sequence([large,small,medium])
+            
+            obstacle.run(sequence)
+            
+        }
+        
+    }
     
 
 }

@@ -11,7 +11,7 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-    var player = Player(texture: nil, color: UIColor.blue, size: CGSize(width: 64, height: 64))
+    var player = Player.main
     var previousTime: Double = 0
     
     var obstacleFactory: ObstacleFactory!
@@ -20,31 +20,25 @@ class GameScene: SKScene {
       
         setupPhysicsWorld()
         
-        self.addChild(player)
+        self.addChild(player.sprite)
         obstacleFactory = ObstacleFactory(scene: self)
         
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
         if let touch = touches.first {
-            
-            player.movePoint = touch.location(in: self)
-            
+            player.sprite.movePoint = touch.location(in: self)
         }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
-            
-            player.movePoint = touch.location(in: self)
-            
+            player.sprite.movePoint = touch.location(in: self)
         }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-
-    
+        obstacleFactory.pulsate()
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -59,7 +53,7 @@ class GameScene: SKScene {
         }
         
         
-        player.update(dt: dt)
+        player.sprite.update(dt: dt)
         if player.health.current <= 0 {
             self.isPaused = true
         }
@@ -88,17 +82,15 @@ extension GameScene: SKPhysicsContactDelegate {
         
         if a.categoryBitMask == BitMask.player && b.categoryBitMask == BitMask.obstacle {
         
-            if let player = a.node as? Player {
+            if let player = a.node as? PlayerSprite {
                 
                 if let obstacle = b.node as? Obstacle {
-                    print("ouch")
-                    player.touched(by: obstacle.type)
+                    
+                    player.touched(by: obstacle)
                     
                 }
                 
             }
-            
-            
             
         }
         

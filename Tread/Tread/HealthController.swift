@@ -14,7 +14,7 @@ class HealthController {
         get { return 10 + (vitality * 2) }
     }
     var current = 10
-    var vitality = 0
+    var vitality = 1
     var canHurt = true
     
     func gotHurt(by type: ObstacleType) {
