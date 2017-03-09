@@ -54,7 +54,7 @@ class GameScene: SKScene {
         
         
         player.sprite.update(dt: dt)
-        if player.health.current <= 0 {
+        if player.health.getCurrent() <= 0 {
             self.isPaused = true
         }
     }

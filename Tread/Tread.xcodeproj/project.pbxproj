@@ -100,9 +100,17 @@
 				FDEF8C171E6DE3D000492121 /* Player.swift */,
 				FDEF8C231E70943400492121 /* PlayerSprite.swift */,
 				FDEF8C211E6E62A600492121 /* HealthController.swift */,
-				FDEF8C261E7097AE00492121 /* PlayerStatistics.swift */,
+				FDEF8C281E71E03100492121 /* PlayerStatistics */,
 			);
 			name = Player;
+			sourceTree = "<group>";
+		};
+		FDEF8C281E71E03100492121 /* PlayerStatistics */ = {
+			isa = PBXGroup;
+			children = (
+				FDEF8C261E7097AE00492121 /* PlayerStatistics.swift */,
+			);
+			name = PlayerStatistics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

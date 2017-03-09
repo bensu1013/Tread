@@ -11,4 +11,28 @@ import UIKit
 
 class HudLayer {
     
+    let view = UIView(frame: UIScreen.main.bounds)
+    let bottomBar = UIView()
+    
+    
+    init() {
+        
+        view.isUserInteractionEnabled = false
+        loadBottomBar()
+        
+    }
+    
+    
+}
+
+
+extension HudLayer {
+    
+    fileprivate func loadBottomBar() {
+        
+        bottomBar.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.height * 0.75, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.25)
+        view.addSubview(bottomBar)
+        
+    }
+    
 }

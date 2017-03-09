@@ -22,8 +22,6 @@ class Player {
         sprite = PlayerSprite(texture: nil, color: UIColor.red, size: CGSize(width: 64, height: 64))
         sprite.spriteDelegate = self
         
-        
-        
     }
     
 }

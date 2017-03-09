@@ -13,9 +13,18 @@ class HealthController {
     var maximum: Int {
         get { return 10 + (vitality * 2) }
     }
-    var current = 10
+    private var current: Int = 10
     var vitality = 1
     var canHurt = true
+    
+    func getCurrent() -> Int {
+        return current
+    }
+    
+    func setVitality(by vit: Vitality) {
+        vitality = vit.currentVit
+    }
+    
     
     func gotHurt(by type: ObstacleType) {
         if canHurt {

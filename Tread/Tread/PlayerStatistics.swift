@@ -11,7 +11,7 @@ import Foundation
 struct PlayerStatistics {
     
     var level = Level()
-    var vitality = 1
+    var vitality = Vitality()
     var strength = 1
     var speed = 100
     
@@ -24,7 +24,7 @@ struct Level {
     var maxLvl = 100
     var currentLvl = 1
     
-    var currentEXP = 0
+    var experience = Experience()
     
     var description: String {
         get {
@@ -32,8 +32,16 @@ struct Level {
         }
     }
     
+    
+    
+}
+
+struct Experience {
+    
+    var current = 0
+    
     mutating func gainExp(amount: Int) {
-        currentEXP += amount
+        current += amount
     }
     
 }
@@ -51,3 +59,8 @@ struct Vitality {
     }
     
 }
+
+
+
+
+

@@ -32,7 +32,7 @@ class Obstacle: SKSpriteNode {
     
     private func moveObject() {
         
-        let move = SKAction.moveBy(x: 0.0, y: -2000, duration: 5.0)
+        let move = SKAction.moveBy(x: 0.0, y: -2000, duration: 4.0)
         
         run(move) { 
             self.removeFromParent()
