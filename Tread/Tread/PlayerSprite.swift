@@ -19,6 +19,18 @@ class PlayerSprite: SKSpriteNode {
     var movePoint: CGPoint?
     var spriteDelegate: PlayerSpriteDelegate?
     
+    let moveUp = [SKTexture(image: #imageLiteral(resourceName: "playerU1")),
+                  SKTexture(image: #imageLiteral(resourceName: "playerU2")),
+                  SKTexture(image: #imageLiteral(resourceName: "playerU3"))]
+    let moveDown = [SKTexture(image: #imageLiteral(resourceName: "playerU1")),
+                    SKTexture(image: #imageLiteral(resourceName: "playerU2")),
+                    SKTexture(image: #imageLiteral(resourceName: "playerU3"))]
+    let moveLeft = [SKTexture(image: #imageLiteral(resourceName: "playerU1")),
+                    SKTexture(image: #imageLiteral(resourceName: "playerU2")),
+                    SKTexture(image: #imageLiteral(resourceName: "playerU3"))]
+    let moveRight = [SKTexture(image: #imageLiteral(resourceName: "playerU1")),
+                    SKTexture(image: #imageLiteral(resourceName: "playerU2")),
+                    SKTexture(image: #imageLiteral(resourceName: "playerU3"))]
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)

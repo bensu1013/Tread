@@ -13,12 +13,13 @@ class HudLayer {
     
     let view = UIView(frame: UIScreen.main.bounds)
     let bottomBar = UIView()
-    
+    let healthText = UILabel()
     
     init() {
         
         view.isUserInteractionEnabled = false
         loadBottomBar()
+        loadHealthText()
         
     }
     
@@ -31,8 +32,16 @@ extension HudLayer {
     fileprivate func loadBottomBar() {
         
         bottomBar.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.height * 0.75, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.25)
+        bottomBar.backgroundColor = UIColor.brown
         view.addSubview(bottomBar)
         
+    }
+    
+    fileprivate func loadHealthText() {
+        
+        healthText.frame = CGRect(x: 50.0, y: 50.0, width: 100.0, height: 44.0)
+        healthText.text = "\(Player.main.health.getCurrent())/\(Player.main.health.maximum)"
+        bottomBar.addSubview(healthText)
     }
     
 }

@@ -9,7 +9,13 @@
 import SpriteKit
 import GameplayKit
 
+protocol GameSceneDelegate {
+    func contactPlayerObstacle()
+}
+
 class GameScene: SKScene {
+    
+    var gameSceneDelegate: GameSceneDelegate?
     
     var player = Player.main
     var previousTime: Double = 0
@@ -87,6 +93,7 @@ extension GameScene: SKPhysicsContactDelegate {
                 if let obstacle = b.node as? Obstacle {
                     
                     player.touched(by: obstacle)
+                    gameSceneDelegate?.contactPlayerObstacle()
                     
                 }
                 

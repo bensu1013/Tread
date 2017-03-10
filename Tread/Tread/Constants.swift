@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import SpriteKit
+
 
 struct BitMask {
     
@@ -15,3 +17,4 @@ struct BitMask {
     
     
 }
+
