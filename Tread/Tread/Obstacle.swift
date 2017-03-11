@@ -10,17 +10,17 @@ import Foundation
 import SpriteKit
 
 enum ObstacleType {
-    case basic
+    case redCrate
 }
 
 
 class Obstacle: SKSpriteNode {
     
-    var type: ObstacleType = .basic
+    var type: ObstacleType = .redCrate
     
     init(texture: SKTexture?, color: UIColor, size: CGSize, type: ObstacleType) {
         super.init(texture: texture, color: color, size: size)
-        
+        self.type = type
         createPhysicsBody()
         moveObject()
         
@@ -51,7 +51,7 @@ extension Obstacle {
         self.physicsBody = SKPhysicsBody(rectangleOf: self.frame.size)
         self.physicsBody?.isDynamic = false
         self.physicsBody?.categoryBitMask = BitMask.obstacle
-        self.physicsBody?.collisionBitMask = 0
+        self.physicsBody?.collisionBitMask = BitMask.player
         self.physicsBody?.contactTestBitMask = BitMask.player
         self.physicsBody?.affectedByGravity = false
         

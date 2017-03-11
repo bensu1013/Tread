@@ -19,18 +19,18 @@ class PlayerSprite: SKSpriteNode {
     var movePoint: CGPoint?
     var spriteDelegate: PlayerSpriteDelegate?
     
-    let moveUp = [SKTexture(image: #imageLiteral(resourceName: "playerU1")),
-                  SKTexture(image: #imageLiteral(resourceName: "playerU2")),
-                  SKTexture(image: #imageLiteral(resourceName: "playerU3"))]
-    let moveDown = [SKTexture(image: #imageLiteral(resourceName: "playerU1")),
-                    SKTexture(image: #imageLiteral(resourceName: "playerU2")),
-                    SKTexture(image: #imageLiteral(resourceName: "playerU3"))]
-    let moveLeft = [SKTexture(image: #imageLiteral(resourceName: "playerU1")),
-                    SKTexture(image: #imageLiteral(resourceName: "playerU2")),
-                    SKTexture(image: #imageLiteral(resourceName: "playerU3"))]
-    let moveRight = [SKTexture(image: #imageLiteral(resourceName: "playerU1")),
-                    SKTexture(image: #imageLiteral(resourceName: "playerU2")),
-                    SKTexture(image: #imageLiteral(resourceName: "playerU3"))]
+    fileprivate let moveUp     = [SKTexture(image: #imageLiteral(resourceName: "playerU1")),
+                               SKTexture(image: #imageLiteral(resourceName: "playerU2")),
+                               SKTexture(image: #imageLiteral(resourceName: "playerU3"))]
+    fileprivate let moveDown   = [SKTexture(image: #imageLiteral(resourceName: "playerD1")),
+                               SKTexture(image: #imageLiteral(resourceName: "playerD2")),
+                               SKTexture(image: #imageLiteral(resourceName: "playerD3"))]
+    fileprivate let moveLeft   = [SKTexture(image: #imageLiteral(resourceName: "playerL1")),
+                               SKTexture(image: #imageLiteral(resourceName: "playerL2")),
+                               SKTexture(image: #imageLiteral(resourceName: "playerL3"))]
+    fileprivate let moveRight  = [SKTexture(image: #imageLiteral(resourceName: "playerR1")),
+                               SKTexture(image: #imageLiteral(resourceName: "playerR2")),
+                               SKTexture(image: #imageLiteral(resourceName: "playerR3"))]
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
@@ -45,6 +45,7 @@ class PlayerSprite: SKSpriteNode {
     
     func update(dt: TimeInterval) {
         moveToPoint()
+        updateAnimate()
     }
     
     private func moveToPoint() {
@@ -66,6 +67,93 @@ class PlayerSprite: SKSpriteNode {
     
 }
 
+//Animation methods
+extension PlayerSprite {
+    
+    func contactHurt(handler: @escaping () -> () ) {
+        
+        let alphaDown = SKAction.fadeAlpha(to: 0.4, duration: 0.1)
+        let alphaUp = SKAction.fadeAlpha(to: 1.0, duration: 0.1)
+        let alphaSeq = SKAction.sequence([alphaDown,alphaUp])
+        let alphaRep = SKAction.repeat(alphaSeq, count: 5)
+        
+        let handle = SKAction.run { handler() }
+        let fullSeq = SKAction.sequence([alphaRep, handle])
+        run(fullSeq, withKey: "contactHurt")
+        
+    }
+    
+    fileprivate func updateAnimate() {
+        
+        if let rad = calculateAngle() {
+            
+            if rad < 0.5 && rad > -0.5 {
+                if let _ = action(forKey: "animateRight") {
+                    
+                } else {
+                    animateRight()
+                }
+            } else if rad > 0.5 && rad < 2.64 {
+                if let _ = action(forKey: "animateUp") {
+                    
+                } else {
+                    animateUp()
+                }
+            } else if rad < -0.5 && rad > -2.64 {
+                if let _ = action(forKey: "animateDown") {
+                    
+                } else {
+                    animateDown()
+                }
+            } else if rad > 2.64 || rad < -2.64 {
+                if let _ = action(forKey: "animateLeft") {
+                    
+                } else {
+                    animateLeft()
+                }
+            }
+            
+        } else {
+            if let _ = action(forKey: "animateUp") {
+                
+            } else {
+                animateUp()
+            }
+        }
+        
+    }
+    
+    //Calculates the radians between playersprite and point it moves to
+    private func calculateAngle() -> CGFloat? {
+        if let point = movePoint {
+            let angle = atan2((point.y - self.position.y), (point.x - self.position.x))
+            return angle
+        }
+        return nil
+    }
+    
+    private func animateUp() {
+        let animate = SKAction.animate(with: moveUp, timePerFrame: 0.12)
+        run(animate, withKey: "animateUp")
+    }
+    
+    private func animateDown() {
+        let animate = SKAction.animate(with: moveDown, timePerFrame: 0.12)
+        run(animate, withKey: "animateDown")
+    }
+    
+    private func animateLeft() {
+        let animate = SKAction.animate(with: moveLeft, timePerFrame: 0.12)
+        run(animate, withKey: "animateLeft")
+    }
+    
+    private func animateRight() {
+        let animate = SKAction.animate(with: moveRight, timePerFrame: 0.12)
+        run(animate, withKey: "animateRight")
+    }
+    
+}
+
 //Contact methods
 extension PlayerSprite {
     
@@ -79,11 +167,12 @@ extension PlayerSprite {
 //PhysicsBody
 extension PlayerSprite {
     
-    func createPhysicsBody() {
+    fileprivate func createPhysicsBody() {
         
         self.physicsBody = SKPhysicsBody(rectangleOf: self.frame.size)
+        self.physicsBody?.allowsRotation = false
         self.physicsBody?.categoryBitMask = BitMask.player
-        self.physicsBody?.collisionBitMask = 0
+        self.physicsBody?.collisionBitMask = BitMask.obstacle
         self.physicsBody?.contactTestBitMask = BitMask.obstacle
         self.physicsBody?.affectedByGravity = false
         

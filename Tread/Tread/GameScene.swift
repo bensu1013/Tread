@@ -44,7 +44,7 @@ class GameScene: SKScene {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        obstacleFactory.pulsate()
+//        obstacleFactory.pulsate()
     }
     
     override func update(_ currentTime: TimeInterval) {

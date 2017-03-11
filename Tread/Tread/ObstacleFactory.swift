@@ -9,36 +9,71 @@
 import Foundation
 import SpriteKit
 
+typealias levelSpawn = [(CGFloat, ObstacleType)]
+var spawnMachine: [String : levelSpawn] = ["level1":[(0,.redCrate),
+                                    (-200,.redCrate),
+    (100,.redCrate),
+    (210,.redCrate),
+    (90,.redCrate),
+    (220,.redCrate),
+    (80,.redCrate),
+    ]]
+
+
 class ObstacleFactory {
     
     var obstacles = Set<Obstacle>()
     weak var scene: SKScene!
     
+    var currentLevel: levelSpawn?
+    var objectCounter = 0
+    
+    private var redCrateTexture = SKTexture(image: #imageLiteral(resourceName: "redcrate"))
+    
+    
     init(scene: SKScene) {
         self.scene = scene
         
-        let seq = SKAction.sequence([
-            SKAction.run { self.createNewObstacle() },
-            SKAction.wait(forDuration: 1.0)
-            ])
-        
-        let rep = SKAction.repeatForever(seq)
-        
-        scene.run(rep)
-        
+        getLevel(with: "level1")
+        startLevel()
     }
     
     deinit {
         print("good bye cruel world")
     }
     
-    func createNewObstacle() {
+    func getLevel(with: String) {
+        if let level = spawnMachine[with] {
+            currentLevel = level
+        }
+    }
+    
+    func startLevel() {
         
-        let obstacle = Obstacle(texture: nil, color: UIColor.red, size: CGSize(width: 32.0, height: 32.0), type: .basic)
+        guard let level = currentLevel else { return }
         
-        let startX = CGFloat(arc4random_uniform(UInt32(scene.frame.width))) - (scene.frame.width / 2)
+        let main = SKAction.run {
+            print(self.objectCounter)
+            self.createNewObstacle(type: level[self.objectCounter])
+            self.objectCounter += 1
+        }
         
-        obstacle.position = CGPoint(x: startX, y: scene.frame.height / 2)
+        let delay = SKAction.wait(forDuration: 0.4)
+        
+        let seq = SKAction.sequence([ main, delay])
+        
+        let rep = SKAction.repeat(seq, count: level.count)
+        
+        scene.run(rep, withKey: "creatingRedCrates")
+    }
+    
+    func createNewObstacle(type: (CGFloat, ObstacleType)) {
+        
+        let obstacle = Obstacle(texture: redCrateTexture, color: UIColor.red, size: CGSize(width: 64.0, height: 64.0), type: type.1)
+        
+//        let startX = CGFloat(arc4random_uniform(UInt32(scene.frame.width))) - (scene.frame.width / 2)
+        
+        obstacle.position = CGPoint(x: type.0, y: scene.frame.height / 2)
         
         obstacles.insert(obstacle)
         scene?.addChild(obstacle)

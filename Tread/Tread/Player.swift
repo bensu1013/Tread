@@ -31,8 +31,11 @@ extension Player: PlayerSpriteDelegate {
     
     func touched(by obstacle: Obstacle) {
         switch obstacle.type {
-        case .basic:
+        case .redCrate:
             self.health.gotHurt(by: obstacle.type)
+            self.sprite.contactHurt {
+                self.health.canHurt = true
+            }
         }
     }
     

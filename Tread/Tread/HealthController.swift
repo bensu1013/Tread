@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import SpriteKit
 
 class HealthController {
     
     var maximum: Int {
         get { return 10 + (vitality * 2) }
     }
-    private var current: Int = 10
+    fileprivate var current: Int = 10
     var vitality = 1
     var canHurt = true
     
@@ -29,8 +30,8 @@ class HealthController {
     func gotHurt(by type: ObstacleType) {
         if canHurt {
             switch type {
-            case .basic:
-                current -= 2
+            case .redCrate:
+                basicContact()
             }
         }
         if current < 0 { current = 0 }
@@ -41,3 +42,18 @@ class HealthController {
     }
     
 }
+
+//ObstacleType scenario methods
+extension HealthController {
+    
+    func basicContact() {
+        current -= 2
+        canHurt = false
+    }
+    
+}
+
+
+
+
+
