@@ -9,18 +9,39 @@
 import Foundation
 import UIKit
 
-typealias levelSpawn = [(CGFloat, ObstacleType)]
 
 class StageLayout {
     
-    static func loadStage(with name: String) {
+    static func loadStage(with name: String) -> [[ObstacleType]] {
         
         let stageContents = readDataFromFile(named: name)
         
         let stageObjects = stageParser(with: stageContents)
         
-        print(stageObjects)
+        let stageTypes = readStage(with: stageObjects)
         
+        return stageTypes
+        
+    }
+    
+    private static func readStage(with data: [[String]]) -> [[ObstacleType]] {
+        
+        var stageColumns = [ObstacleType]()
+        var stageRows = [[ObstacleType]]()
+        
+        for row in data {
+            for column in row {
+                if let rawType = Int(column) {
+                    
+                    if let type = ObstacleType(rawValue: rawType) {
+                        stageColumns.append(type)
+                    }
+                }
+            }
+            stageRows.append(stageColumns)
+            stageColumns.removeAll()
+        }
+        return stageRows
     }
     
     private static func stageParser(with contents: String?) -> [[String]] {

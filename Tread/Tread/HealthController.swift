@@ -32,6 +32,8 @@ class HealthController {
             switch type {
             case .redCrate:
                 basicContact()
+            default:
+                break
             }
         }
         if current < 0 { current = 0 }

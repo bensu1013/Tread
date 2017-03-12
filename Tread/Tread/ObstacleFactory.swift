@@ -9,18 +9,7 @@
 import Foundation
 import SpriteKit
 
-//typealias levelSpawn = [(CGFloat, ObstacleType)]
-var spawnMachine: [String : levelSpawn] = ["level1":[(0,.redCrate),
-                                    (-200,.redCrate),
-    (100,.redCrate),(210,.redCrate),(90,.redCrate),(220,.redCrate),(80,.redCrate),
-    (100,.redCrate),(210,.redCrate),(90,.redCrate),(220,.redCrate),(80,.redCrate),
-    (100,.redCrate),(210,.redCrate),(90,.redCrate),(220,.redCrate),(80,.redCrate),
-    (100,.redCrate),(210,.redCrate),(90,.redCrate),(220,.redCrate),(80,.redCrate),
-    (100,.redCrate),(210,.redCrate),(90,.redCrate),(220,.redCrate),(80,.redCrate),
-    (100,.redCrate),(210,.redCrate),(90,.redCrate),(220,.redCrate),(80,.redCrate),
-    (100,.redCrate),(210,.redCrate),(90,.redCrate),(220,.redCrate),(80,.redCrate),
-    (100,.redCrate),(210,.redCrate),(90,.redCrate),(220,.redCrate),(80,.redCrate),
-    ]]
+
 
 
 class ObstacleFactory {
@@ -37,48 +26,42 @@ class ObstacleFactory {
     init(scene: SKScene) {
         self.scene = scene
         
-        getLevel(with: "level1")
-        startLevel()
+        readStage(layout: StageLayout.loadStage(with: "LevelOne"))
+        
+     
     }
     
     deinit {
         print("good bye cruel world")
     }
+
     
-    func getLevel(with: String) {
-        if let level = spawnMachine[with] {
-            currentLevel = level
+    
+    func readStage(layout: [[ObstacleType]]) {
+        
+        for (i, row) in layout.enumerated() {
+            for (j, column) in row.enumerated() {
+                
+                switch column {
+                case .none:
+                    break
+                default:
+                    let x = CGFloat(j * 64) - scene.frame.width / 2
+                    let y = CGFloat(i * -64) + scene.frame.height + CGFloat(layout.count) * 64
+                    
+                    createObstacle(at: CGPoint.init(x: x, y: y), as: column)
+                }
+            }
         }
     }
     
-    func startLevel() {
+    func createObstacle(at point: CGPoint, as type: ObstacleType) {
+        let obstacle = Obstacle(texture: redCrateTexture, color: UIColor.red, size: CGSize(width: 64.0, height: 64.0), type: type)
         
-        guard let level = currentLevel else { return }
-        
-        let main = SKAction.run {
-            
-            self.createNewObstacle(type: level[self.objectCounter])
-            self.objectCounter += 1
-        }
-        
-        let delay = SKAction.wait(forDuration: 0.4)
-        
-        let seq = SKAction.sequence([ main, delay])
-        
-        let rep = SKAction.repeat(seq, count: level.count)
-        
-        scene.run(rep, withKey: "creatingRedCrates")
-    }
-    
-    func createNewObstacle(type: (CGFloat, ObstacleType)) {
-        
-        let obstacle = Obstacle(texture: redCrateTexture, color: UIColor.red, size: CGSize(width: 64.0, height: 64.0), type: type.1)
-        
-        obstacle.position = CGPoint(x: type.0, y: scene.frame.height / 2)
+        obstacle.position = point
         
         obstacles.insert(obstacle)
         scene?.addChild(obstacle)
-        
     }
     
     func pulsate() {
@@ -95,6 +78,4 @@ class ObstacleFactory {
         }
         
     }
-    
-
 }
