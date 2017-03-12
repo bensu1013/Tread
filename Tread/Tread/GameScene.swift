@@ -28,7 +28,7 @@ class GameScene: SKScene {
         
         self.addChild(player.sprite)
         obstacleFactory = ObstacleFactory(scene: self)
-        
+        StageLayout.loadStage(with: "LevelOne")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

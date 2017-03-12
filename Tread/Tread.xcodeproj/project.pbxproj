@@ -23,6 +23,8 @@
 		FDEF8C221E6E62A600492121 /* HealthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF8C211E6E62A600492121 /* HealthController.swift */; };
 		FDEF8C241E70943400492121 /* PlayerSprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF8C231E70943400492121 /* PlayerSprite.swift */; };
 		FDEF8C271E7097AE00492121 /* PlayerStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF8C261E7097AE00492121 /* PlayerStatistics.swift */; };
+		FDEF8C2A1E74F18D00492121 /* StageLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF8C291E74F18D00492121 /* StageLayout.swift */; };
+		FDEF8C321E74FFB600492121 /* LevelOne.csv in Resources */ = {isa = PBXBuildFile; fileRef = FDEF8C311E74FFB600492121 /* LevelOne.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		FDEF8C211E6E62A600492121 /* HealthController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthController.swift; sourceTree = "<group>"; };
 		FDEF8C231E70943400492121 /* PlayerSprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerSprite.swift; sourceTree = "<group>"; };
 		FDEF8C261E7097AE00492121 /* PlayerStatistics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStatistics.swift; sourceTree = "<group>"; };
+		FDEF8C291E74F18D00492121 /* StageLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageLayout.swift; sourceTree = "<group>"; };
+		FDEF8C311E74FFB600492121 /* LevelOne.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LevelOne.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,11 +89,13 @@
 				FDEF8C251E70975400492121 /* Player */,
 				FDEF8C191E6DE41200492121 /* Obstacle.swift */,
 				FDEF8C1D1E6DE97A00492121 /* ObstacleFactory.swift */,
+				FDEF8C291E74F18D00492121 /* StageLayout.swift */,
 				FDEF8C1B1E6DE89E00492121 /* HudLayer.swift */,
 				FDEF8C091E6DE35000492121 /* Main.storyboard */,
 				FDEF8C0C1E6DE35000492121 /* Assets.xcassets */,
 				FDEF8C0E1E6DE35000492121 /* LaunchScreen.storyboard */,
 				FDEF8C111E6DE35000492121 /* Info.plist */,
+				FDEF8C311E74FFB600492121 /* LevelOne.csv */,
 			);
 			path = Tread;
 			sourceTree = "<group>";
@@ -176,6 +182,7 @@
 				FDEF8C0B1E6DE35000492121 /* Main.storyboard in Resources */,
 				FDEF8C021E6DE35000492121 /* GameScene.sks in Resources */,
 				FDEF8C0D1E6DE35000492121 /* Assets.xcassets in Resources */,
+				FDEF8C321E74FFB600492121 /* LevelOne.csv in Resources */,
 				FDEF8C101E6DE35000492121 /* LaunchScreen.storyboard in Resources */,
 				FDEF8C041E6DE35000492121 /* Actions.sks in Resources */,
 			);
@@ -190,6 +197,7 @@
 			files = (
 				FDEF8C181E6DE3D000492121 /* Player.swift in Sources */,
 				FDEF8C221E6E62A600492121 /* HealthController.swift in Sources */,
+				FDEF8C2A1E74F18D00492121 /* StageLayout.swift in Sources */,
 				FDEF8C061E6DE35000492121 /* GameScene.swift in Sources */,
 				FDEF8C271E7097AE00492121 /* PlayerStatistics.swift in Sources */,
 				FDEF8C1A1E6DE41200492121 /* Obstacle.swift in Sources */,

@@ -9,14 +9,17 @@
 import Foundation
 import SpriteKit
 
-typealias levelSpawn = [(CGFloat, ObstacleType)]
+//typealias levelSpawn = [(CGFloat, ObstacleType)]
 var spawnMachine: [String : levelSpawn] = ["level1":[(0,.redCrate),
                                     (-200,.redCrate),
-    (100,.redCrate),
-    (210,.redCrate),
-    (90,.redCrate),
-    (220,.redCrate),
-    (80,.redCrate),
+    (100,.redCrate),(210,.redCrate),(90,.redCrate),(220,.redCrate),(80,.redCrate),
+    (100,.redCrate),(210,.redCrate),(90,.redCrate),(220,.redCrate),(80,.redCrate),
+    (100,.redCrate),(210,.redCrate),(90,.redCrate),(220,.redCrate),(80,.redCrate),
+    (100,.redCrate),(210,.redCrate),(90,.redCrate),(220,.redCrate),(80,.redCrate),
+    (100,.redCrate),(210,.redCrate),(90,.redCrate),(220,.redCrate),(80,.redCrate),
+    (100,.redCrate),(210,.redCrate),(90,.redCrate),(220,.redCrate),(80,.redCrate),
+    (100,.redCrate),(210,.redCrate),(90,.redCrate),(220,.redCrate),(80,.redCrate),
+    (100,.redCrate),(210,.redCrate),(90,.redCrate),(220,.redCrate),(80,.redCrate),
     ]]
 
 
@@ -53,7 +56,7 @@ class ObstacleFactory {
         guard let level = currentLevel else { return }
         
         let main = SKAction.run {
-            print(self.objectCounter)
+            
             self.createNewObstacle(type: level[self.objectCounter])
             self.objectCounter += 1
         }
@@ -70,8 +73,6 @@ class ObstacleFactory {
     func createNewObstacle(type: (CGFloat, ObstacleType)) {
         
         let obstacle = Obstacle(texture: redCrateTexture, color: UIColor.red, size: CGSize(width: 64.0, height: 64.0), type: type.1)
-        
-//        let startX = CGFloat(arc4random_uniform(UInt32(scene.frame.width))) - (scene.frame.width / 2)
         
         obstacle.position = CGPoint(x: type.0, y: scene.frame.height / 2)
         
