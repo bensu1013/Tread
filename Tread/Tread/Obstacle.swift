@@ -22,7 +22,7 @@ class Obstacle: SKSpriteNode {
         super.init(texture: texture, color: color, size: size)
         self.type = type
         createPhysicsBody()
-        moveObject()
+//        moveObject()
         
     }
     

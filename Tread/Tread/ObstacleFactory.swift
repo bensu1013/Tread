@@ -14,13 +14,13 @@ import SpriteKit
 
 class ObstacleFactory {
     
-    var obstacles = Set<Obstacle>()
     weak var scene: SKScene!
     
-    var currentLevel: levelSpawn?
+    var obstacles = Set<Obstacle>()
+    
     var objectCounter = 0
     
-    private var redCrateTexture = SKTexture(image: #imageLiteral(resourceName: "redcrate"))
+    private let redCrateTexture = SKTexture(image: #imageLiteral(resourceName: "redcrate"))
     
     
     init(scene: SKScene) {

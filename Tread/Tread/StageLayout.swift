@@ -14,13 +14,11 @@ class StageLayout {
     
     static func loadStage(with name: String) -> [[ObstacleType]] {
         
-        let stageContents = readDataFromFile(named: name)
+        let contents = readDataFromFile(named: name)
+        let objects = stageParser(with: contents)
+        let types = readStage(with: objects)
         
-        let stageObjects = stageParser(with: stageContents)
-        
-        let stageTypes = readStage(with: stageObjects)
-        
-        return stageTypes
+        return types
         
     }
     
@@ -78,5 +76,3 @@ class StageLayout {
     }
     
 }
-
-

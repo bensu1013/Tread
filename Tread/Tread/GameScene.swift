@@ -28,7 +28,15 @@ class GameScene: SKScene {
         
         self.addChild(player.sprite)
         obstacleFactory = ObstacleFactory(scene: self)
-        StageLayout.loadStage(with: "LevelOne")
+        
+        let cam = SKCameraNode()
+        self.addChild(cam)
+        self.camera = cam
+        
+        
+        
+        cam.run(SKAction.moveBy(x: 0.0, y: 2000, duration: 20.0))
+
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
