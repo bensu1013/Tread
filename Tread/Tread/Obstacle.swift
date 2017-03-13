@@ -17,12 +17,14 @@ enum ObstacleType: Int {
 class Obstacle: SKSpriteNode {
     
     var type: ObstacleType = .redCrate
+    var willRemove = false
+    
     
     init(texture: SKTexture?, color: UIColor, size: CGSize, type: ObstacleType) {
         super.init(texture: texture, color: color, size: size)
         self.type = type
         createPhysicsBody()
-//        moveObject()
+
         
     }
     
@@ -49,10 +51,10 @@ extension Obstacle {
     func createPhysicsBody() {
         
         self.physicsBody = SKPhysicsBody(rectangleOf: self.frame.size)
-        self.physicsBody?.isDynamic = false
+//        self.physicsBody?.isDynamic = false
         self.physicsBody?.categoryBitMask = BitMask.obstacle
         self.physicsBody?.collisionBitMask = BitMask.player
-        self.physicsBody?.contactTestBitMask = BitMask.player
+        self.physicsBody?.contactTestBitMask = BitMask.player | BitMask.screenBorder
         self.physicsBody?.affectedByGravity = false
         
     }

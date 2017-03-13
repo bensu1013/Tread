@@ -55,13 +55,15 @@ class PlayerSprite: SKSpriteNode {
             //TODO: - Normalize duration
             
             let dura = 0.2
-            
             let move = SKAction.move(to: point, duration: dura)
-            
             run(move, completion: {
                 self.movePoint = nil
             })
+        } else {
             
+            let dura = 0.5
+            let move = SKAction.move(to: CGPoint.init(x: self.position.x, y: self.position.y + 50), duration: dura)
+            run(move)
         }
     }
     
@@ -172,8 +174,8 @@ extension PlayerSprite {
         self.physicsBody = SKPhysicsBody(rectangleOf: self.frame.size)
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.categoryBitMask = BitMask.player
-        self.physicsBody?.collisionBitMask = BitMask.obstacle
-        self.physicsBody?.contactTestBitMask = BitMask.obstacle
+        self.physicsBody?.collisionBitMask = BitMask.obstacle | BitMask.screenBorder
+        self.physicsBody?.contactTestBitMask = BitMask.obstacle | BitMask.screenBorder
         self.physicsBody?.affectedByGravity = false
         
     }

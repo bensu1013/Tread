@@ -12,9 +12,9 @@ import SpriteKit
 
 struct BitMask {
     
-    static let player: UInt32 = 0b1 << 0
-    static let obstacle: UInt32 = 0b1 << 1
-    
+    static let player: UInt32 = 0b1
+    static let obstacle: UInt32 = 0b10
+    static let screenBorder: UInt32 = 0b100
     
 }
 

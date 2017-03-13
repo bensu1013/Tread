@@ -17,8 +17,7 @@ class ObstacleFactory {
     weak var scene: SKScene!
     
     var obstacles = Set<Obstacle>()
-    
-    var objectCounter = 0
+    var stageSize: CGFloat?
     
     private let redCrateTexture = SKTexture(image: #imageLiteral(resourceName: "redcrate"))
     
@@ -26,16 +25,28 @@ class ObstacleFactory {
     init(scene: SKScene) {
         self.scene = scene
         
-        readStage(layout: StageLayout.loadStage(with: "LevelOne"))
+        let stageLayout = StageLayout.loadStage(with: "LevelOne")
         
-     
+        readStage(layout: stageLayout)
+        stageSize = CGFloat(stageLayout.count) * 64.0
+        
     }
     
     deinit {
         print("good bye cruel world")
     }
 
-    
+    func update() {
+        
+        for obs in obstacles {
+            if obs.willRemove {
+                print("remove me from obstacles")
+                obstacles.remove(obs)
+                obs.removeFromParent()
+            }
+        }
+        
+    }
     
     func readStage(layout: [[ObstacleType]]) {
         
@@ -46,7 +57,7 @@ class ObstacleFactory {
                 case .none:
                     break
                 default:
-                    let x = CGFloat(j * 64) - scene.frame.width / 2
+                    let x = CGFloat(j * 64) - scene.frame.width / 2 + 32
                     let y = CGFloat(i * -64) + scene.frame.height + CGFloat(layout.count) * 64
                     
                     createObstacle(at: CGPoint.init(x: x, y: y), as: column)
@@ -55,7 +66,7 @@ class ObstacleFactory {
         }
     }
     
-    func createObstacle(at point: CGPoint, as type: ObstacleType) {
+    private func createObstacle(at point: CGPoint, as type: ObstacleType) {
         let obstacle = Obstacle(texture: redCrateTexture, color: UIColor.red, size: CGSize(width: 64.0, height: 64.0), type: type)
         
         obstacle.position = point
