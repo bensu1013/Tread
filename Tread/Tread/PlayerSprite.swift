@@ -15,7 +15,7 @@ protocol PlayerSpriteDelegate {
 
 class PlayerSprite: SKSpriteNode {
     
-    private var moveSpeed: CGFloat = 100
+    private var moveSpeed: CGFloat = 50
     var movePoint: CGPoint?
     var spriteDelegate: PlayerSpriteDelegate?
     
@@ -44,27 +44,38 @@ class PlayerSprite: SKSpriteNode {
     }
     
     func update(dt: TimeInterval) {
-        moveToPoint()
+        moveToPoint(dt: dt)
         updateAnimate()
     }
     
-    private func moveToPoint() {
+    //stop overriding of move actions, causing clipping and premature completions
+    private func moveToPoint(dt: TimeInterval) {
         
         if let point = movePoint {
             
             //TODO: - Normalize duration
+            let stopDist: CGFloat = 10
             
-            let dura = 0.2
-            let move = SKAction.move(to: point, duration: dura)
-            run(move, completion: {
+            let dist = calculateDistance(from: point)
+            
+            if dist > stopDist {
+                let travel = dist/moveSpeed * CGFloat(dt)
+                let angle = calculateAngle(from: point)
+                let yOffset = travel * sin(angle)
+                let xOffset = travel * cos(angle)
+                self.position = CGPoint(x: position.x + xOffset, y: position.y + yOffset)
+                
+            } else {
                 self.movePoint = nil
-            })
-        } else {
+            }
             
-            let dura = 0.5
-            let move = SKAction.move(to: CGPoint.init(x: self.position.x, y: self.position.y + 50), duration: dura)
-            run(move)
         }
+//        } else {
+//            
+//            let dura = 0.5
+//            let move = SKAction.move(to: CGPoint.init(x: self.position.x, y: self.position.y + 50), duration: dura)
+//            run(move)
+//        }
     }
     
 }
@@ -87,7 +98,9 @@ extension PlayerSprite {
     
     fileprivate func updateAnimate() {
         
-        if let rad = calculateAngle() {
+        if let point = movePoint {
+            
+            let rad = Double(calculateAngle(from: point))
             
             if rad < 0.5 && rad > -0.5 {
                 if let _ = action(forKey: "animateRight") {
@@ -126,12 +139,18 @@ extension PlayerSprite {
     }
     
     //Calculates the radians between playersprite and point it moves to
-    private func calculateAngle() -> CGFloat? {
-        if let point = movePoint {
-            let angle = atan2((point.y - self.position.y), (point.x - self.position.x))
-            return angle
-        }
-        return nil
+    fileprivate func calculateAngle(from point: CGPoint) -> CGFloat {
+        let angle = atan2((point.y - self.position.y), (point.x - self.position.x))
+        return angle
+    }
+    
+    fileprivate func calculateDistance(from point: CGPoint) -> CGFloat {
+        
+        let a = abs(position.x) - abs(point.x)
+        let b = abs(position.y) - abs(point.y)
+        let distance = sqrt((a * a) + (b * b))
+        return distance
+        
     }
     
     private func animateUp() {

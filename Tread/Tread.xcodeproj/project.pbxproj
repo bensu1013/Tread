@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD07341C1E776B6F004D2591 /* TileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = FD07341B1E776B6F004D2591 /* TileSet.sks */; };
 		FDEF8C001E6DE35000492121 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF8BFF1E6DE35000492121 /* AppDelegate.swift */; };
 		FDEF8C021E6DE35000492121 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = FDEF8C011E6DE35000492121 /* GameScene.sks */; };
 		FDEF8C041E6DE35000492121 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = FDEF8C031E6DE35000492121 /* Actions.sks */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FD07341B1E776B6F004D2591 /* TileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TileSet.sks; sourceTree = "<group>"; };
 		FDEF8BFC1E6DE35000492121 /* Tread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tread.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDEF8BFF1E6DE35000492121 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FDEF8C011E6DE35000492121 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				FDEF8C331E75DA0800492121 /* StageCSV */,
 				FDEF8C251E70975400492121 /* Player */,
 				FDEF8C191E6DE41200492121 /* Obstacle.swift */,
+				FD07341B1E776B6F004D2591 /* TileSet.sks */,
 				FDEF8C1D1E6DE97A00492121 /* ObstacleFactory.swift */,
 				FDEF8C291E74F18D00492121 /* StageLayout.swift */,
 				FDEF8C1B1E6DE89E00492121 /* HudLayer.swift */,
@@ -191,6 +194,7 @@
 				FDEF8C021E6DE35000492121 /* GameScene.sks in Resources */,
 				FDEF8C0D1E6DE35000492121 /* Assets.xcassets in Resources */,
 				FDEF8C321E74FFB600492121 /* LevelOne.csv in Resources */,
+				FD07341C1E776B6F004D2591 /* TileSet.sks in Resources */,
 				FDEF8C101E6DE35000492121 /* LaunchScreen.storyboard in Resources */,
 				FDEF8C041E6DE35000492121 /* Actions.sks in Resources */,
 			);

@@ -22,16 +22,17 @@ class GameScene: SKScene {
     var bottomBorder: SKSpriteNode!
     var obstacleFactory: ObstacleFactory!
     
+    let screenNode = SKNode()
+    var roundStarted = false
+    
     override func didMove(to view: SKView) {
       
         setupPhysicsWorld()
         
         self.addChild(player.sprite)
         obstacleFactory = ObstacleFactory(scene: self)
-        
-        
-        let screenNode = SKNode()
         self.addChild(screenNode)
+        
         
         let cam = SKCameraNode()
         screenNode.addChild(cam)
@@ -47,17 +48,30 @@ class GameScene: SKScene {
         bottomBorder.physicsBody?.contactTestBitMask = BitMask.player | BitMask.obstacle
         bottomBorder.physicsBody?.affectedByGravity = false
         
-        bottomBorder.run(SKAction.moveBy(x: 0.0, y: 1200 + obstacleFactory.stageSize!, duration: 20.0))
-        screenNode.run(SKAction.moveBy(x: 0.0, y: 1200 + obstacleFactory.stageSize!, duration: 20.0))
-
+        let tileSet = SKTileSet(named: "TileSet")
         
+        let tileMap = SKTileMapNode(tileSet: tileSet!, columns: 10, rows: 40 + Int(obstacleFactory.stageSize! / 64), tileSize: CGSize.init(width: 64.0, height: 64.0), fillWith: (tileSet?.tileGroups[0])!)
+        self.addChild(tileMap)
+        tileMap.fill(with: tileMap.tileSet.tileGroups.first)
+        tileMap.position = CGPoint.init(x: 0.0, y: obstacleFactory.stageSize! / 2 + 200)
         
     }
     
+    func startRound() {
+        bottomBorder.run(SKAction.moveBy(x: 0.0, y: 1200 + obstacleFactory.stageSize!, duration: 20.0))
+        screenNode.run(SKAction.moveBy(x: 0.0, y: 1200 + obstacleFactory.stageSize!, duration: 20.0))
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first {
-            player.sprite.movePoint = touch.location(in: self)
+        if roundStarted {
+            if let touch = touches.first {
+                player.sprite.movePoint = touch.location(in: self)
+            }
+        } else {
+            roundStarted = true
+            startRound()
         }
+        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -128,12 +142,11 @@ extension GameScene: SKPhysicsContactDelegate {
             
         }
         
-        
     }
     
     
     func didEnd(_ contact: SKPhysicsContact) {
-        print("ending")
+        
         var a: SKPhysicsBody!
         var b: SKPhysicsBody!
         
@@ -146,15 +159,15 @@ extension GameScene: SKPhysicsContactDelegate {
         }
         
         if a.categoryBitMask == BitMask.player && b.categoryBitMask == BitMask.screenBorder {
-            print("player & border")
+            
         }
         
         if a.categoryBitMask == BitMask.obstacle && b.categoryBitMask == BitMask.screenBorder {
-            print("obs and border")
+            
             if let obstacle = a.node as? Obstacle {
                 
                 obstacle.willRemove = true
-                print("remove")
+                
             }
             
         }

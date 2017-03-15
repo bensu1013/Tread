@@ -51,7 +51,8 @@ extension Obstacle {
     func createPhysicsBody() {
         
         self.physicsBody = SKPhysicsBody(rectangleOf: self.frame.size)
-//        self.physicsBody?.isDynamic = false
+        self.physicsBody?.pinned = true
+        self.physicsBody?.allowsRotation = false
         self.physicsBody?.categoryBitMask = BitMask.obstacle
         self.physicsBody?.collisionBitMask = BitMask.player
         self.physicsBody?.contactTestBitMask = BitMask.player | BitMask.screenBorder
