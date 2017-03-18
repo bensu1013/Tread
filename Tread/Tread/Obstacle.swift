@@ -10,13 +10,13 @@ import Foundation
 import SpriteKit
 
 enum ObstacleType: Int {
-    case none, redCrate
+    case none, redCrate, goldCoin
 }
 
 
 class Obstacle: SKSpriteNode {
     
-    var type: ObstacleType = .redCrate
+    var type: ObstacleType = .none
     var willRemove = false
     
     
@@ -25,23 +25,23 @@ class Obstacle: SKSpriteNode {
         self.type = type
         createPhysicsBody()
 
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
+    }    
     
-    private func moveObject() {
+    func contacted() {
         
-        let move = SKAction.moveBy(x: 0.0, y: -3000, duration: 10.0)
-        
-        run(move) { 
-            self.removeFromParent()
+        switch type {
+        case .goldCoin:
+            willRemove = true
+        default:
+            break
         }
         
+        
     }
-    
     
 }
 

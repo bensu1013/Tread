@@ -37,6 +37,8 @@ extension Player: PlayerSpriteDelegate {
             self.sprite.contactHurt {
                 self.health.canHurt = true
             }
+        case .goldCoin:
+            self.stats.coins += 1
         default:
             break
         }

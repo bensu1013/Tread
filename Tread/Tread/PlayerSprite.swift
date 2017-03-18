@@ -15,7 +15,7 @@ protocol PlayerSpriteDelegate {
 
 class PlayerSprite: SKSpriteNode {
     
-    private var moveSpeed: CGFloat = 50
+    private var moveSpeed: CGFloat = 120
     var movePoint: CGPoint?
     var spriteDelegate: PlayerSpriteDelegate?
     
@@ -48,18 +48,16 @@ class PlayerSprite: SKSpriteNode {
         updateAnimate()
     }
     
-    //stop overriding of move actions, causing clipping and premature completions
     private func moveToPoint(dt: TimeInterval) {
         
         if let point = movePoint {
             
-            //TODO: - Normalize duration
             let stopDist: CGFloat = 10
             
             let dist = calculateDistance(from: point)
-            
+           
             if dist > stopDist {
-                let travel = dist/moveSpeed * CGFloat(dt)
+                let travel = moveSpeed * CGFloat(dt) * 2
                 let angle = calculateAngle(from: point)
                 let yOffset = travel * sin(angle)
                 let xOffset = travel * cos(angle)
@@ -69,13 +67,13 @@ class PlayerSprite: SKSpriteNode {
                 self.movePoint = nil
             }
             
+        } else {
+            
+            let yOffset = moveSpeed * CGFloat(dt)
+            self.position = CGPoint(x: position.x, y: position.y + yOffset)
+            
         }
-//        } else {
-//            
-//            let dura = 0.5
-//            let move = SKAction.move(to: CGPoint.init(x: self.position.x, y: self.position.y + 50), duration: dura)
-//            run(move)
-//        }
+        
     }
     
 }

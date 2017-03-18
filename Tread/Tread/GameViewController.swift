@@ -69,7 +69,7 @@ extension GameViewController: GameSceneDelegate {
     func contactPlayerObstacle() {
         
         hud.healthText.text = "\(Player.main.health.getCurrent())/\(Player.main.health.maximum)"
-        
+        hud.coinText.text = "Coins: \(Player.main.stats.coins)"
     }
     
 }

@@ -14,8 +14,7 @@ struct PlayerStatistics {
     var vitality = Vitality()
     var strength = 1
     var speed = 100
-    
-    
+    var coins = 0
     
 }
 

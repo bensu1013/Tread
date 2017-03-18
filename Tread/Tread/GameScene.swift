@@ -96,6 +96,7 @@ class GameScene: SKScene {
             previousTime = currentTime
         } else {
             dt = currentTime - previousTime
+            previousTime = currentTime
         }
         
         obstacleFactory.update()
@@ -134,6 +135,7 @@ extension GameScene: SKPhysicsContactDelegate {
                 if let obstacle = b.node as? Obstacle {
                     
                     player.touched(by: obstacle)
+                    obstacle.contacted()
                     gameSceneDelegate?.contactPlayerObstacle()
                    
                 }

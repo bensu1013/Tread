@@ -20,7 +20,7 @@ class ObstacleFactory {
     var stageSize: CGFloat?
     
     private let redCrateTexture = SKTexture(image: #imageLiteral(resourceName: "redcrate"))
-    
+    private let goldCoinTexture = SKTexture(image: #imageLiteral(resourceName: "goldcoin"))
     
     init(scene: SKScene) {
         self.scene = scene
@@ -57,7 +57,7 @@ class ObstacleFactory {
                 case .none:
                     break
                 default:
-                    let x = CGFloat(j * 64) - scene.frame.width / 2 + 32
+                    let x = CGFloat(j * 64) - scene.frame.width / 2 + 96
                     let y = CGFloat(i * -64) + scene.frame.height + CGFloat(layout.count) * 64
                     
                     createObstacle(at: CGPoint.init(x: x, y: y), as: column)
@@ -67,12 +67,24 @@ class ObstacleFactory {
     }
     
     private func createObstacle(at point: CGPoint, as type: ObstacleType) {
-        let obstacle = Obstacle(texture: redCrateTexture, color: UIColor.red, size: CGSize(width: 64.0, height: 64.0), type: type)
+        guard let texture = getTexture(with: type) else { return }
+        let obstacle = Obstacle(texture: texture, color: UIColor.red, size: CGSize(width: 64.0, height: 64.0), type: type)
         
         obstacle.position = point
         
         obstacles.insert(obstacle)
         scene?.addChild(obstacle)
+    }
+    
+    private func getTexture(with type: ObstacleType) -> SKTexture? {
+        switch type {
+        case .redCrate:
+            return redCrateTexture
+        case .goldCoin:
+            return goldCoinTexture
+        default:
+            return nil
+        }
     }
     
     func pulsate() {

@@ -14,13 +14,13 @@ class HudLayer {
     let view = UIView(frame: UIScreen.main.bounds)
     let bottomBar = UIView()
     let healthText = UILabel()
-    
+    let coinText = UILabel()
     init() {
         
         view.isUserInteractionEnabled = false
         loadBottomBar()
         loadHealthText()
-        
+        loadCoinText()
     }
     
     
@@ -42,6 +42,12 @@ extension HudLayer {
         healthText.frame = CGRect(x: 50.0, y: 50.0, width: 100.0, height: 44.0)
         healthText.text = "\(Player.main.health.getCurrent())/\(Player.main.health.maximum)"
         bottomBar.addSubview(healthText)
+    }
+    
+    fileprivate func loadCoinText() {
+        coinText.frame = CGRect(x: 50.0, y: 100.0, width: 100.0, height: 44.0)
+        coinText.text = "Coins: \(Player.main.stats.coins)"
+        bottomBar.addSubview(coinText)
     }
     
 }
