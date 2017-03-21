@@ -20,6 +20,8 @@ class GameScene: SKScene {
     var player = Player.main
     var previousTime: Double = 0
     var bottomBorder: SKSpriteNode!
+    var leftBorder: SKSpriteNode!
+    var rightBorder: SKSpriteNode!
     var obstacleFactory: ObstacleFactory!
     
     let screenNode = SKNode()
@@ -37,16 +39,10 @@ class GameScene: SKScene {
         let cam = SKCameraNode()
         screenNode.addChild(cam)
         self.camera = cam
+    
+        setupScreenBorders()
         
-        bottomBorder = SKSpriteNode(texture: nil, color: UIColor.blue, size: CGSize.init(width: 640, height: 200))
-        bottomBorder.position = CGPoint(x: 0, y: -475)
-        self.addChild(bottomBorder)
-        bottomBorder.physicsBody = SKPhysicsBody(rectangleOf: bottomBorder.frame.size)
-        bottomBorder.physicsBody?.isDynamic = false
-        bottomBorder.physicsBody?.categoryBitMask = BitMask.screenBorder
-        bottomBorder.physicsBody?.collisionBitMask = BitMask.player 
-        bottomBorder.physicsBody?.contactTestBitMask = BitMask.player | BitMask.obstacle
-        bottomBorder.physicsBody?.affectedByGravity = false
+        
         
         let tileSet = SKTileSet(named: "TileSet")
         
@@ -59,6 +55,8 @@ class GameScene: SKScene {
     
     func startRound() {
         bottomBorder.run(SKAction.moveBy(x: 0.0, y: 1200 + obstacleFactory.stageSize!, duration: 20.0))
+        leftBorder.run(SKAction.moveBy(x: 0.0, y: 1200 + obstacleFactory.stageSize!, duration: 20.0))
+        rightBorder.run(SKAction.moveBy(x: 0.0, y: 1200 + obstacleFactory.stageSize!, duration: 20.0))
         screenNode.run(SKAction.moveBy(x: 0.0, y: 1200 + obstacleFactory.stageSize!, duration: 20.0))
     }
     
@@ -108,7 +106,42 @@ class GameScene: SKScene {
     }
 }
 
+//MARK: - SceneObjects
+extension GameScene {
+    fileprivate func setupScreenBorders() {
+        bottomBorder = SKSpriteNode(texture: nil, color: UIColor.blue, size: CGSize.init(width: 640, height: 100))
+        bottomBorder.position = CGPoint(x: 0, y: -475)
+        self.addChild(bottomBorder)
+        bottomBorder.physicsBody = SKPhysicsBody(rectangleOf: bottomBorder.frame.size)
+        bottomBorder.physicsBody?.isDynamic = false
+        bottomBorder.physicsBody?.categoryBitMask = BitMask.screenBorder
+        bottomBorder.physicsBody?.collisionBitMask = BitMask.player
+        bottomBorder.physicsBody?.contactTestBitMask = BitMask.player | BitMask.obstacle
+        bottomBorder.physicsBody?.affectedByGravity = false
+        
+        leftBorder = SKSpriteNode(texture: nil, color: UIColor.blue, size: CGSize.init(width: 100, height: 800))
+        leftBorder.position = CGPoint(x: -370, y: 0)
+        self.addChild(leftBorder)
+        leftBorder.physicsBody = SKPhysicsBody(rectangleOf: leftBorder.frame.size)
+        leftBorder.physicsBody?.isDynamic = false
+        leftBorder.physicsBody?.categoryBitMask = BitMask.screenBorder
+        leftBorder.physicsBody?.collisionBitMask = BitMask.player
+        leftBorder.physicsBody?.contactTestBitMask = BitMask.player
+        leftBorder.physicsBody?.affectedByGravity = false
+        
+        rightBorder = SKSpriteNode(texture: nil, color: UIColor.blue, size: CGSize.init(width: 100, height: 800))
+        rightBorder.position = CGPoint(x: 370, y: 0)
+        self.addChild(rightBorder)
+        rightBorder.physicsBody = SKPhysicsBody(rectangleOf: rightBorder.frame.size)
+        rightBorder.physicsBody?.isDynamic = false
+        rightBorder.physicsBody?.categoryBitMask = BitMask.screenBorder
+        rightBorder.physicsBody?.collisionBitMask = BitMask.player
+        rightBorder.physicsBody?.contactTestBitMask = BitMask.player
+        rightBorder.physicsBody?.affectedByGravity = false
+    }
+}
 
+//MARK: - Contact Delegate
 extension GameScene: SKPhysicsContactDelegate {
     
     fileprivate func setupPhysicsWorld() {

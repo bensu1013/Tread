@@ -52,7 +52,7 @@ class PlayerSprite: SKSpriteNode {
         
         if let point = movePoint {
             
-            let stopDist: CGFloat = 10
+            let stopDist: CGFloat = 15
             
             let dist = calculateDistance(from: point)
            
