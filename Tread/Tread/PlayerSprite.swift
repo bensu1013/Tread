@@ -67,13 +67,13 @@ class PlayerSprite: SKSpriteNode {
                 self.movePoint = nil
             }
             
-        } else {
-            
-            let yOffset = moveSpeed * CGFloat(dt)
-            self.position = CGPoint(x: position.x, y: position.y + yOffset)
-            
         }
-        
+//        else {
+//            
+//            let yOffset = moveSpeed * CGFloat(dt)
+//            self.position = CGPoint(x: position.x, y: position.y + yOffset)
+//            
+//        }
     }
     
 }

@@ -35,29 +35,21 @@ class GameScene: SKScene {
         obstacleFactory = ObstacleFactory(scene: self)
         self.addChild(screenNode)
         
-        
         let cam = SKCameraNode()
         screenNode.addChild(cam)
         self.camera = cam
-    
+        
+        self.isPaused = true
+        
+        setupTilemap()
         setupScreenBorders()
-        
-        
-        
-        let tileSet = SKTileSet(named: "TileSet")
-        
-        let tileMap = SKTileMapNode(tileSet: tileSet!, columns: 10, rows: 40 + Int(obstacleFactory.stageSize! / 64), tileSize: CGSize.init(width: 64.0, height: 64.0), fillWith: (tileSet?.tileGroups[0])!)
-        self.addChild(tileMap)
-        tileMap.fill(with: tileMap.tileSet.tileGroups.first)
-        tileMap.position = CGPoint.init(x: 0.0, y: obstacleFactory.stageSize! / 2 + 200)
-        
     }
     
     func startRound() {
-        bottomBorder.run(SKAction.moveBy(x: 0.0, y: 1200 + obstacleFactory.stageSize!, duration: 20.0))
-        leftBorder.run(SKAction.moveBy(x: 0.0, y: 1200 + obstacleFactory.stageSize!, duration: 20.0))
-        rightBorder.run(SKAction.moveBy(x: 0.0, y: 1200 + obstacleFactory.stageSize!, duration: 20.0))
-        screenNode.run(SKAction.moveBy(x: 0.0, y: 1200 + obstacleFactory.stageSize!, duration: 20.0))
+        bottomBorder.run(SKAction.moveBy(x: 0.0, y: 1100 + obstacleFactory.stageSize!, duration: 20.0))
+        leftBorder.run(SKAction.moveBy(x: 0.0, y: 1100 + obstacleFactory.stageSize!, duration: 20.0))
+        rightBorder.run(SKAction.moveBy(x: 0.0, y: 1100 + obstacleFactory.stageSize!, duration: 20.0))
+        screenNode.run(SKAction.moveBy(x: 0.0, y: 1100 + obstacleFactory.stageSize!, duration: 20.0))
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -66,6 +58,7 @@ class GameScene: SKScene {
                 player.sprite.movePoint = touch.location(in: self)
             }
         } else {
+            self.isPaused = false
             roundStarted = true
             startRound()
         }
@@ -98,7 +91,6 @@ class GameScene: SKScene {
         }
         
         obstacleFactory.update()
-        
         player.sprite.update(dt: dt)
         if player.health.getCurrent() <= 0 {
             self.isPaused = true
@@ -108,9 +100,20 @@ class GameScene: SKScene {
 
 //MARK: - SceneObjects
 extension GameScene {
+    
+    fileprivate func setupTilemap() {
+        
+        let tileSet = SKTileSet(named: "TileSet")
+        let tileMap = SKTileMapNode(tileSet: tileSet!, columns: 10, rows: 40 + Int(obstacleFactory.stageSize! / 64), tileSize: CGSize.init(width: 64.0, height: 64.0), fillWith: (tileSet?.tileGroups[0])!)
+        self.addChild(tileMap)
+        tileMap.fill(with: tileMap.tileSet.tileGroups.first)
+        tileMap.position = CGPoint.init(x: 0.0, y: obstacleFactory.stageSize! / 2 + 200)
+        
+    }
+    
     fileprivate func setupScreenBorders() {
         bottomBorder = SKSpriteNode(texture: nil, color: UIColor.blue, size: CGSize.init(width: 640, height: 100))
-        bottomBorder.position = CGPoint(x: 0, y: -475)
+        bottomBorder.position = CGPoint(x: 0, y: -440)
         self.addChild(bottomBorder)
         bottomBorder.physicsBody = SKPhysicsBody(rectangleOf: bottomBorder.frame.size)
         bottomBorder.physicsBody?.isDynamic = false
@@ -120,7 +123,7 @@ extension GameScene {
         bottomBorder.physicsBody?.affectedByGravity = false
         
         leftBorder = SKSpriteNode(texture: nil, color: UIColor.blue, size: CGSize.init(width: 100, height: 800))
-        leftBorder.position = CGPoint(x: -370, y: 0)
+        leftBorder.position = CGPoint(x: -350, y: 0)
         self.addChild(leftBorder)
         leftBorder.physicsBody = SKPhysicsBody(rectangleOf: leftBorder.frame.size)
         leftBorder.physicsBody?.isDynamic = false
@@ -130,7 +133,7 @@ extension GameScene {
         leftBorder.physicsBody?.affectedByGravity = false
         
         rightBorder = SKSpriteNode(texture: nil, color: UIColor.blue, size: CGSize.init(width: 100, height: 800))
-        rightBorder.position = CGPoint(x: 370, y: 0)
+        rightBorder.position = CGPoint(x: 350, y: 0)
         self.addChild(rightBorder)
         rightBorder.physicsBody = SKPhysicsBody(rectangleOf: rightBorder.frame.size)
         rightBorder.physicsBody?.isDynamic = false

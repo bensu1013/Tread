@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		FD07341C1E776B6F004D2591 /* TileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = FD07341B1E776B6F004D2591 /* TileSet.sks */; };
+		FD6F8BDD1E821E2D0079A663 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F8BDC1E821E2D0079A663 /* MainViewController.swift */; };
+		FD6F8BDF1E821E870079A663 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F8BDE1E821E870079A663 /* LandingViewController.swift */; };
+		FD6F8BE11E821EAC0079A663 /* CreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F8BE01E821EAC0079A663 /* CreditViewController.swift */; };
+		FD6F8BE31E821EE30079A663 /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F8BE21E821EE30079A663 /* LandingView.swift */; };
+		FD6F8BE51E821F100079A663 /* CreditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F8BE41E821F100079A663 /* CreditView.swift */; };
 		FDEF8C001E6DE35000492121 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF8BFF1E6DE35000492121 /* AppDelegate.swift */; };
 		FDEF8C021E6DE35000492121 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = FDEF8C011E6DE35000492121 /* GameScene.sks */; };
 		FDEF8C041E6DE35000492121 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = FDEF8C031E6DE35000492121 /* Actions.sks */; };
@@ -30,6 +35,11 @@
 
 /* Begin PBXFileReference section */
 		FD07341B1E776B6F004D2591 /* TileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TileSet.sks; sourceTree = "<group>"; };
+		FD6F8BDC1E821E2D0079A663 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		FD6F8BDE1E821E870079A663 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		FD6F8BE01E821EAC0079A663 /* CreditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditViewController.swift; sourceTree = "<group>"; };
+		FD6F8BE21E821EE30079A663 /* LandingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
+		FD6F8BE41E821F100079A663 /* CreditView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditView.swift; sourceTree = "<group>"; };
 		FDEF8BFC1E6DE35000492121 /* Tread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tread.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDEF8BFF1E6DE35000492121 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FDEF8C011E6DE35000492121 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -63,6 +73,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FD6F8BDA1E8218E30079A663 /* ViewObjects */ = {
+			isa = PBXGroup;
+			children = (
+				FDEF8C1D1E6DE97A00492121 /* ObstacleFactory.swift */,
+				FDEF8C191E6DE41200492121 /* Obstacle.swift */,
+				FDEF8C251E70975400492121 /* Player */,
+			);
+			name = ViewObjects;
+			sourceTree = "<group>";
+		};
+		FD6F8BDB1E8219060079A663 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				FDEF8C1F1E6E239B00492121 /* Constants.swift */,
+				FDEF8C011E6DE35000492121 /* GameScene.sks */,
+				FDEF8BFF1E6DE35000492121 /* AppDelegate.swift */,
+				FDEF8C091E6DE35000492121 /* Main.storyboard */,
+				FD07341B1E776B6F004D2591 /* TileSet.sks */,
+				FDEF8C291E74F18D00492121 /* StageLayout.swift */,
+				FDEF8C031E6DE35000492121 /* Actions.sks */,
+				FDEF8C0C1E6DE35000492121 /* Assets.xcassets */,
+				FDEF8C0E1E6DE35000492121 /* LaunchScreen.storyboard */,
+				FDEF8C111E6DE35000492121 /* Info.plist */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
 		FDEF8BF31E6DE35000492121 = {
 			isa = PBXGroup;
 			children = (
@@ -82,23 +119,17 @@
 		FDEF8BFE1E6DE35000492121 /* Tread */ = {
 			isa = PBXGroup;
 			children = (
-				FDEF8BFF1E6DE35000492121 /* AppDelegate.swift */,
-				FDEF8C011E6DE35000492121 /* GameScene.sks */,
-				FDEF8C031E6DE35000492121 /* Actions.sks */,
-				FDEF8C051E6DE35000492121 /* GameScene.swift */,
-				FDEF8C071E6DE35000492121 /* GameViewController.swift */,
-				FDEF8C1F1E6E239B00492121 /* Constants.swift */,
-				FDEF8C331E75DA0800492121 /* StageCSV */,
-				FDEF8C251E70975400492121 /* Player */,
-				FDEF8C191E6DE41200492121 /* Obstacle.swift */,
-				FD07341B1E776B6F004D2591 /* TileSet.sks */,
-				FDEF8C1D1E6DE97A00492121 /* ObstacleFactory.swift */,
-				FDEF8C291E74F18D00492121 /* StageLayout.swift */,
 				FDEF8C1B1E6DE89E00492121 /* HudLayer.swift */,
-				FDEF8C091E6DE35000492121 /* Main.storyboard */,
-				FDEF8C0C1E6DE35000492121 /* Assets.xcassets */,
-				FDEF8C0E1E6DE35000492121 /* LaunchScreen.storyboard */,
-				FDEF8C111E6DE35000492121 /* Info.plist */,
+				FDEF8C331E75DA0800492121 /* StageCSV */,
+				FD6F8BDA1E8218E30079A663 /* ViewObjects */,
+				FDEF8C051E6DE35000492121 /* GameScene.swift */,
+				FD6F8BDC1E821E2D0079A663 /* MainViewController.swift */,
+				FD6F8BDE1E821E870079A663 /* LandingViewController.swift */,
+				FD6F8BE21E821EE30079A663 /* LandingView.swift */,
+				FD6F8BE01E821EAC0079A663 /* CreditViewController.swift */,
+				FD6F8BE41E821F100079A663 /* CreditView.swift */,
+				FDEF8C071E6DE35000492121 /* GameViewController.swift */,
+				FD6F8BDB1E8219060079A663 /* Support */,
 			);
 			path = Tread;
 			sourceTree = "<group>";
@@ -208,12 +239,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDEF8C181E6DE3D000492121 /* Player.swift in Sources */,
+				FD6F8BDD1E821E2D0079A663 /* MainViewController.swift in Sources */,
+				FD6F8BE11E821EAC0079A663 /* CreditViewController.swift in Sources */,
 				FDEF8C221E6E62A600492121 /* HealthController.swift in Sources */,
+				FD6F8BE31E821EE30079A663 /* LandingView.swift in Sources */,
 				FDEF8C2A1E74F18D00492121 /* StageLayout.swift in Sources */,
 				FDEF8C061E6DE35000492121 /* GameScene.swift in Sources */,
 				FDEF8C271E7097AE00492121 /* PlayerStatistics.swift in Sources */,
 				FDEF8C1A1E6DE41200492121 /* Obstacle.swift in Sources */,
+				FD6F8BE51E821F100079A663 /* CreditView.swift in Sources */,
 				FDEF8C1C1E6DE89E00492121 /* HudLayer.swift in Sources */,
+				FD6F8BDF1E821E870079A663 /* LandingViewController.swift in Sources */,
 				FDEF8C081E6DE35000492121 /* GameViewController.swift in Sources */,
 				FDEF8C001E6DE35000492121 /* AppDelegate.swift in Sources */,
 				FDEF8C1E1E6DE97A00492121 /* ObstacleFactory.swift in Sources */,

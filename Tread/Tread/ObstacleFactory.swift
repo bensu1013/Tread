@@ -40,12 +40,17 @@ class ObstacleFactory {
         
         for obs in obstacles {
             if obs.willRemove {
-                print("remove me from obstacles")
                 obstacles.remove(obs)
                 obs.removeFromParent()
             }
         }
-        
+    }
+    
+    func clearStage() {
+        for obs in obstacles {
+            obstacles.remove(obs)
+            obs.removeFromParent()
+        }
     }
     
     func readStage(layout: [[ObstacleType]]) {
