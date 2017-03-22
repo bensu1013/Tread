@@ -73,14 +73,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FD6F8BDA1E8218E30079A663 /* ViewObjects */ = {
+		FD6F8BDA1E8218E30079A663 /* GameObjects */ = {
 			isa = PBXGroup;
 			children = (
 				FDEF8C1D1E6DE97A00492121 /* ObstacleFactory.swift */,
 				FDEF8C191E6DE41200492121 /* Obstacle.swift */,
 				FDEF8C251E70975400492121 /* Player */,
 			);
-			name = ViewObjects;
+			name = GameObjects;
 			sourceTree = "<group>";
 		};
 		FD6F8BDB1E8219060079A663 /* Support */ = {
@@ -98,6 +98,27 @@
 				FDEF8C111E6DE35000492121 /* Info.plist */,
 			);
 			name = Support;
+			sourceTree = "<group>";
+		};
+		FD6F8BE61E82BAF70079A663 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FD6F8BDC1E821E2D0079A663 /* MainViewController.swift */,
+				FD6F8BDE1E821E870079A663 /* LandingViewController.swift */,
+				FD6F8BE21E821EE30079A663 /* LandingView.swift */,
+				FD6F8BE01E821EAC0079A663 /* CreditViewController.swift */,
+				FD6F8BE41E821F100079A663 /* CreditView.swift */,
+				FDEF8C071E6DE35000492121 /* GameViewController.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		FD6F8BE71E82BB2A0079A663 /* HudInterface */ = {
+			isa = PBXGroup;
+			children = (
+				FDEF8C1B1E6DE89E00492121 /* HudLayer.swift */,
+			);
+			name = HudInterface;
 			sourceTree = "<group>";
 		};
 		FDEF8BF31E6DE35000492121 = {
@@ -119,16 +140,11 @@
 		FDEF8BFE1E6DE35000492121 /* Tread */ = {
 			isa = PBXGroup;
 			children = (
-				FDEF8C1B1E6DE89E00492121 /* HudLayer.swift */,
+				FD6F8BE71E82BB2A0079A663 /* HudInterface */,
 				FDEF8C331E75DA0800492121 /* StageCSV */,
-				FD6F8BDA1E8218E30079A663 /* ViewObjects */,
+				FD6F8BDA1E8218E30079A663 /* GameObjects */,
 				FDEF8C051E6DE35000492121 /* GameScene.swift */,
-				FD6F8BDC1E821E2D0079A663 /* MainViewController.swift */,
-				FD6F8BDE1E821E870079A663 /* LandingViewController.swift */,
-				FD6F8BE21E821EE30079A663 /* LandingView.swift */,
-				FD6F8BE01E821EAC0079A663 /* CreditViewController.swift */,
-				FD6F8BE41E821F100079A663 /* CreditView.swift */,
-				FDEF8C071E6DE35000492121 /* GameViewController.swift */,
+				FD6F8BE61E82BAF70079A663 /* Views */,
 				FD6F8BDB1E8219060079A663 /* Support */,
 			);
 			path = Tread;

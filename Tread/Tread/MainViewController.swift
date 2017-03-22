@@ -30,6 +30,15 @@ class MainViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        //pointless, remove later
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return .portrait
+        } else {
+            return .portrait
+        }
+    }
+    
     func addNotificationObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(observerNotification), name: Notification.Name.landingVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(observerNotification), name: Notification.Name.gameVC, object: nil)

@@ -19,11 +19,11 @@ class LandingView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        let backView = SKView(frame: frame)
-        let landingScene = SKScene(fileNamed: "LandingScene")
-        landingScene?.scaleMode = .aspectFit
-        backView.presentScene(landingScene)
-        self.addSubview(backView)
+//        let backView = SKView(frame: frame)
+//        let landingScene = SKScene(fileNamed: "LandingScene")
+//        landingScene?.scaleMode = .aspectFit
+//        backView.presentScene(landingScene)
+//        self.addSubview(backView)
         loadSubviews()
     }
     
@@ -62,17 +62,17 @@ extension LandingView {
     }
     
     private func loadTitleLabel() {
-        titleLabel.frame = CGRect(x: frame.width * 0.2, y: frame.height * 0.1, width: frame.width * 0.6, height: frame.height * 0.15)
+        titleLabel.frame = CGRect(x: frame.width * 0.15, y: frame.height * 0.1, width: frame.width * 0.7, height: frame.height * 0.12)
         titleLabel.layer.cornerRadius = 10
         titleLabel.backgroundColor = UIColor.clear
         titleLabel.textAlignment = .center
         titleLabel.font = Fonts.landing
-        titleLabel.text = "Pop Em'"
+        titleLabel.text = "Thread"
         self.addSubview(titleLabel)
     }
     
     private func loadStartGameButton() {
-        startGame.frame = CGRect(x: frame.width * 0.3, y: frame.height * 0.4, width: frame.width * 0.4, height: frame.height * 0.12)
+        startGame.frame = CGRect(x: frame.width * 0.25, y: frame.height * 0.4, width: frame.width * 0.5, height: frame.height * 0.1)
         startGame.layer.cornerRadius = 10
         startGame.backgroundColor = UIColor.green
         startGame.setTitle("Start", for: .normal)
@@ -81,7 +81,7 @@ extension LandingView {
     }
     
     private func loadCheckScoresButton() {
-        checkScores.frame = CGRect(x: frame.width * 0.3, y: frame.height * 0.53, width: frame.width * 0.4, height: frame.height * 0.12)
+        checkScores.frame = CGRect(x: frame.width * 0.25, y: frame.height * 0.51, width: frame.width * 0.5, height: frame.height * 0.1)
         checkScores.layer.cornerRadius = 10
         checkScores.backgroundColor = UIColor.yellow
         checkScores.setTitle("Scores", for: .normal)
@@ -90,7 +90,7 @@ extension LandingView {
     }
     
     private func loadCreditsButton() {
-        credits.frame = CGRect(x: frame.width * 0.3, y: frame.height * 0.66, width: frame.width * 0.4, height: frame.height * 0.12)
+        credits.frame = CGRect(x: frame.width * 0.25, y: frame.height * 0.62, width: frame.width * 0.5, height: frame.height * 0.1)
         credits.layer.cornerRadius = 10
         credits.backgroundColor = UIColor.brown
         credits.setTitle("Credits", for: .normal)

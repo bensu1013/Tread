@@ -165,21 +165,14 @@ extension GameScene: SKPhysicsContactDelegate {
         }
         
         if a.categoryBitMask == BitMask.player && b.categoryBitMask == BitMask.obstacle {
-        
             if let player = a.node as? PlayerSprite {
-                
                 if let obstacle = b.node as? Obstacle {
-                    
                     player.touched(by: obstacle)
                     obstacle.contacted()
                     gameSceneDelegate?.contactPlayerObstacle()
-                   
                 }
-                
             }
-            
         }
-        
     }
     
     

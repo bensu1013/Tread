@@ -40,7 +40,7 @@ class CreditView: UIView {
 extension CreditView {
     
     func loadTextField() {
-        textField.frame = CGRect(x: frame.width * 0.25, y: frame.height * 0.1, width: frame.width * 0.5, height: frame.height * 0.65)
+        textField.frame = CGRect(x: frame.width * 0.1, y: frame.height * 0.1, width: frame.width * 0.8, height: frame.height * 0.65)
         textField.backgroundColor = UIColor.clear
         textField.textAlignment = .center
         textField.isUserInteractionEnabled = false
@@ -51,7 +51,7 @@ extension CreditView {
     }
     
     func loadDoneButton() {
-        doneButton.frame = CGRect(x: frame.width * 0.35, y: frame.height * 0.75, width: frame.width * 0.3, height: frame.height * 0.1)
+        doneButton.frame = CGRect(x: frame.width * 0.25, y: frame.height * 0.75, width: frame.width * 0.5, height: frame.height * 0.1)
         doneButton.addTarget(self, action: #selector(doneButtonAction), for: .touchUpInside)
         doneButton.backgroundColor = UIColor.green
         doneButton.setTitle("Done", for: .normal)
