@@ -56,7 +56,7 @@ extension LandingView {
         
         loadTitleLabel()
         loadStartGameButton()
-        loadCheckScoresButton()
+//        loadCheckScoresButton()
         loadCreditsButton()
         
     }

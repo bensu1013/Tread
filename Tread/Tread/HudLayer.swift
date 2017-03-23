@@ -23,7 +23,6 @@ class HudLayer {
         loadCoinText()
     }
     
-    
 }
 
 

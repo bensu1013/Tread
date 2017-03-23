@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 
 enum ObstacleType: Int {
-    case none, redCrate, goldCoin
+    case none, redCrate, goldCoin, spikeTrap
 }
 
 
@@ -23,7 +23,7 @@ class Obstacle: SKSpriteNode {
     init(texture: SKTexture?, color: UIColor, size: CGSize, type: ObstacleType) {
         super.init(texture: texture, color: color, size: size)
         self.type = type
-        createPhysicsBody()
+        createPhysicsBody(type: type)
 
     }
     
@@ -35,12 +35,26 @@ class Obstacle: SKSpriteNode {
         
         switch type {
         case .goldCoin:
-            willRemove = true
+            goldCoinTouch()
         default:
             break
         }
         
+    }
+    
+}
+
+//Touched methods for types
+extension Obstacle {
+    
+    fileprivate func goldCoinTouch() {
         
+        self.physicsBody?.categoryBitMask = 0
+        let up = SKAction.moveBy(x: 0.0, y: 100.0, duration: 0.2)
+        let pop = SKAction.fadeOut(withDuration: 0.5)
+        self.run(SKAction.sequence([up,pop])) { 
+            self.willRemove = true
+        }
     }
     
 }
@@ -48,16 +62,36 @@ class Obstacle: SKSpriteNode {
 //PhysicsBody
 extension Obstacle {
     
-    func createPhysicsBody() {
+    func createPhysicsBody(type: ObstacleType) {
         
         self.physicsBody = SKPhysicsBody(rectangleOf: self.frame.size)
         self.physicsBody?.pinned = true
         self.physicsBody?.allowsRotation = false
         self.physicsBody?.categoryBitMask = BitMask.obstacle
-        self.physicsBody?.collisionBitMask = BitMask.player
         self.physicsBody?.contactTestBitMask = BitMask.player | BitMask.screenBorder
         self.physicsBody?.affectedByGravity = false
         
+        switch type {
+        case .redCrate:
+            self.physicsBody?.collisionBitMask = BitMask.player
+        default:
+            self.physicsBody?.collisionBitMask = UInt32.allZeros
+            self.physicsBody?.pinned = false
+        }
+        
+        
+        
+        
+        
     }
     
+    
+    
+    
 }
+
+
+
+
+
+

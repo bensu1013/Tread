@@ -46,10 +46,11 @@ class GameScene: SKScene {
     }
     
     func startRound() {
-        bottomBorder.run(SKAction.moveBy(x: 0.0, y: 1100 + obstacleFactory.stageSize!, duration: 20.0))
-        leftBorder.run(SKAction.moveBy(x: 0.0, y: 1100 + obstacleFactory.stageSize!, duration: 20.0))
-        rightBorder.run(SKAction.moveBy(x: 0.0, y: 1100 + obstacleFactory.stageSize!, duration: 20.0))
-        screenNode.run(SKAction.moveBy(x: 0.0, y: 1100 + obstacleFactory.stageSize!, duration: 20.0))
+        bottomBorder.run(SKAction.moveBy(x: 0.0, y: 1100 + obstacleFactory.stageSize!, duration: 25.0))
+        leftBorder.run(SKAction.moveBy(x: 0.0, y: 1100 + obstacleFactory.stageSize!, duration: 25.0))
+        rightBorder.run(SKAction.moveBy(x: 0.0, y: 1100 + obstacleFactory.stageSize!, duration: 25.0))
+        screenNode.run(SKAction.moveBy(x: 0.0, y: 1100 + obstacleFactory.stageSize!, duration: 25.0))
+        player.isControlled = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -91,7 +92,11 @@ class GameScene: SKScene {
         }
         
         obstacleFactory.update()
-        player.sprite.update(dt: dt)
+        player.update(dt: dt)
+        //TODO: - Clean up level completion logic
+        if player.passFinishLine(line: 800 + obstacleFactory.stageSize!) {
+            player.sprite.run(SKAction.moveBy(x: 0.0, y: 600.0, duration: 4.0))
+        }
         if player.health.getCurrent() <= 0 {
             self.isPaused = true
         }
@@ -152,6 +157,8 @@ extension GameScene: SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
+        
+        
         
         var a: SKPhysicsBody!
         var b: SKPhysicsBody!

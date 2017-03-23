@@ -17,11 +17,30 @@ class Player {
     var health = HealthController()
     var stats = PlayerStatistics()
     
+    var isControlled = false
+    
     private init() {
         
         sprite = PlayerSprite(texture: nil, color: UIColor.red, size: CGSize(width: 64, height: 64))
         sprite.spriteDelegate = self
         
+    }
+    
+    func update(dt: TimeInterval) {
+        
+        if isControlled {
+            sprite.update(dt: dt)
+        }
+        
+    }
+    
+    func passFinishLine(line: CGFloat) -> Bool {
+        if sprite.position.y >= line {
+            isControlled = false
+            return true
+        } else {
+            return false
+        }
     }
     
 }

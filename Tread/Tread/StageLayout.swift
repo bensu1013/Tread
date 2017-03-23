@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 
-class StageLayout {
+final class StageLayout {
     
     static func loadStage(with name: String) -> [[ObstacleType]] {
         

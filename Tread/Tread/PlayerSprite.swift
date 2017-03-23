@@ -15,7 +15,7 @@ protocol PlayerSpriteDelegate {
 
 class PlayerSprite: SKSpriteNode {
     
-    private var moveSpeed: CGFloat = 120
+    private var moveSpeed: CGFloat = 125
     var movePoint: CGPoint?
     var spriteDelegate: PlayerSpriteDelegate?
     
