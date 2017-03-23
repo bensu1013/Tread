@@ -18,36 +18,40 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set view to appropriate frame
         skView.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: self.view.frame.width, height: self.view.frame.height * 0.75))
-            
-            // Load the SKScene from 'GameScene.sks'
-        if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
-            
-            scene.gameSceneDelegate = self
-            
-            // Set the scale mode to scale to fit the window
-            scene.scaleMode = .aspectFill
-            
-            // Present the scene
-            skView.presentScene(scene)
-        }
+        
+        // Creates new instance of scene
+        let scene = GameScene(size: CGSize(width: 640, height: 800))
+        
+        // Set the scale mode to scale to fit the window
+        scene.scaleMode = .aspectFill
+        
+        // Set delegates to communicate with VC
+        scene.gameSceneDelegate = self
+        hud.hudDelegate = self
+        
+        // Present the scene
+        skView.presentScene(scene)
+        
         
         skView.ignoresSiblingOrder = true
         skView.showsFPS = true
         skView.showsNodeCount = true
         
-        self.view.addSubview(skView)
+        
         self.view.addSubview(hud.view)
+        self.view.addSubview(skView)
+        
         
     }
 
+    deinit {
+        
+    }
+    
     override var shouldAutorotate: Bool {
         return true
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Release any cached data, images, etc that aren't in use.
     }
 
     override var prefersStatusBarHidden: Bool {
@@ -64,4 +68,28 @@ extension GameViewController: GameSceneDelegate {
     }
     
 }
+
+extension GameViewController: HUDLayerDelegate {
+    
+    func showMenu() {
+        skView.scene?.isPaused = true
+        let menu = GameMenuView(frame: CGRect(x: view.frame.size.width * 0.2, y: view.frame.size.height * 0.2, width: view.frame.size.width * 0.6, height: view.frame.size.height * 0.45))
+        menu.menuDelegate = self
+        view.addSubview(menu)
+    }
+    
+}
+
+extension GameViewController: GameMenuDelegate {
+    
+    func exitAction() {
+        
+    }
+    
+    func resumeAction() {
+        skView.scene?.isPaused = false
+    }
+    
+}
+
 

@@ -18,8 +18,16 @@ class HealthController {
     var vitality = 1
     var canHurt = true
     
+    init() {
+        current = maximum
+    }
+    
     func getCurrent() -> Int {
         return current
+    }
+    
+    func resetCurrent() {
+        current = maximum
     }
     
     func setVitality(by vit: Vitality) {

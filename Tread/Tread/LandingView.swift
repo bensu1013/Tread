@@ -36,7 +36,7 @@ class LandingView: UIView {
     }
     
     @objc fileprivate func startGameAction() {
-        NotificationCenter.default.post(name: Notification.Name.gameVC, object: nil)
+        NotificationCenter.default.post(name: Notification.Name.selectionVC, object: nil)
     }
     
     @objc fileprivate func checkScoresAction() {

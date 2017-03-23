@@ -9,13 +9,13 @@
 import SpriteKit
 import GameplayKit
 
-protocol GameSceneDelegate {
+protocol GameSceneDelegate: class {
     func contactPlayerObstacle()
 }
 
 class GameScene: SKScene {
     
-    var gameSceneDelegate: GameSceneDelegate?
+    weak var gameSceneDelegate: GameSceneDelegate?
     
     var player = Player.main
     var previousTime: Double = 0
@@ -26,6 +26,15 @@ class GameScene: SKScene {
     
     let screenNode = SKNode()
     var roundStarted = false
+    
+    override init(size: CGSize) {
+        super.init(size: size)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func didMove(to view: SKView) {
       
@@ -45,18 +54,26 @@ class GameScene: SKScene {
         setupScreenBorders()
     }
     
+    deinit {
+        player.reset()
+    }
+    
     func startRound() {
-        bottomBorder.run(SKAction.moveBy(x: 0.0, y: 1100 + obstacleFactory.stageSize!, duration: 25.0))
-        leftBorder.run(SKAction.moveBy(x: 0.0, y: 1100 + obstacleFactory.stageSize!, duration: 25.0))
-        rightBorder.run(SKAction.moveBy(x: 0.0, y: 1100 + obstacleFactory.stageSize!, duration: 25.0))
-        screenNode.run(SKAction.moveBy(x: 0.0, y: 1100 + obstacleFactory.stageSize!, duration: 25.0))
+        let yDist = 1100 + obstacleFactory.stageSize!
+        let dur: Double = Double(yDist) / 100.0
+        bottomBorder.run(SKAction.moveBy(x: 0.0, y: yDist, duration: dur))
+        leftBorder.run(SKAction.moveBy(x: 0.0, y: yDist, duration: dur))
+        rightBorder.run(SKAction.moveBy(x: 0.0, y: yDist, duration: dur))
+        screenNode.run(SKAction.moveBy(x: 0.0, y: yDist, duration: dur))
         player.isControlled = true
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if roundStarted {
             if let touch = touches.first {
-                player.sprite.movePoint = touch.location(in: self)
+                if player.isControlled {
+                    player.sprite.movePoint = touch.location(in: self)
+                }
             }
         } else {
             self.isPaused = false
@@ -69,9 +86,10 @@ class GameScene: SKScene {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first {
             if (self.view?.frame.contains(touch.location(in: self.view)))! {
-                player.sprite.movePoint = touch.location(in: self)
+                if player.isControlled {
+                    player.sprite.movePoint = touch.location(in: self)
+                }
             }
-            
         }
     }
     
@@ -93,9 +111,9 @@ class GameScene: SKScene {
         
         obstacleFactory.update()
         player.update(dt: dt)
-        //TODO: - Clean up level completion logic
-        if player.passFinishLine(line: 800 + obstacleFactory.stageSize!) {
-            player.sprite.run(SKAction.moveBy(x: 0.0, y: 600.0, duration: 4.0))
+        //TODO: - Clean up level completion logic, running multiple times on loop
+        if player.passFinishLine(line: 1000 + obstacleFactory.stageSize!) {
+            player.sprite.run(SKAction.moveBy(x: 0.0, y: 50.0, duration: 4.0))
         }
         if player.health.getCurrent() <= 0 {
             self.isPaused = true

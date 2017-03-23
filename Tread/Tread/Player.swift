@@ -28,12 +28,17 @@ class Player {
     
     func update(dt: TimeInterval) {
         
-        if isControlled {
             sprite.update(dt: dt)
-        }
         
     }
     
+    func reset() {
+        sprite.position = CGPoint.zero
+        health.resetCurrent()
+        stats.coins = 0
+    }
+    
+    //Method needs some work, eww
     func passFinishLine(line: CGFloat) -> Bool {
         if sprite.position.y >= line {
             isControlled = false

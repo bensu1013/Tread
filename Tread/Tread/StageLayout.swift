@@ -9,12 +9,13 @@
 import Foundation
 import UIKit
 
-
 final class StageLayout {
     
-    static func loadStage(with name: String) -> [[ObstacleType]] {
+    static var levelToLoad = "Level1"
+    
+    static func loadStage() -> [[ObstacleType]] {
         
-        let contents = readDataFromFile(named: name)
+        let contents = readDataFromFile(named: levelToLoad)
         let objects = stageParser(with: contents)
         let types = readStage(with: objects)
         

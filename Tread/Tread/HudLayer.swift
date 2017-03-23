@@ -9,23 +9,41 @@
 import Foundation
 import UIKit
 
+protocol HUDLayerDelegate: class {
+    func showMenu()
+}
+
 class HudLayer {
     
     let view = UIView(frame: UIScreen.main.bounds)
     let bottomBar = UIView()
     let healthText = UILabel()
     let coinText = UILabel()
+    
+    let menuButton = UIButton()
+    
+    weak var hudDelegate: HUDLayerDelegate?
+    
     init() {
         
-        view.isUserInteractionEnabled = false
         loadBottomBar()
         loadHealthText()
         loadCoinText()
+        loadMenuButton()
     }
     
 }
 
+//MARK: -Methods of interaction
+extension HudLayer {
+    
+    @objc fileprivate func menuButtonAction() {
+        hudDelegate?.showMenu()
+    }
+    
+}
 
+//MARK: -Subview Setup
 extension HudLayer {
     
     fileprivate func loadBottomBar() {
@@ -47,6 +65,14 @@ extension HudLayer {
         coinText.frame = CGRect(x: 50.0, y: 100.0, width: 100.0, height: 44.0)
         coinText.text = "Coins: \(Player.main.stats.coins)"
         bottomBar.addSubview(coinText)
+    }
+    
+    fileprivate func loadMenuButton() {
+        
+        menuButton.frame = CGRect(x: 200.0, y: 50.0, width: 100.0, height: 44.0)
+        menuButton.setTitle("Menu", for: .normal)
+        menuButton.addTarget(self, action: #selector(menuButtonAction), for: .touchUpInside)
+        bottomBar.addSubview(menuButton)
     }
     
 }

@@ -18,6 +18,7 @@ class ObstacleFactory {
     
     var obstacles = Set<Obstacle>()
     var stageSize: CGFloat?
+    var totalCoins = 0
     
     private let redCrateTexture = SKTexture(image: #imageLiteral(resourceName: "redcrate"))
     private let goldCoinTexture = SKTexture(image: #imageLiteral(resourceName: "goldcoin"))
@@ -25,7 +26,7 @@ class ObstacleFactory {
     init(scene: SKScene) {
         self.scene = scene
         
-        let stageLayout = StageLayout.loadStage(with: "LevelOne")
+        let stageLayout = StageLayout.loadStage()
         
         readStage(layout: stageLayout)
         stageSize = CGFloat(stageLayout.count) * 64.0
@@ -33,7 +34,6 @@ class ObstacleFactory {
     }
     
     deinit {
-        print("good bye cruel world")
     }
 
     func update() {
@@ -64,7 +64,6 @@ class ObstacleFactory {
                 default:
                     let x = CGFloat(j * 64) - scene.frame.width / 2 + 96
                     let y = CGFloat(i * -64) + scene.frame.height + CGFloat(layout.count) * 64
-                    
                     createObstacle(at: CGPoint.init(x: x, y: y), as: column)
                 }
             }
