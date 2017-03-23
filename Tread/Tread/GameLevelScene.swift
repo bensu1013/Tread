@@ -1,5 +1,5 @@
 //
-//  GameScene.swift
+//  GameLevelScene.swift
 //  Tread
 //
 //  Created by Benjamin Su on 3/6/17.
@@ -13,7 +13,7 @@ protocol GameSceneDelegate: class {
     func contactPlayerObstacle()
 }
 
-class GameScene: SKScene {
+class GameLevelScene: SKScene {
     
     weak var gameSceneDelegate: GameSceneDelegate?
     
@@ -111,6 +111,7 @@ class GameScene: SKScene {
         
         obstacleFactory.update()
         player.update(dt: dt)
+        
         //TODO: - Clean up level completion logic, running multiple times on loop
         if player.passFinishLine(line: 1000 + obstacleFactory.stageSize!) {
             player.sprite.run(SKAction.moveBy(x: 0.0, y: 50.0, duration: 4.0))
@@ -122,7 +123,7 @@ class GameScene: SKScene {
 }
 
 //MARK: - SceneObjects
-extension GameScene {
+extension GameLevelScene {
     
     fileprivate func setupTilemap() {
         
@@ -168,7 +169,7 @@ extension GameScene {
 }
 
 //MARK: - Contact Delegate
-extension GameScene: SKPhysicsContactDelegate {
+extension GameLevelScene: SKPhysicsContactDelegate {
     
     fileprivate func setupPhysicsWorld() {
         self.physicsWorld.contactDelegate = self

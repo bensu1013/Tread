@@ -1,5 +1,5 @@
 //
-//  GameViewController.swift
+//  GameLevelViewController.swift
 //  Tread
 //
 //  Created by Benjamin Su on 3/6/17.
@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class GameViewController: UIViewController {
+class GameLevelViewController: UIViewController {
     
     let skView = SKView()
     let hud = HudLayer()
@@ -22,7 +22,7 @@ class GameViewController: UIViewController {
         skView.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: self.view.frame.width, height: self.view.frame.height * 0.75))
         
         // Creates new instance of scene
-        let scene = GameScene(size: CGSize(width: 640, height: 800))
+        let scene = GameLevelScene(size: CGSize(width: 640, height: 800))
         
         // Set the scale mode to scale to fit the window
         scene.scaleMode = .aspectFill
@@ -59,7 +59,7 @@ class GameViewController: UIViewController {
     }
 }
 
-extension GameViewController: GameSceneDelegate {
+extension GameLevelViewController: GameSceneDelegate {
     
     func contactPlayerObstacle() {
         
@@ -69,18 +69,18 @@ extension GameViewController: GameSceneDelegate {
     
 }
 
-extension GameViewController: HUDLayerDelegate {
+extension GameLevelViewController: HUDLayerDelegate {
     
     func showMenu() {
         skView.scene?.isPaused = true
-        let menu = GameMenuView(frame: CGRect(x: view.frame.size.width * 0.2, y: view.frame.size.height * 0.2, width: view.frame.size.width * 0.6, height: view.frame.size.height * 0.45))
+        let menu = GameLevelMenuView(frame: CGRect(x: view.frame.size.width * 0.2, y: view.frame.size.height * 0.2, width: view.frame.size.width * 0.6, height: view.frame.size.height * 0.45))
         menu.menuDelegate = self
         view.addSubview(menu)
     }
     
 }
 
-extension GameViewController: GameMenuDelegate {
+extension GameLevelViewController: GameMenuDelegate {
     
     func exitAction() {
         

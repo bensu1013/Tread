@@ -68,6 +68,9 @@ class ObstacleFactory {
                 }
             }
         }
+        
+        //TODO: - add finish line with contact to trigger end stage logic
+        
     }
     
     private func createObstacle(at point: CGPoint, as type: ObstacleType) {

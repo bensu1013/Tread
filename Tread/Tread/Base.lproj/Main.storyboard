@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="-1433" y="242"/>
         </scene>
-        <!--Game View Controller-->
+        <!--Game Level View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController storyboardIdentifier="gamevc" id="BV1-FR-VrT" customClass="GameViewController" customModule="Tread" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="gamevc" id="BV1-FR-VrT" customClass="GameLevelViewController" customModule="Tread" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8aa-yV-Osq"/>
                         <viewControllerLayoutGuide type="bottom" id="qHh-Mt-9TT"/>

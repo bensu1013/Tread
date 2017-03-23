@@ -1,30 +1,21 @@
 //
-//  GameMenuView.swift
+//  GameLevelCompleteView.swift
 //  Tread
 //
 //  Created by Benjamin Su on 3/23/17.
 //  Copyright © 2017 Benjamin Su. All rights reserved.
 //
 
-import Foundation
 import UIKit
-import SpriteKit
 
-protocol GameMenuDelegate: class {
-    func resumeAction()
-    func exitAction()
-}
+// View to pop up when level is completed
 
-class GameMenuView: UIView {
+class GameLevelCompleteView: UIView {
     
-    weak var menuDelegate: GameMenuDelegate?
+//    weak var menuDelegate: GameMenuDelegate?
     
     let exitButton = UIButton()
     let resumeButton = UIButton()
-    
-    
-    
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,7 +34,7 @@ class GameMenuView: UIView {
 
 
 //MARK: - Subview Setup
-extension GameMenuView {
+extension GameLevelCompleteView {
     
     fileprivate func loadSubviews() {
         
@@ -64,7 +55,7 @@ extension GameMenuView {
     
     @objc private func exitButtonAction() {
         
-        menuDelegate?.exitAction()
+//        menuDelegate?.exitAction()
         NotificationCenter.default.post(name: Notification.Name.selectionVC, object: nil)
         
     }
@@ -80,14 +71,8 @@ extension GameMenuView {
     
     @objc private func resumeButtonAction() {
         
-        menuDelegate?.resumeAction()
+//        menuDelegate?.resumeAction()
         self.removeFromSuperview()
         
     }
 }
-
-
-
-
-
-

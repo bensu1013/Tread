@@ -15,7 +15,7 @@ final class StageLayout {
     
     static func loadStage() -> [[ObstacleType]] {
         
-        let contents = readDataFromFile(named: levelToLoad)
+        let contents = readDataFromFile()
         let objects = stageParser(with: contents)
         let types = readStage(with: objects)
         
@@ -64,8 +64,8 @@ final class StageLayout {
         return stageLayout
     }
     
-    private static func readDataFromFile(named: String) -> String? {
-        guard let filePath = Bundle.main.path(forResource: named, ofType: "csv") else { return nil }
+    private static func readDataFromFile() -> String? {
+        guard let filePath = Bundle.main.path(forResource: levelToLoad, ofType: "csv") else { return nil }
         
         do {
             let contents = try String(contentsOfFile: filePath, encoding: .utf8)
