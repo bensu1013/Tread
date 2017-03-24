@@ -68,12 +68,11 @@ extension GameLevelViewController: GameSceneDelegate {
         
     }
     
-    //cant create new gamescene when old one is still in use, overlapping player nodes
     func levelCompleted() {
         
         skView.scene?.isPaused = true
         let stats = GameLevelCompleteView(frame: CGRect(x: view.frame.size.width * 0.1, y: view.frame.size.height * 0.1, width: view.frame.size.width * 0.8, height: view.frame.size.height * 0.55))
-        
+        stats.menuDelegate = self
         view.addSubview(stats)
         
     }
@@ -99,6 +98,19 @@ extension GameLevelViewController: GameMenuDelegate {
     
     func resumeAction() {
         skView.scene?.isPaused = false
+    }
+    
+    func nextLevelAction() {
+        
+        Player.main.sprite.removeFromParent()
+        // Creates new instance of scene
+        let scene = GameLevelScene(size: CGSize(width: 640, height: 800))
+        // Set the scale mode to scale to fit the window
+        scene.scaleMode = .aspectFill
+        // Set delegates to communicate with VC
+        scene.gameSceneDelegate = self
+        let transition = SKTransition.crossFade(withDuration: 1.0)
+        skView.presentScene(scene, transition: transition)
     }
     
 }

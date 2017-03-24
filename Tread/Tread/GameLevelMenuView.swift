@@ -13,6 +13,7 @@ import SpriteKit
 protocol GameMenuDelegate: class {
     func resumeAction()
     func exitAction()
+    func nextLevelAction()
 }
 
 class GameLevelMenuView: UIView {

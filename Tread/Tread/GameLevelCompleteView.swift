@@ -12,7 +12,7 @@ import UIKit
 
 class GameLevelCompleteView: UIView {
     
-//    weak var menuDelegate: GameMenuDelegate?
+    weak var menuDelegate: GameMenuDelegate?
     
 /*
  Time, CoinsCollected/MaxCoins, EXP gained
@@ -89,18 +89,25 @@ extension GameLevelCompleteView {
         nextLevelButton.frame = CGRect(x: frame.size.width * 0.6, y: frame.size.height * 0.7, width: frame.size.width * 0.35, height: frame.size.height * 0.2)
         nextLevelButton.addTarget(self, action: #selector(nextLevelButtonAction), for: .touchUpInside)
         nextLevelButton.setTitle("Next", for: .normal)
+        if !isNextAvailable() {
+            nextLevelButton.isUserInteractionEnabled = false
+        }
         addSubview(nextLevelButton)
         
     }
     
+    private func isNextAvailable() -> Bool {
+        
+        return StageLayout.levelToLoad < LevelSelectionInfo.levels.count
+        
+    }
+    
     @objc private func nextLevelButtonAction() {
-        
-//        menuDelegate?.resumeAction()
-        
+    
         //Logic for last level completed
         StageLayout.levelToLoad += 1
-        NotificationCenter.default.post(name: Notification.Name.gameVC, object: nil)
         self.removeFromSuperview()
+        menuDelegate?.nextLevelAction()
         
     }
 }
