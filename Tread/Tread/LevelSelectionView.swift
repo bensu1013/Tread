@@ -20,7 +20,7 @@ class LevelSelectionView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.blue
+        backgroundColor = UIColor.theme5
         
         loadSubviews()
         
@@ -48,7 +48,7 @@ extension LevelSelectionView {
         levelView = UICollectionView(frame: CGRect.init(x: 0.0, y: frame.size.height * 0.1, width: frame.size.width, height: frame.size.height * 0.65), collectionViewLayout: layout)
         levelView.dataSource = self
         levelView.delegate = self
-        levelView.backgroundColor = UIColor.white
+        levelView.backgroundColor = UIColor.clear
         levelView.register(LevelSelectionCollectionViewCell.self, forCellWithReuseIdentifier: cellIdentifier)
         self.addSubview(levelView)
     }
@@ -56,9 +56,8 @@ extension LevelSelectionView {
     private func loadBackButton() {
         
         backButton.frame = CGRect(x: frame.size.width * 0.25, y: frame.size.height * 0.8, width: frame.size.width * 0.5, height: frame.size.height * 0.1)
+        backButton.setToTheme(title: "Back")
         backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
-        backButton.backgroundColor = UIColor.cyan
-        backButton.setTitle("Back", for: .normal)
         self.addSubview(backButton)
     }
     

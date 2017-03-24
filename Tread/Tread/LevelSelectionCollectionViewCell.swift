@@ -15,7 +15,7 @@ class LevelSelectionCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadTextLabel()
-        backgroundColor = UIColor.red
+        backgroundColor = UIColor.theme1
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,6 +33,7 @@ extension LevelSelectionCollectionViewCell {
         
         textLabel.frame = bounds
         textLabel.textAlignment = .center
+        textLabel.textColor = UIColor.darkGray
         self.addSubview(textLabel)
         
     }

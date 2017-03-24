@@ -71,7 +71,7 @@ class ObstacleFactory {
         
         //TODO: - add finish line with contact to trigger end stage logic
         let finish = FinishLine(texture: nil, color: UIColor.green, size: CGSize(width: 640, height: 50))
-        finish.position = CGPoint(x: 0.0, y: (CGFloat(layout[0].count * 64) + scene.frame.height / 2))
+        finish.position = CGPoint(x: 0.0, y: (CGFloat(layout.count * 64) + scene.frame.height * 0.75))
         scene?.addChild(finish)
     }
     

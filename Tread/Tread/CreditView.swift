@@ -17,7 +17,7 @@ class CreditView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.cyan
+        backgroundColor = UIColor.theme4
         
         loadTextField()
         loadDoneButton()
@@ -52,9 +52,8 @@ extension CreditView {
     
     func loadDoneButton() {
         doneButton.frame = CGRect(x: frame.width * 0.25, y: frame.height * 0.75, width: frame.width * 0.5, height: frame.height * 0.1)
+        doneButton.setToTheme(title: "Back")
         doneButton.addTarget(self, action: #selector(doneButtonAction), for: .touchUpInside)
-        doneButton.backgroundColor = UIColor.green
-        doneButton.setTitle("Done", for: .normal)
         self.addSubview(doneButton)
     }
 }

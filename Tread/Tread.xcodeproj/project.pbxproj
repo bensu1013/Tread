@@ -22,6 +22,8 @@
 		FD6F8BF91E8470090079A663 /* LevelSelectionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F8BF81E8470090079A663 /* LevelSelectionInfo.swift */; };
 		FD6F8BFB1E8473F70079A663 /* GameLevelCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F8BFA1E8473F70079A663 /* GameLevelCompleteView.swift */; };
 		FD6F8BFD1E84C04C0079A663 /* FinishLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F8BFC1E84C04C0079A663 /* FinishLine.swift */; };
+		FD6F8BFF1E856D160079A663 /* Level4.csv in Resources */ = {isa = PBXBuildFile; fileRef = FD6F8BFE1E856D160079A663 /* Level4.csv */; };
+		FD6F8C011E858E050079A663 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F8C001E858E050079A663 /* UIExtensions.swift */; };
 		FDEF8C001E6DE35000492121 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF8BFF1E6DE35000492121 /* AppDelegate.swift */; };
 		FDEF8C041E6DE35000492121 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = FDEF8C031E6DE35000492121 /* Actions.sks */; };
 		FDEF8C061E6DE35000492121 /* GameLevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF8C051E6DE35000492121 /* GameLevelScene.swift */; };
@@ -57,6 +59,8 @@
 		FD6F8BF81E8470090079A663 /* LevelSelectionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectionInfo.swift; sourceTree = "<group>"; };
 		FD6F8BFA1E8473F70079A663 /* GameLevelCompleteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevelCompleteView.swift; sourceTree = "<group>"; };
 		FD6F8BFC1E84C04C0079A663 /* FinishLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishLine.swift; sourceTree = "<group>"; };
+		FD6F8BFE1E856D160079A663 /* Level4.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Level4.csv; sourceTree = "<group>"; };
+		FD6F8C001E858E050079A663 /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		FDEF8BFC1E6DE35000492121 /* Tread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tread.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDEF8BFF1E6DE35000492121 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FDEF8C031E6DE35000492121 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				FDEF8C1F1E6E239B00492121 /* Constants.swift */,
+				FD6F8C001E858E050079A663 /* UIExtensions.swift */,
 				FDEF8BFF1E6DE35000492121 /* AppDelegate.swift */,
 				FDEF8C091E6DE35000492121 /* Main.storyboard */,
 				FD07341B1E776B6F004D2591 /* TileSet.sks */,
@@ -229,6 +234,7 @@
 				FDEF8C311E74FFB600492121 /* Level1.csv */,
 				FD6F8BEE1E8449530079A663 /* Level2.csv */,
 				FD6F8BF21E8464B70079A663 /* Level3.csv */,
+				FD6F8BFE1E856D160079A663 /* Level4.csv */,
 			);
 			name = StageCSV;
 			sourceTree = "<group>";
@@ -294,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FDEF8C0B1E6DE35000492121 /* Main.storyboard in Resources */,
+				FD6F8BFF1E856D160079A663 /* Level4.csv in Resources */,
 				FD6F8BF31E8464B70079A663 /* Level3.csv in Resources */,
 				FD6F8BEF1E8449530079A663 /* Level2.csv in Resources */,
 				FDEF8C0D1E6DE35000492121 /* Assets.xcassets in Resources */,
@@ -319,6 +326,7 @@
 				FD6F8BE31E821EE30079A663 /* LandingView.swift in Sources */,
 				FDEF8C2A1E74F18D00492121 /* StageLayout.swift in Sources */,
 				FD6F8BFB1E8473F70079A663 /* GameLevelCompleteView.swift in Sources */,
+				FD6F8C011E858E050079A663 /* UIExtensions.swift in Sources */,
 				FDEF8C061E6DE35000492121 /* GameLevelScene.swift in Sources */,
 				FDEF8C271E7097AE00492121 /* PlayerStatistics.swift in Sources */,
 				FD6F8BF91E8470090079A663 /* LevelSelectionInfo.swift in Sources */,

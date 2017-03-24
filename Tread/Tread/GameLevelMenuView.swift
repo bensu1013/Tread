@@ -23,10 +23,6 @@ class GameLevelMenuView: UIView {
     let exitButton = UIButton()
     let resumeButton = UIButton()
     
-    
-    
-    
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         

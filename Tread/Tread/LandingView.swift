@@ -24,6 +24,8 @@ class LandingView: UIView {
 //        landingScene?.scaleMode = .aspectFit
 //        backView.presentScene(landingScene)
 //        self.addSubview(backView)
+        
+        backgroundColor = UIColor.theme4
         loadSubviews()
     }
     
@@ -62,7 +64,7 @@ extension LandingView {
     }
     
     private func loadTitleLabel() {
-        titleLabel.frame = CGRect(x: frame.width * 0.15, y: frame.height * 0.1, width: frame.width * 0.7, height: frame.height * 0.12)
+        titleLabel.frame = CGRect(x: frame.width * 0.15, y: frame.height * 0.2, width: frame.width * 0.7, height: frame.height * 0.12)
         titleLabel.layer.cornerRadius = 10
         titleLabel.backgroundColor = UIColor.clear
         titleLabel.textAlignment = .center
@@ -72,28 +74,22 @@ extension LandingView {
     }
     
     private func loadStartGameButton() {
-        startGame.frame = CGRect(x: frame.width * 0.25, y: frame.height * 0.4, width: frame.width * 0.5, height: frame.height * 0.1)
-        startGame.layer.cornerRadius = 10
-        startGame.backgroundColor = UIColor.green
-        startGame.setTitle("Start", for: .normal)
+        startGame.frame = CGRect(x: frame.width * 0.25, y: frame.height * 0.5, width: frame.width * 0.5, height: frame.height * 0.1)
+        startGame.setToTheme(title: "Start")
         startGame.addTarget(self, action: #selector(startGameAction), for: .touchUpInside)
         self.addSubview(startGame)
     }
     
     private func loadCheckStatsButton() {
-        checkStats.frame = CGRect(x: frame.width * 0.25, y: frame.height * 0.51, width: frame.width * 0.5, height: frame.height * 0.1)
-        checkStats.layer.cornerRadius = 10
-        checkStats.backgroundColor = UIColor.yellow
-        checkStats.setTitle("Scores", for: .normal)
+        checkStats.frame = CGRect(x: frame.width * 0.25, y: frame.height * 0.61, width: frame.width * 0.5, height: frame.height * 0.1)
+        checkStats.setToTheme(title: "Stats")
         checkStats.addTarget(self, action: #selector(checkStatsAction), for: .touchUpInside)
         self.addSubview(checkStats)
     }
     
     private func loadCreditsButton() {
-        credits.frame = CGRect(x: frame.width * 0.25, y: frame.height * 0.62, width: frame.width * 0.5, height: frame.height * 0.1)
-        credits.layer.cornerRadius = 10
-        credits.backgroundColor = UIColor.brown
-        credits.setTitle("Credits", for: .normal)
+        credits.frame = CGRect(x: frame.width * 0.25, y: frame.height * 0.72, width: frame.width * 0.5, height: frame.height * 0.1)
+        credits.setToTheme(title: "Credits")
         credits.addTarget(self, action: #selector(creditsAction), for: .touchUpInside)
         self.addSubview(credits)
     }
