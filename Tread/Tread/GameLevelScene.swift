@@ -11,6 +11,7 @@ import GameplayKit
 
 protocol GameSceneDelegate: class {
     func contactPlayerObstacle()
+    func levelCompleted()
 }
 
 class GameLevelScene: SKScene {
@@ -113,9 +114,9 @@ class GameLevelScene: SKScene {
         player.update(dt: dt)
         
         //TODO: - Clean up level completion logic, running multiple times on loop
-        if player.passFinishLine(line: 1000 + obstacleFactory.stageSize!) {
-            player.sprite.run(SKAction.moveBy(x: 0.0, y: 50.0, duration: 4.0))
-        }
+//        if player.passFinishLine(line: 1000 + obstacleFactory.stageSize!) {
+//            player.sprite.run(SKAction.moveBy(x: 0.0, y: 50.0, duration: 4.0))
+//        }
         if player.health.getCurrent() <= 0 {
             self.isPaused = true
         }
@@ -132,6 +133,7 @@ extension GameLevelScene {
         self.addChild(tileMap)
         tileMap.fill(with: tileMap.tileSet.tileGroups.first)
         tileMap.position = CGPoint.init(x: 0.0, y: obstacleFactory.stageSize! / 2 + 200)
+        tileMap.zPosition = -50
         
     }
     
@@ -217,15 +219,21 @@ extension GameLevelScene: SKPhysicsContactDelegate {
         
         if a.categoryBitMask == BitMask.player && b.categoryBitMask == BitMask.screenBorder {
             
-        }
-        
-        if a.categoryBitMask == BitMask.obstacle && b.categoryBitMask == BitMask.screenBorder {
+        } else if a.categoryBitMask == BitMask.obstacle && b.categoryBitMask == BitMask.screenBorder {
             
             if let obstacle = a.node as? Obstacle {
                 
                 obstacle.willRemove = true
                 
             }
+            
+        } else if a.categoryBitMask == BitMask.player && b.categoryBitMask == BitMask.finishLine {
+            
+            Player.main.isControlled = false
+            player.sprite.run(SKAction.moveBy(x: 0.0, y: 50.0, duration: 4.0))
+            player.sprite.run(SKAction.moveBy(x: 0.0, y: 500.0, duration: 5.0), completion: { 
+                self.gameSceneDelegate?.levelCompleted()
+            })
             
         }
         

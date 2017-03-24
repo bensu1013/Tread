@@ -79,19 +79,6 @@ extension Obstacle {
             self.physicsBody?.pinned = false
         }
         
-        
-        
-        
-        
     }
     
-    
-    
-    
 }
-
-
-
-
-
-

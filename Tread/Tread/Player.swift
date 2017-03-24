@@ -38,16 +38,6 @@ class Player {
         stats.coins = 0
     }
     
-    //Method needs some work, eww
-    func passFinishLine(line: CGFloat) -> Bool {
-        if sprite.position.y >= line {
-            isControlled = false
-            return true
-        } else {
-            return false
-        }
-    }
-    
 }
 
 //Contact methods

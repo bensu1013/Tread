@@ -16,6 +16,7 @@ struct BitMask {
     static let player: UInt32 = 0b1
     static let obstacle: UInt32 = 0b10
     static let screenBorder: UInt32 = 0b100
+    static let finishLine: UInt32 = 0b1000
     
 }
 

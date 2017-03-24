@@ -65,6 +65,17 @@ extension GameLevelViewController: GameSceneDelegate {
         
         hud.healthText.text = "\(Player.main.health.getCurrent())/\(Player.main.health.maximum)"
         hud.coinText.text = "Coins: \(Player.main.stats.coins)"
+        
+    }
+    
+    //cant create new gamescene when old one is still in use, overlapping player nodes
+    func levelCompleted() {
+        
+        skView.scene?.isPaused = true
+        let stats = GameLevelCompleteView(frame: CGRect(x: view.frame.size.width * 0.1, y: view.frame.size.height * 0.1, width: view.frame.size.width * 0.8, height: view.frame.size.height * 0.55))
+        
+        view.addSubview(stats)
+        
     }
     
 }

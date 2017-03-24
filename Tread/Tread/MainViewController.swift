@@ -43,16 +43,12 @@ class MainViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(observerNotification), name: Notification.Name.landingVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(observerNotification), name: Notification.Name.selectionVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(observerNotification), name: Notification.Name.gameVC, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(observerNotification), name: Notification.Name.scoreVC, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(observerNotification), name: Notification.Name.statsVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(observerNotification), name: Notification.Name.creditVC, object: nil)
     }
     
     
     func observerNotification(with notification: Notification) {
-        if let info = notification.userInfo as? [String:String] {
-            guard let number = info["level"] else { return }
-            StageLayout.levelToLoad = "Level\(number)"
-        }
         self.switchToViewController(with: notification.name.rawValue)
     }
     
@@ -110,7 +106,7 @@ extension Notification.Name {
     static let landingVC = Notification.Name(rawValue: "landingvc")
     static let selectionVC = Notification.Name(rawValue: "selectionvc")
     static let gameVC = Notification.Name(rawValue: "gamevc")
-    static let scoreVC = Notification.Name(rawValue: "scorevc")
+    static let statsVC = Notification.Name(rawValue: "scorevc")
     static let creditVC = Notification.Name(rawValue: "creditvc")
     
    

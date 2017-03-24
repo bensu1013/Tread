@@ -21,6 +21,7 @@
 		FD6F8BF31E8464B70079A663 /* Level3.csv in Resources */ = {isa = PBXBuildFile; fileRef = FD6F8BF21E8464B70079A663 /* Level3.csv */; };
 		FD6F8BF91E8470090079A663 /* LevelSelectionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F8BF81E8470090079A663 /* LevelSelectionInfo.swift */; };
 		FD6F8BFB1E8473F70079A663 /* GameLevelCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F8BFA1E8473F70079A663 /* GameLevelCompleteView.swift */; };
+		FD6F8BFD1E84C04C0079A663 /* FinishLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F8BFC1E84C04C0079A663 /* FinishLine.swift */; };
 		FDEF8C001E6DE35000492121 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF8BFF1E6DE35000492121 /* AppDelegate.swift */; };
 		FDEF8C041E6DE35000492121 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = FDEF8C031E6DE35000492121 /* Actions.sks */; };
 		FDEF8C061E6DE35000492121 /* GameLevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF8C051E6DE35000492121 /* GameLevelScene.swift */; };
@@ -55,6 +56,7 @@
 		FD6F8BF21E8464B70079A663 /* Level3.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Level3.csv; sourceTree = "<group>"; };
 		FD6F8BF81E8470090079A663 /* LevelSelectionInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectionInfo.swift; sourceTree = "<group>"; };
 		FD6F8BFA1E8473F70079A663 /* GameLevelCompleteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevelCompleteView.swift; sourceTree = "<group>"; };
+		FD6F8BFC1E84C04C0079A663 /* FinishLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinishLine.swift; sourceTree = "<group>"; };
 		FDEF8BFC1E6DE35000492121 /* Tread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tread.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDEF8BFF1E6DE35000492121 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FDEF8C031E6DE35000492121 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			children = (
 				FDEF8C1D1E6DE97A00492121 /* ObstacleFactory.swift */,
 				FDEF8C191E6DE41200492121 /* Obstacle.swift */,
+				FD6F8BFC1E84C04C0079A663 /* FinishLine.swift */,
 				FDEF8C251E70975400492121 /* Player */,
 			);
 			name = GameObjects;
@@ -320,6 +323,7 @@
 				FDEF8C271E7097AE00492121 /* PlayerStatistics.swift in Sources */,
 				FD6F8BF91E8470090079A663 /* LevelSelectionInfo.swift in Sources */,
 				FDEF8C1A1E6DE41200492121 /* Obstacle.swift in Sources */,
+				FD6F8BFD1E84C04C0079A663 /* FinishLine.swift in Sources */,
 				FD6F8BE91E8431440079A663 /* GameLevelMenuView.swift in Sources */,
 				FD6F8BE51E821F100079A663 /* CreditView.swift in Sources */,
 				FD6F8BED1E8432B50079A663 /* LevelSelectionView.swift in Sources */,

@@ -63,14 +63,16 @@ class ObstacleFactory {
                     break
                 default:
                     let x = CGFloat(j * 64) - scene.frame.width / 2 + 96
-                    let y = CGFloat(i * -64) + scene.frame.height + CGFloat(layout.count) * 64
+                    let y = CGFloat(i * -64) + scene.frame.height / 2 + CGFloat(layout.count) * 64
                     createObstacle(at: CGPoint.init(x: x, y: y), as: column)
                 }
             }
         }
         
         //TODO: - add finish line with contact to trigger end stage logic
-        
+        let finish = FinishLine(texture: nil, color: UIColor.green, size: CGSize(width: 640, height: 50))
+        finish.position = CGPoint(x: 0.0, y: (CGFloat(layout[0].count * 64) + scene.frame.height / 2))
+        scene?.addChild(finish)
     }
     
     private func createObstacle(at point: CGPoint, as type: ObstacleType) {

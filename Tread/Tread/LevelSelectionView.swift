@@ -80,15 +80,17 @@ extension LevelSelectionView: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! LevelSelectionCollectionViewCell
         
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! LevelSelectionCollectionViewCell
         cell.textLabel.text = "Level\(indexPath.item + 1)"
         
         return cell
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        NotificationCenter.default.post(name: Notification.Name.gameVC, object: nil, userInfo: ["level":"\(indexPath.item + 1)"])
+        StageLayout.levelToLoad = indexPath.item + 1
+        NotificationCenter.default.post(name: Notification.Name.gameVC, object: nil)
     }
     
 }

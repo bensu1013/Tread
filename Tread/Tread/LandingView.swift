@@ -14,7 +14,7 @@ class LandingView: UIView {
     
     var titleLabel = UILabel()
     var startGame = UIButton()
-    var checkScores = UIButton()
+    var checkStats = UIButton()
     var credits = UIButton()
     
     override init(frame: CGRect) {
@@ -39,8 +39,8 @@ class LandingView: UIView {
         NotificationCenter.default.post(name: Notification.Name.selectionVC, object: nil)
     }
     
-    @objc fileprivate func checkScoresAction() {
-        NotificationCenter.default.post(name: Notification.Name.scoreVC, object: nil)
+    @objc fileprivate func checkStatsAction() {
+//        NotificationCenter.default.post(name: Notification.Name.statsVC, object: nil)
     }
     
     @objc fileprivate func creditsAction() {
@@ -56,7 +56,7 @@ extension LandingView {
         
         loadTitleLabel()
         loadStartGameButton()
-//        loadCheckScoresButton()
+        loadCheckStatsButton()
         loadCreditsButton()
         
     }
@@ -80,13 +80,13 @@ extension LandingView {
         self.addSubview(startGame)
     }
     
-    private func loadCheckScoresButton() {
-        checkScores.frame = CGRect(x: frame.width * 0.25, y: frame.height * 0.51, width: frame.width * 0.5, height: frame.height * 0.1)
-        checkScores.layer.cornerRadius = 10
-        checkScores.backgroundColor = UIColor.yellow
-        checkScores.setTitle("Scores", for: .normal)
-        checkScores.addTarget(self, action: #selector(checkScoresAction), for: .touchUpInside)
-        self.addSubview(checkScores)
+    private func loadCheckStatsButton() {
+        checkStats.frame = CGRect(x: frame.width * 0.25, y: frame.height * 0.51, width: frame.width * 0.5, height: frame.height * 0.1)
+        checkStats.layer.cornerRadius = 10
+        checkStats.backgroundColor = UIColor.yellow
+        checkStats.setTitle("Scores", for: .normal)
+        checkStats.addTarget(self, action: #selector(checkStatsAction), for: .touchUpInside)
+        self.addSubview(checkStats)
     }
     
     private func loadCreditsButton() {

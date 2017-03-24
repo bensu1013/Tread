@@ -11,7 +11,7 @@ import UIKit
 
 final class StageLayout {
     
-    static var levelToLoad = "Level1"
+    static var levelToLoad = 1
     
     static func loadStage() -> [[ObstacleType]] {
         
@@ -65,7 +65,8 @@ final class StageLayout {
     }
     
     private static func readDataFromFile() -> String? {
-        guard let filePath = Bundle.main.path(forResource: levelToLoad, ofType: "csv") else { return nil }
+        let levelName = "Level\(levelToLoad)"
+        guard let filePath = Bundle.main.path(forResource: levelName, ofType: "csv") else { return nil }
         
         do {
             let contents = try String(contentsOfFile: filePath, encoding: .utf8)
