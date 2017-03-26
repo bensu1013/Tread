@@ -17,7 +17,7 @@ import Foundation
 struct LevelSelectionInfo {
     
     static var levels: [String] {
-        return [String].init(repeating: "Level", count: 4)
+        return [String].init(repeating: "Level", count: 5)
     }
     
     

@@ -49,7 +49,7 @@ extension HudLayer {
     fileprivate func loadBottomBar() {
         
         bottomBar.frame = CGRect(x: 0.0, y: UIScreen.main.bounds.height * 0.75, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 0.25)
-        bottomBar.backgroundColor = UIColor.brown
+        bottomBar.backgroundColor = UIColor.theme1
         view.addSubview(bottomBar)
         
     }
@@ -70,7 +70,7 @@ extension HudLayer {
     fileprivate func loadMenuButton() {
         
         menuButton.frame = CGRect(x: 200.0, y: 50.0, width: 100.0, height: 44.0)
-        menuButton.setTitle("Menu", for: .normal)
+        menuButton.setToTheme(title: "Menu")
         menuButton.addTarget(self, action: #selector(menuButtonAction), for: .touchUpInside)
         bottomBar.addSubview(menuButton)
     }

@@ -10,12 +10,15 @@ import UIKit
 
 class LevelSelectionCollectionViewCell: UICollectionViewCell {
     
+    
     let textLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadTextLabel()
-        backgroundColor = UIColor.theme1
+        backgroundColor = UIColor.clear
+        contentView.backgroundColor = UIColor.theme1
+        contentView.layer.cornerRadius = 8
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -34,7 +37,7 @@ extension LevelSelectionCollectionViewCell {
         textLabel.frame = bounds
         textLabel.textAlignment = .center
         textLabel.textColor = UIColor.darkGray
-        self.addSubview(textLabel)
+        contentView.addSubview(textLabel)
         
     }
     

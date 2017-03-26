@@ -23,43 +23,27 @@ struct BitMask {
 struct Fonts {
     
     static var landing: UIFont {
-        
         let size = UIScreen.main.bounds.height / 12
-        
         let font = UIFont(name: "Futura-CondensedExtraBold", size: size)
-        
         return font!
-        
     }
     
     static var score: UIFont {
-        
         let size = UIScreen.main.bounds.height / 24
-        
         let font = UIFont(name: "Futura-CondensedExtraBold", size: size)
-        
         return font!
-        
     }
     
     static var credit: UIFont {
-        
         let size = UIScreen.main.bounds.height / 20
-        
         let font = UIFont(name: "Futura-CondensedExtraBold", size: size)
-        
         return font!
-        
     }
     
     static var hudlayer: UIFont {
-        
         let size = UIScreen.main.bounds.height / 28
-        
         let font = UIFont(name: "Futura-CondensedExtraBold", size: size)
-        
         return font!
-        
     }
     
 }

@@ -37,69 +37,66 @@ class GameLevelCompleteView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
-    
 }
-
 
 //MARK: - Subview Setup
 extension GameLevelCompleteView {
     
     fileprivate func loadSubviews() {
         
-        backgroundColor = UIColor.cyan
+        backgroundColor = UIColor.theme4
+        layer.cornerRadius = frame.width / 10.0
         loadCoinsLabel()
         loadExpLabel()
         loadExitButton()
         loadNextLevelButton()
         
     }
-    
 
     private func loadCoinsLabel() {
         
-        coinsLabel.frame = CGRect(x: frame.size.width * 0.25, y: frame.size.height * 0.25, width: frame.size.width * 0.5, height: frame.size.height * 0.2)
+        coinsLabel.frame = CGRect(x: frame.size.width * 0.25, y: frame.size.height * 0.2, width: frame.size.width * 0.5, height: frame.size.height * 0.2)
         coinsLabel.text = "\(Player.main.stats.coins)"
+        coinsLabel.textColor = UIColor.darkGray
         addSubview(coinsLabel)
         
     }
     
     private func loadExpLabel() {
-        
+        expLabel.frame = CGRect(x: frame.size.width * 0.25, y: frame.size.height * 0.45, width: frame.size.width * 0.5, height: frame.size.height * 0.2)
+        expLabel.text = "10"
+        expLabel.textColor = UIColor.darkGray
+        addSubview(expLabel)
     }
     
     private func loadExitButton() {
         
-        exitButton.frame = CGRect(x: frame.size.width * 0.1, y: frame.size.height * 0.7, width: frame.size.width * 0.35, height: frame.size.height * 0.2)
+        exitButton.frame = CGRect(x: frame.size.width * 0.1, y: frame.size.height * 0.7, width: frame.size.width * 0.35, height: frame.size.height * 0.15)
         exitButton.addTarget(self, action: #selector(exitButtonAction), for: .touchUpInside)
-        exitButton.setTitle("Exit", for: .normal)
+        exitButton.setToTheme(title: "Exit")
         addSubview(exitButton)
         
     }
     
     @objc private func exitButtonAction() {
-        
-//        menuDelegate?.exitAction()
+        //MainViewController will recieve and change the view state to LevelSelectionVC
         NotificationCenter.default.post(name: Notification.Name.selectionVC, object: nil)
-        
     }
     
     private func loadNextLevelButton() {
         
-        nextLevelButton.frame = CGRect(x: frame.size.width * 0.6, y: frame.size.height * 0.7, width: frame.size.width * 0.35, height: frame.size.height * 0.2)
+        nextLevelButton.frame = CGRect(x: frame.size.width * 0.6, y: frame.size.height * 0.7, width: frame.size.width * 0.35, height: frame.size.height * 0.15)
         nextLevelButton.addTarget(self, action: #selector(nextLevelButtonAction), for: .touchUpInside)
-        nextLevelButton.setTitle("Next", for: .normal)
-        if !isNextAvailable() {
+        nextLevelButton.setToTheme(title: "Next")
+        if !isNextAvailable {
             nextLevelButton.isUserInteractionEnabled = false
         }
         addSubview(nextLevelButton)
         
     }
     
-    private func isNextAvailable() -> Bool {
-        
+    private var isNextAvailable: Bool {
         return StageLayout.levelToLoad < LevelSelectionInfo.levels.count
-        
     }
     
     @objc private func nextLevelButtonAction() {

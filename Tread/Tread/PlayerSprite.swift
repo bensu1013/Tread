@@ -17,6 +17,7 @@ class PlayerSprite: SKSpriteNode {
     
     private var moveSpeed: CGFloat = 125
     var movePoint: CGPoint?
+    var isFacingUp = true
     var spriteDelegate: PlayerSpriteDelegate?
     
     fileprivate let moveUp     = [SKTexture(image: #imageLiteral(resourceName: "playerU1")),
@@ -69,12 +70,21 @@ class PlayerSprite: SKSpriteNode {
             }
             
         }
-//        else {
-//            
-//            let yOffset = moveSpeed * CGFloat(dt)
-//            self.position = CGPoint(x: position.x, y: position.y + yOffset)
-//            
-//        }
+    }
+    
+    func finishedLevelLogic(completion: @escaping () -> () ) {
+        
+        let moveCenter = SKAction.moveBy(x: -self.position.x, y: 100, duration: 1.1)
+        let faceDown = SKAction.run { self.isFacingUp = false }
+        let jumpUp = SKAction.moveBy(x: 0.0, y: 60, duration: 0.2)
+        let jumpDown = SKAction.moveBy(x: 0.0, y: -60, duration: 0.2)
+        let faceUp = SKAction.run { self.isFacingUp = true }
+        let moveOffScreen = SKAction.moveBy(x: 0.0, y: 300, duration: 2.5)
+        let completeAction = SKAction.run { completion() }
+        let seq = SKAction.sequence([moveCenter,faceDown,jumpUp,jumpDown,jumpUp,jumpDown,faceUp,moveOffScreen,completeAction])
+        
+        self.run(seq)
+        
     }
     
 }
@@ -128,13 +138,21 @@ extension PlayerSprite {
             }
             
         } else {
-            if let _ = action(forKey: "animateUp") {
-                
+            if isFacingUp {
+                if let _ = action(forKey: "animateUp") {
+                    
+                } else {
+                    animateUp()
+                }
             } else {
-                animateUp()
+                if let _ = action(forKey: "animateDown") {
+                    
+                } else {
+                    animateDown()
+                }
             }
+            
         }
-        
     }
     
     //Calculates the radians between playersprite and point it moves to
@@ -144,12 +162,10 @@ extension PlayerSprite {
     }
     
     fileprivate func calculateDistance(from point: CGPoint) -> CGFloat {
-        
         let a = abs(position.x) - abs(point.x)
         let b = abs(position.y) - abs(point.y)
         let distance = sqrt((a * a) + (b * b))
         return distance
-        
     }
     
     private func animateUp() {

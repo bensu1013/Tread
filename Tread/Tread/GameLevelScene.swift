@@ -60,7 +60,7 @@ class GameLevelScene: SKScene {
     }
     
     func startRound() {
-        let yDist = 1100 + obstacleFactory.stageSize!
+        let yDist = 640 + obstacleFactory.stageSize!
         let dur: Double = Double(yDist) / 100.0
         bottomBorder.run(SKAction.moveBy(x: 0.0, y: yDist, duration: dur))
         leftBorder.run(SKAction.moveBy(x: 0.0, y: yDist, duration: dur))
@@ -113,10 +113,6 @@ class GameLevelScene: SKScene {
         obstacleFactory.update()
         player.update(dt: dt)
         
-        //TODO: - Clean up level completion logic, running multiple times on loop
-//        if player.passFinishLine(line: 1000 + obstacleFactory.stageSize!) {
-//            player.sprite.run(SKAction.moveBy(x: 0.0, y: 50.0, duration: 4.0))
-//        }
         if player.health.getCurrent() <= 0 {
             self.isPaused = true
         }
@@ -129,16 +125,16 @@ extension GameLevelScene {
     fileprivate func setupTilemap() {
         
         let tileSet = SKTileSet(named: "TileSet")
-        let tileMap = SKTileMapNode(tileSet: tileSet!, columns: 10, rows: 40 + Int(obstacleFactory.stageSize! / 64), tileSize: CGSize.init(width: 64.0, height: 64.0), fillWith: (tileSet?.tileGroups[0])!)
+        let tileMap = SKTileMapNode(tileSet: tileSet!, columns: 10, rows: Int(size.height / 64 * 2) + Int(obstacleFactory.stageSize! / 64), tileSize: CGSize.init(width: 64.0, height: 64.0), fillWith: (tileSet?.tileGroups[0])!)
         self.addChild(tileMap)
         tileMap.fill(with: tileMap.tileSet.tileGroups.first)
-        tileMap.position = CGPoint.init(x: 0.0, y: obstacleFactory.stageSize! / 2 + 200)
+        tileMap.position = CGPoint.init(x: 0.0, y: obstacleFactory.stageSize! / 2 + size.height/2)
         tileMap.zPosition = -50
         
     }
     
     fileprivate func setupScreenBorders() {
-        bottomBorder = SKSpriteNode(texture: nil, color: UIColor.blue, size: CGSize.init(width: 640, height: 100))
+        bottomBorder = SKSpriteNode(texture: nil, color: UIColor.clear, size: CGSize.init(width: 640, height: 100))
         bottomBorder.position = CGPoint(x: 0, y: -440)
         self.addChild(bottomBorder)
         bottomBorder.physicsBody = SKPhysicsBody(rectangleOf: bottomBorder.frame.size)
@@ -148,7 +144,7 @@ extension GameLevelScene {
         bottomBorder.physicsBody?.contactTestBitMask = BitMask.player | BitMask.obstacle
         bottomBorder.physicsBody?.affectedByGravity = false
         
-        leftBorder = SKSpriteNode(texture: nil, color: UIColor.blue, size: CGSize.init(width: 100, height: 800))
+        leftBorder = SKSpriteNode(texture: nil, color: UIColor.clear, size: CGSize.init(width: 100, height: 800))
         leftBorder.position = CGPoint(x: -350, y: 0)
         self.addChild(leftBorder)
         leftBorder.physicsBody = SKPhysicsBody(rectangleOf: leftBorder.frame.size)
@@ -158,7 +154,7 @@ extension GameLevelScene {
         leftBorder.physicsBody?.contactTestBitMask = BitMask.player
         leftBorder.physicsBody?.affectedByGravity = false
         
-        rightBorder = SKSpriteNode(texture: nil, color: UIColor.blue, size: CGSize.init(width: 100, height: 800))
+        rightBorder = SKSpriteNode(texture: nil, color: UIColor.clear, size: CGSize.init(width: 100, height: 800))
         rightBorder.position = CGPoint(x: 350, y: 0)
         self.addChild(rightBorder)
         rightBorder.physicsBody = SKPhysicsBody(rectangleOf: rightBorder.frame.size)
@@ -230,10 +226,9 @@ extension GameLevelScene: SKPhysicsContactDelegate {
         } else if a.categoryBitMask == BitMask.player && b.categoryBitMask == BitMask.finishLine {
             
             Player.main.isControlled = false
-            player.sprite.run(SKAction.moveBy(x: 0.0, y: 50.0, duration: 4.0))
-            player.sprite.run(SKAction.moveBy(x: 0.0, y: 500.0, duration: 5.0), completion: { 
+            player.finishedLevel {
                 self.gameSceneDelegate?.levelCompleted()
-            })
+            }
             
         }
         

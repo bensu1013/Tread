@@ -29,9 +29,9 @@ extension UIColor {
     }
 }
 
-//Setting buttons to a themed setting
 extension UIButton {
     
+    //Method used to for uniformed button style
     func setToTheme(title: String, corner: Bool = true) {
         
         self.setTitle(title, for: .normal)

@@ -83,7 +83,7 @@ extension GameLevelViewController: HUDLayerDelegate {
     
     func showMenu() {
         skView.scene?.isPaused = true
-        let menu = GameLevelMenuView(frame: CGRect(x: view.frame.size.width * 0.2, y: view.frame.size.height * 0.2, width: view.frame.size.width * 0.6, height: view.frame.size.height * 0.45))
+        let menu = GameLevelMenuView(frame: CGRect(x: view.frame.size.width * 0.1, y: view.frame.size.height * 0.1, width: view.frame.size.width * 0.8, height: view.frame.size.height * 0.55))
         menu.menuDelegate = self
         view.addSubview(menu)
     }

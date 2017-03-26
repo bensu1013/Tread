@@ -28,7 +28,7 @@ class Player {
     
     func update(dt: TimeInterval) {
         
-            sprite.update(dt: dt)
+        sprite.update(dt: dt)
         
     }
     
@@ -36,6 +36,10 @@ class Player {
         sprite.position = CGPoint.zero
         health.resetCurrent()
         stats.coins = 0
+    }
+    
+    func finishedLevel(completion: @escaping () -> () ) {
+        sprite.finishedLevelLogic { completion() }
     }
     
 }
