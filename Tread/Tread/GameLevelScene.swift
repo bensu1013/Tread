@@ -60,13 +60,26 @@ class GameLevelScene: SKScene {
     }
     
     func startRound() {
-        let yDist = 640 + obstacleFactory.stageSize!
+        
+        player.isControlled = true
+        startScreenScrolling()
+        
+    }
+    
+    func startScreenScrolling() {
+        let yDist = 640 + obstacleFactory.stageSize
         let dur: Double = Double(yDist) / 100.0
         bottomBorder.run(SKAction.moveBy(x: 0.0, y: yDist, duration: dur))
         leftBorder.run(SKAction.moveBy(x: 0.0, y: yDist, duration: dur))
         rightBorder.run(SKAction.moveBy(x: 0.0, y: yDist, duration: dur))
         screenNode.run(SKAction.moveBy(x: 0.0, y: yDist, duration: dur))
-        player.isControlled = true
+    }
+    
+    func stopScreenScrolling() {
+        bottomBorder.removeAllActions()
+        leftBorder.removeAllActions()
+        rightBorder.removeAllActions()
+        screenNode.removeAllActions()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -113,9 +126,6 @@ class GameLevelScene: SKScene {
         obstacleFactory.update()
         player.update(dt: dt)
         
-        if player.health.getCurrent() <= 0 {
-            self.isPaused = true
-        }
     }
 }
 
@@ -125,10 +135,10 @@ extension GameLevelScene {
     fileprivate func setupTilemap() {
         
         let tileSet = SKTileSet(named: "TileSet")
-        let tileMap = SKTileMapNode(tileSet: tileSet!, columns: 10, rows: Int(size.height / 64 * 2) + Int(obstacleFactory.stageSize! / 64), tileSize: CGSize.init(width: 64.0, height: 64.0), fillWith: (tileSet?.tileGroups[0])!)
+        let tileMap = SKTileMapNode(tileSet: tileSet!, columns: 10, rows: Int(size.height / 64 * 2) + Int(obstacleFactory.stageSize / 64), tileSize: CGSize.init(width: 64.0, height: 64.0), fillWith: (tileSet?.tileGroups[0])!)
         self.addChild(tileMap)
         tileMap.fill(with: tileMap.tileSet.tileGroups.first)
-        tileMap.position = CGPoint.init(x: 0.0, y: obstacleFactory.stageSize! / 2 + size.height/2)
+        tileMap.position = CGPoint.init(x: 0.0, y: obstacleFactory.stageSize / 2 + size.height/2)
         tileMap.zPosition = -50
         
     }
@@ -175,8 +185,6 @@ extension GameLevelScene: SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
         
-        
-        
         var a: SKPhysicsBody!
         var b: SKPhysicsBody!
         
@@ -194,6 +202,10 @@ extension GameLevelScene: SKPhysicsContactDelegate {
                     player.touched(by: obstacle)
                     obstacle.contacted()
                     gameSceneDelegate?.contactPlayerObstacle()
+                    Player.main.gameOver {
+                        self.stopScreenScrolling()
+                        //show gameoverview
+                    }
                 }
             }
         }
@@ -224,14 +236,15 @@ extension GameLevelScene: SKPhysicsContactDelegate {
             }
             
         } else if a.categoryBitMask == BitMask.player && b.categoryBitMask == BitMask.finishLine {
-            
-            Player.main.isControlled = false
-            player.finishedLevel {
-                self.gameSceneDelegate?.levelCompleted()
+            if let line = b.node as? FinishLine {
+                if Player.main.sprite.position.y > line.position.y {
+                    Player.main.isControlled = false
+                    player.finishedLevel {
+                        self.gameSceneDelegate?.levelCompleted()
+                    }
+                }
             }
-            
         }
-        
     }
     
 }

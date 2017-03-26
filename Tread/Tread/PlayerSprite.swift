@@ -72,27 +72,46 @@ class PlayerSprite: SKSpriteNode {
         }
     }
     
-    func finishedLevelLogic(completion: @escaping () -> () ) {
-        
-        let moveCenter = SKAction.moveBy(x: -self.position.x, y: 100, duration: 1.1)
-        let faceDown = SKAction.run { self.isFacingUp = false }
-        let jumpUp = SKAction.moveBy(x: 0.0, y: 60, duration: 0.2)
-        let jumpDown = SKAction.moveBy(x: 0.0, y: -60, duration: 0.2)
-        let faceUp = SKAction.run { self.isFacingUp = true }
-        let moveOffScreen = SKAction.moveBy(x: 0.0, y: 300, duration: 2.5)
-        let completeAction = SKAction.run { completion() }
-        let seq = SKAction.sequence([moveCenter,faceDown,jumpUp,jumpDown,jumpUp,jumpDown,faceUp,moveOffScreen,completeAction])
-        
-        self.run(seq)
-        
-    }
+    
     
 }
 
 //Animation methods
 extension PlayerSprite {
     
-    func contactHurt(handler: @escaping () -> () ) {
+    func finishedLevelAnimation(completion: @escaping () -> () ) {
+        
+        let moveCenter = SKAction.moveBy(x: -self.position.x, y: 100, duration: 1.1)
+        let faceDown = SKAction.run { self.isFacingUp = false }
+        
+        let jumpUp = SKAction.moveBy(x: 0.0, y: 60, duration: 0.2)
+        let jumpDown = SKAction.moveBy(x: 0.0, y: -60, duration: 0.2)
+        let jumpSeq = SKAction.sequence([jumpUp,jumpDown])
+        let repJump = SKAction.repeat(jumpSeq, count: 3)
+        
+        let faceUp = SKAction.run { self.isFacingUp = true }
+        let moveOffScreen = SKAction.moveBy(x: 0.0, y: 300, duration: 2.0)
+        let completeAction = SKAction.run { completion() }
+        
+        let seq = SKAction.sequence([moveCenter,faceDown,repJump,faceUp,moveOffScreen,completeAction])
+        
+        self.run(seq)
+        
+    }
+    
+    func gameOverAnimation(completion: @escaping() -> () ) {
+        
+        let jumpUp = SKAction.moveBy(x: 0.0, y: 100, duration: 0.2)
+        
+        let completeAction = SKAction.run { completion() }
+        
+        let seq = SKAction.sequence([jumpUp, completeAction])
+        
+        self.run(seq)
+        
+    }
+    
+    func contactHurtAnimation(handler: @escaping () -> () ) {
         
         let alphaDown = SKAction.fadeAlpha(to: 0.4, duration: 0.1)
         let alphaUp = SKAction.fadeAlpha(to: 1.0, duration: 0.1)
@@ -101,7 +120,7 @@ extension PlayerSprite {
         
         let handle = SKAction.run { handler() }
         let fullSeq = SKAction.sequence([alphaRep, handle])
-        run(fullSeq, withKey: "contactHurt")
+        run(fullSeq, withKey: "contactHurtAnimation")
         
     }
     
@@ -112,29 +131,17 @@ extension PlayerSprite {
             let rad = Double(calculateAngle(from: point))
             
             if rad < 0.5 && rad > -0.5 {
-                if let _ = action(forKey: "animateRight") {
-                    
-                } else {
-                    animateRight()
-                }
+                if let _ = action(forKey: "animateRight") { }
+                else { animateRight() }
             } else if rad > 0.5 && rad < 2.64 {
-                if let _ = action(forKey: "animateUp") {
-                    
-                } else {
-                    animateUp()
-                }
+                if let _ = action(forKey: "animateUp") { }
+                else { animateUp() }
             } else if rad < -0.5 && rad > -2.64 {
-                if let _ = action(forKey: "animateDown") {
-                    
-                } else {
-                    animateDown()
-                }
+                if let _ = action(forKey: "animateDown") { }
+                else { animateDown() }
             } else if rad > 2.64 || rad < -2.64 {
-                if let _ = action(forKey: "animateLeft") {
-                    
-                } else {
-                    animateLeft()
-                }
+                if let _ = action(forKey: "animateLeft") { }
+                else { animateLeft() }
             }
             
         } else {
@@ -198,7 +205,6 @@ extension PlayerSprite {
     }
     
 }
-
 
 //PhysicsBody
 extension PlayerSprite {

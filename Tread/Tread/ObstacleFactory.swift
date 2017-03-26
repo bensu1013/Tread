@@ -17,7 +17,7 @@ class ObstacleFactory {
     weak var scene: SKScene!
     
     var obstacles = Set<Obstacle>()
-    var stageSize: CGFloat?
+    var stageSize: CGFloat = 0
     var totalCoins = 0
     
     private let redCrateTexture = SKTexture(image: #imageLiteral(resourceName: "redcrate"))
@@ -27,13 +27,9 @@ class ObstacleFactory {
         self.scene = scene
         
         let stageLayout = StageLayout.loadStage()
-        
-        readStage(layout: stageLayout)
         stageSize = CGFloat(stageLayout.count) * 64.0
+        readStage(layout: stageLayout)
         
-    }
-    
-    deinit {
     }
 
     func update() {
@@ -63,7 +59,7 @@ class ObstacleFactory {
                     break
                 default:
                     let x = CGFloat(j * 64) - scene.frame.width / 2 + 96
-                    let y = CGFloat(i * -64) + scene.frame.height / 2 + CGFloat(layout.count) * 64
+                    let y = CGFloat(i * -64) + scene.frame.height / 2 + stageSize
                     createObstacle(at: CGPoint.init(x: x, y: y), as: column)
                 }
             }
@@ -71,7 +67,7 @@ class ObstacleFactory {
         
         //TODO: - add finish line with contact to trigger end stage logic
         let finish = FinishLine(texture: nil, color: UIColor.green, size: CGSize(width: 640, height: 50))
-        finish.position = CGPoint(x: 0.0, y: (CGFloat(layout.count * 64) + scene.frame.height * 0.75))
+        finish.position = CGPoint(x: 0.0, y: scene.frame.height * 0.75 + stageSize)
         scene?.addChild(finish)
     }
     
@@ -96,18 +92,6 @@ class ObstacleFactory {
         }
     }
     
-    func pulsate() {
-        
-        for obstacle in obstacles {
-            
-            let large = SKAction.scale(to: 1.3, duration: 0.25)
-            let medium = SKAction.scale(to: 1.0, duration: 0.25)
-            let small = SKAction.scale(to: 0.8, duration: 0.25)
-            let sequence = SKAction.sequence([large,small,medium])
-            
-            obstacle.run(sequence)
-            
-        }
-        
-    }
+    
+    
 }

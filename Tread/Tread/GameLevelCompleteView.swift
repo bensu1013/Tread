@@ -25,6 +25,7 @@ class GameLevelCompleteView: UIView {
     
     let exitButton = UIButton()
     let nextLevelButton = UIButton()
+    let replayButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,6 +36,32 @@ class GameLevelCompleteView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+//MARK: - Button selector targets
+extension GameLevelCompleteView {
+    
+    @objc fileprivate func exitButtonAction() {
+        //MainViewController will recieve and change the view state to LevelSelectionVC
+        NotificationCenter.default.post(name: Notification.Name.selectionVC, object: nil)
+    }
+    
+    @objc fileprivate func nextLevelButtonAction() {
+        
+        //Logic for last level completed
+        StageLayout.levelToLoad += 1
+        self.removeFromSuperview()
+        menuDelegate?.nextLevelAction()
+        
+    }
+    
+    @objc fileprivate func replayButtonAction() {
+        
+        self.removeFromSuperview()
+        menuDelegate?.replayAction()
+        
     }
     
 }
@@ -50,6 +77,7 @@ extension GameLevelCompleteView {
         loadExpLabel()
         loadExitButton()
         loadNextLevelButton()
+        loadReplayButton()
         
     }
 
@@ -71,23 +99,18 @@ extension GameLevelCompleteView {
     
     private func loadExitButton() {
         
-        exitButton.frame = CGRect(x: frame.size.width * 0.1, y: frame.size.height * 0.7, width: frame.size.width * 0.35, height: frame.size.height * 0.15)
+        exitButton.frame = CGRect(x: frame.size.width * 0.1, y: frame.size.height * 0.7, width: frame.size.width * 0.2, height: frame.size.height * 0.15)
         exitButton.addTarget(self, action: #selector(exitButtonAction), for: .touchUpInside)
-        exitButton.setToTheme(title: "Exit")
+        exitButton.setToTheme(title: "<")
         addSubview(exitButton)
         
     }
     
-    @objc private func exitButtonAction() {
-        //MainViewController will recieve and change the view state to LevelSelectionVC
-        NotificationCenter.default.post(name: Notification.Name.selectionVC, object: nil)
-    }
-    
     private func loadNextLevelButton() {
         
-        nextLevelButton.frame = CGRect(x: frame.size.width * 0.6, y: frame.size.height * 0.7, width: frame.size.width * 0.35, height: frame.size.height * 0.15)
+        nextLevelButton.frame = CGRect(x: frame.size.width * 0.7, y: frame.size.height * 0.7, width: frame.size.width * 0.2, height: frame.size.height * 0.15)
         nextLevelButton.addTarget(self, action: #selector(nextLevelButtonAction), for: .touchUpInside)
-        nextLevelButton.setToTheme(title: "Next")
+        nextLevelButton.setToTheme(title: ">")
         if !isNextAvailable {
             nextLevelButton.isUserInteractionEnabled = false
         }
@@ -99,12 +122,10 @@ extension GameLevelCompleteView {
         return StageLayout.levelToLoad < LevelSelectionInfo.levels.count
     }
     
-    @objc private func nextLevelButtonAction() {
-    
-        //Logic for last level completed
-        StageLayout.levelToLoad += 1
-        self.removeFromSuperview()
-        menuDelegate?.nextLevelAction()
-        
+    private func loadReplayButton() {
+        replayButton.frame = CGRect(x: frame.size.width * 0.4, y: frame.size.height * 0.7, width: frame.size.width * 0.2, height: frame.size.height * 0.15)
+        replayButton.addTarget(self, action: #selector(replayButtonAction), for: .touchUpInside)
+        replayButton.setToTheme(title: "@")
+        addSubview(replayButton)
     }
 }

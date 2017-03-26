@@ -39,7 +39,7 @@ class Player {
     }
     
     func finishedLevel(completion: @escaping () -> () ) {
-        sprite.finishedLevelLogic { completion() }
+        sprite.finishedLevelAnimation { completion() }
     }
     
 }
@@ -52,13 +52,26 @@ extension Player: PlayerSpriteDelegate {
 
         case .redCrate:
             self.health.gotHurt(by: obstacle.type)
-            self.sprite.contactHurt {
+            self.sprite.contactHurtAnimation {
                 self.health.canHurt = true
             }
         case .goldCoin:
             self.stats.coins += 1
         default:
             break
+        }
+        
+    }
+    
+    func gameOver(completion: @escaping () -> () ) {
+        
+        if health.getCurrent() == 0 {
+            
+            isControlled = false
+            
+            sprite.gameOverAnimation {
+                completion()
+            }
         }
     }
     

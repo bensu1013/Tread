@@ -14,7 +14,10 @@ protocol GameMenuDelegate: class {
     func resumeAction()
     func exitAction()
     func nextLevelAction()
+    func replayAction()
 }
+
+//Redesign view to have something layer completely over viewcontroller with alpha to avoid button pressing
 
 class GameLevelMenuView: UIView {
     

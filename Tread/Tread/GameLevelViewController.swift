@@ -111,6 +111,21 @@ extension GameLevelViewController: GameMenuDelegate {
         scene.gameSceneDelegate = self
         let transition = SKTransition.crossFade(withDuration: 1.0)
         skView.presentScene(scene, transition: transition)
+        
+    }
+    
+    func replayAction() {
+        
+        Player.main.sprite.removeFromParent()
+        // Creates new instance of scene
+        let scene = GameLevelScene(size: CGSize(width: 640, height: 800))
+        // Set the scale mode to scale to fit the window
+        scene.scaleMode = .aspectFill
+        // Set delegates to communicate with VC
+        scene.gameSceneDelegate = self
+        let transition = SKTransition.crossFade(withDuration: 1.0)
+        skView.presentScene(scene, transition: transition)
+        
     }
     
 }

@@ -25,6 +25,7 @@
 		FD6F8BFF1E856D160079A663 /* Level4.csv in Resources */ = {isa = PBXBuildFile; fileRef = FD6F8BFE1E856D160079A663 /* Level4.csv */; };
 		FD6F8C011E858E050079A663 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F8C001E858E050079A663 /* UIExtensions.swift */; };
 		FD6F8C031E85F4B60079A663 /* Level5.csv in Resources */ = {isa = PBXBuildFile; fileRef = FD6F8C021E85F4B60079A663 /* Level5.csv */; };
+		FD6F8C061E88502B0079A663 /* GameLevelOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F8C051E88502B0079A663 /* GameLevelOverView.swift */; };
 		FDEF8C001E6DE35000492121 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF8BFF1E6DE35000492121 /* AppDelegate.swift */; };
 		FDEF8C041E6DE35000492121 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = FDEF8C031E6DE35000492121 /* Actions.sks */; };
 		FDEF8C061E6DE35000492121 /* GameLevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF8C051E6DE35000492121 /* GameLevelScene.swift */; };
@@ -63,6 +64,7 @@
 		FD6F8BFE1E856D160079A663 /* Level4.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Level4.csv; sourceTree = "<group>"; };
 		FD6F8C001E858E050079A663 /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		FD6F8C021E85F4B60079A663 /* Level5.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Level5.csv; sourceTree = "<group>"; };
+		FD6F8C051E88502B0079A663 /* GameLevelOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevelOverView.swift; sourceTree = "<group>"; };
 		FDEF8BFC1E6DE35000492121 /* Tread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tread.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDEF8BFF1E6DE35000492121 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FDEF8C031E6DE35000492121 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -99,8 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				FDEF8C1D1E6DE97A00492121 /* ObstacleFactory.swift */,
-				FDEF8C191E6DE41200492121 /* Obstacle.swift */,
-				FD6F8BFC1E84C04C0079A663 /* FinishLine.swift */,
+				FD6F8C041E881B210079A663 /* NonPlayerObjects */,
 				FDEF8C251E70975400492121 /* Player */,
 			);
 			name = GameObjects;
@@ -109,14 +110,14 @@
 		FD6F8BDB1E8219060079A663 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				FDEF8C1F1E6E239B00492121 /* Constants.swift */,
+				FDEF8C291E74F18D00492121 /* StageLayout.swift */,
 				FD6F8C001E858E050079A663 /* UIExtensions.swift */,
+				FDEF8C1F1E6E239B00492121 /* Constants.swift */,
 				FDEF8BFF1E6DE35000492121 /* AppDelegate.swift */,
+				FDEF8C0C1E6DE35000492121 /* Assets.xcassets */,
 				FDEF8C091E6DE35000492121 /* Main.storyboard */,
 				FD07341B1E776B6F004D2591 /* TileSet.sks */,
-				FDEF8C291E74F18D00492121 /* StageLayout.swift */,
 				FDEF8C031E6DE35000492121 /* Actions.sks */,
-				FDEF8C0C1E6DE35000492121 /* Assets.xcassets */,
 				FDEF8C0E1E6DE35000492121 /* LaunchScreen.storyboard */,
 				FDEF8C111E6DE35000492121 /* Info.plist */,
 			);
@@ -179,8 +180,18 @@
 				FDEF8C051E6DE35000492121 /* GameLevelScene.swift */,
 				FD6F8BFA1E8473F70079A663 /* GameLevelCompleteView.swift */,
 				FD6F8BE81E8431440079A663 /* GameLevelMenuView.swift */,
+				FD6F8C051E88502B0079A663 /* GameLevelOverView.swift */,
 			);
 			name = GameLevelView;
+			sourceTree = "<group>";
+		};
+		FD6F8C041E881B210079A663 /* NonPlayerObjects */ = {
+			isa = PBXGroup;
+			children = (
+				FDEF8C191E6DE41200492121 /* Obstacle.swift */,
+				FD6F8BFC1E84C04C0079A663 /* FinishLine.swift */,
+			);
+			name = NonPlayerObjects;
 			sourceTree = "<group>";
 		};
 		FDEF8BF31E6DE35000492121 = {
@@ -325,6 +336,7 @@
 				FD6F8BEB1E8432860079A663 /* LevelSelectionViewController.swift in Sources */,
 				FDEF8C181E6DE3D000492121 /* Player.swift in Sources */,
 				FD6F8BDD1E821E2D0079A663 /* MainViewController.swift in Sources */,
+				FD6F8C061E88502B0079A663 /* GameLevelOverView.swift in Sources */,
 				FD6F8BE11E821EAC0079A663 /* CreditViewController.swift in Sources */,
 				FDEF8C221E6E62A600492121 /* HealthController.swift in Sources */,
 				FD6F8BE31E821EE30079A663 /* LandingView.swift in Sources */,
