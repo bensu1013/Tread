@@ -39,7 +39,7 @@ class HealthController {
         if canHurt {
             switch type {
             case .redCrate:
-                basicContact()
+                crateContact()
             default:
                 break
             }
@@ -56,8 +56,8 @@ class HealthController {
 //ObstacleType scenario methods
 extension HealthController {
     
-    func basicContact() {
-        current -= 2
+    func crateContact() {
+        current -= 1
         canHurt = false
     }
     

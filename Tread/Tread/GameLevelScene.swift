@@ -10,8 +10,9 @@ import SpriteKit
 import GameplayKit
 
 protocol GameSceneDelegate: class {
-    func contactPlayerObstacle()
+    func updateHud()
     func levelCompleted()
+    func gameOver()
 }
 
 class GameLevelScene: SKScene {
@@ -181,6 +182,7 @@ extension GameLevelScene: SKPhysicsContactDelegate {
     
     fileprivate func setupPhysicsWorld() {
         self.physicsWorld.contactDelegate = self
+        self.physicsWorld.gravity = CGVector.zero
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -201,16 +203,16 @@ extension GameLevelScene: SKPhysicsContactDelegate {
                 if let obstacle = b.node as? Obstacle {
                     player.touched(by: obstacle)
                     obstacle.contacted()
-                    gameSceneDelegate?.contactPlayerObstacle()
-                    Player.main.gameOver {
+                    gameSceneDelegate?.updateHud()
+                    if Player.main.gameOver(completion: {
+                        self.gameSceneDelegate?.gameOver()
+                    }) {
                         self.stopScreenScrolling()
-                        //show gameoverview
                     }
                 }
             }
         }
     }
-    
     
     func didEnd(_ contact: SKPhysicsContact) {
         

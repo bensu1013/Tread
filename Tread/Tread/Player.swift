@@ -23,6 +23,7 @@ class Player {
         
         sprite = PlayerSprite(texture: nil, color: UIColor.red, size: CGSize(width: 64, height: 64))
         sprite.spriteDelegate = self
+        reset()
         
     }
     
@@ -33,7 +34,7 @@ class Player {
     }
     
     func reset() {
-        sprite.position = CGPoint.zero
+        sprite.position = CGPoint(x: 0.0, y: -200.0)
         health.resetCurrent()
         stats.coins = 0
     }
@@ -63,7 +64,7 @@ extension Player: PlayerSpriteDelegate {
         
     }
     
-    func gameOver(completion: @escaping () -> () ) {
+    func gameOver(completion: @escaping () -> () ) -> Bool {
         
         if health.getCurrent() == 0 {
             
@@ -72,7 +73,9 @@ extension Player: PlayerSpriteDelegate {
             sprite.gameOverAnimation {
                 completion()
             }
+            return true
         }
+        return false
     }
     
 }

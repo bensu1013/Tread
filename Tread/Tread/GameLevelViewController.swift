@@ -61,7 +61,7 @@ class GameLevelViewController: UIViewController {
 
 extension GameLevelViewController: GameSceneDelegate {
     
-    func contactPlayerObstacle() {
+    func updateHud() {
         
         hud.healthText.text = "\(Player.main.health.getCurrent())/\(Player.main.health.maximum)"
         hud.coinText.text = "Coins: \(Player.main.stats.coins)"
@@ -71,9 +71,18 @@ extension GameLevelViewController: GameSceneDelegate {
     func levelCompleted() {
         
         skView.scene?.isPaused = true
-        let stats = GameLevelCompleteView(frame: CGRect(x: view.frame.size.width * 0.1, y: view.frame.size.height * 0.1, width: view.frame.size.width * 0.8, height: view.frame.size.height * 0.55))
-        stats.menuDelegate = self
-        view.addSubview(stats)
+        let completeView = GameLevelCompleteView(frame: view.frame)
+        completeView.menuDelegate = self
+        view.addSubview(completeView)
+        
+    }
+    
+    func gameOver() {
+        
+        skView.scene?.isPaused = true
+        let overView = GameLevelOverView(frame: view.frame)
+        overView.menuDelegate = self
+        view.addSubview(overView)
         
     }
     
@@ -83,7 +92,7 @@ extension GameLevelViewController: HUDLayerDelegate {
     
     func showMenu() {
         skView.scene?.isPaused = true
-        let menu = GameLevelMenuView(frame: CGRect(x: view.frame.size.width * 0.1, y: view.frame.size.height * 0.1, width: view.frame.size.width * 0.8, height: view.frame.size.height * 0.55))
+        let menu = GameLevelMenuView(frame: view.frame)
         menu.menuDelegate = self
         view.addSubview(menu)
     }

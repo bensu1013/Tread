@@ -81,6 +81,8 @@ extension PlayerSprite {
     
     func finishedLevelAnimation(completion: @escaping () -> () ) {
         
+        movePoint = nil
+        
         let moveCenter = SKAction.moveBy(x: -self.position.x, y: 100, duration: 1.1)
         let faceDown = SKAction.run { self.isFacingUp = false }
         
@@ -101,11 +103,21 @@ extension PlayerSprite {
     
     func gameOverAnimation(completion: @escaping() -> () ) {
         
-        let jumpUp = SKAction.moveBy(x: 0.0, y: 100, duration: 0.2)
+        physicsBody?.categoryBitMask = 0
+        movePoint = nil
+        self.isFacingUp = false
         
-        let completeAction = SKAction.run { completion() }
+        let jumpUp = SKAction.moveBy(x: 0.0, y: 100, duration: 0.3)
+        let delay = SKAction.wait(forDuration: 1.0)
+        //animate death instead of delay
         
-        let seq = SKAction.sequence([jumpUp, completeAction])
+        let completeAction = SKAction.run {
+            self.physicsBody?.categoryBitMask = BitMask.player
+            self.isFacingUp = true
+            completion()
+        }
+        
+        let seq = SKAction.sequence([jumpUp, delay, completeAction])
         
         self.run(seq)
         
@@ -158,7 +170,6 @@ extension PlayerSprite {
                     animateDown()
                 }
             }
-            
         }
     }
     

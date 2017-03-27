@@ -23,6 +23,7 @@ class GameLevelCompleteView: UIView {
     let coinsLabel = UILabel()
     let expLabel = UILabel()
     
+    let mainView = UIView()
     let exitButton = UIButton()
     let nextLevelButton = UIButton()
     let replayButton = UIButton()
@@ -71,8 +72,8 @@ extension GameLevelCompleteView {
     
     fileprivate func loadSubviews() {
         
-        backgroundColor = UIColor.theme4
-        layer.cornerRadius = frame.width / 10.0
+        backgroundColor = UIColor.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.7)
+        loadMainView()
         loadCoinsLabel()
         loadExpLabel()
         loadExitButton()
@@ -80,41 +81,50 @@ extension GameLevelCompleteView {
         loadReplayButton()
         
     }
-
+    
+    private func loadMainView() {
+        
+        mainView.frame = CGRect(x: frame.size.width * 0.2, y: frame.size.height * 0.1, width: frame.size.width * 0.6, height: frame.size.height * 0.6)
+        mainView.backgroundColor = UIColor.theme4
+        mainView.layer.cornerRadius = mainView.frame.width / 10.0
+        addSubview(mainView)
+        
+    }
+    
     private func loadCoinsLabel() {
         
-        coinsLabel.frame = CGRect(x: frame.size.width * 0.25, y: frame.size.height * 0.2, width: frame.size.width * 0.5, height: frame.size.height * 0.2)
+        coinsLabel.frame = CGRect(x: mainView.frame.size.width * 0.25, y: mainView.frame.size.height * 0.2, width: mainView.frame.size.width * 0.5, height: mainView.frame.size.height * 0.2)
         coinsLabel.text = "\(Player.main.stats.coins)"
         coinsLabel.textColor = UIColor.darkGray
-        addSubview(coinsLabel)
+        mainView.addSubview(coinsLabel)
         
     }
     
     private func loadExpLabel() {
-        expLabel.frame = CGRect(x: frame.size.width * 0.25, y: frame.size.height * 0.45, width: frame.size.width * 0.5, height: frame.size.height * 0.2)
+        expLabel.frame = CGRect(x: mainView.frame.size.width * 0.25, y: mainView.frame.size.height * 0.45, width: mainView.frame.size.width * 0.5, height: mainView.frame.size.height * 0.2)
         expLabel.text = "10"
         expLabel.textColor = UIColor.darkGray
-        addSubview(expLabel)
+        mainView.addSubview(expLabel)
     }
     
     private func loadExitButton() {
         
-        exitButton.frame = CGRect(x: frame.size.width * 0.1, y: frame.size.height * 0.7, width: frame.size.width * 0.2, height: frame.size.height * 0.15)
+        exitButton.frame = CGRect(x: mainView.frame.size.width * 0.1, y: mainView.frame.size.height * 0.7, width: mainView.frame.size.width * 0.2, height: mainView.frame.size.height * 0.15)
         exitButton.addTarget(self, action: #selector(exitButtonAction), for: .touchUpInside)
         exitButton.setToTheme(title: "<")
-        addSubview(exitButton)
+        mainView.addSubview(exitButton)
         
     }
     
     private func loadNextLevelButton() {
         
-        nextLevelButton.frame = CGRect(x: frame.size.width * 0.7, y: frame.size.height * 0.7, width: frame.size.width * 0.2, height: frame.size.height * 0.15)
+        nextLevelButton.frame = CGRect(x: mainView.frame.size.width * 0.7, y: mainView.frame.size.height * 0.7, width: mainView.frame.size.width * 0.2, height: mainView.frame.size.height * 0.15)
         nextLevelButton.addTarget(self, action: #selector(nextLevelButtonAction), for: .touchUpInside)
         nextLevelButton.setToTheme(title: ">")
         if !isNextAvailable {
             nextLevelButton.isUserInteractionEnabled = false
         }
-        addSubview(nextLevelButton)
+        mainView.addSubview(nextLevelButton)
         
     }
     
@@ -123,9 +133,9 @@ extension GameLevelCompleteView {
     }
     
     private func loadReplayButton() {
-        replayButton.frame = CGRect(x: frame.size.width * 0.4, y: frame.size.height * 0.7, width: frame.size.width * 0.2, height: frame.size.height * 0.15)
+        replayButton.frame = CGRect(x: mainView.frame.size.width * 0.4, y: mainView.frame.size.height * 0.7, width: mainView.frame.size.width * 0.2, height: mainView.frame.size.height * 0.15)
         replayButton.addTarget(self, action: #selector(replayButtonAction), for: .touchUpInside)
         replayButton.setToTheme(title: "@")
-        addSubview(replayButton)
+        mainView.addSubview(replayButton)
     }
 }

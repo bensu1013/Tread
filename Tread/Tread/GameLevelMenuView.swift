@@ -23,6 +23,7 @@ class GameLevelMenuView: UIView {
     
     weak var menuDelegate: GameMenuDelegate?
     
+    let mainView = UIView()
     let exitButton = UIButton()
     let resumeButton = UIButton()
     
@@ -37,6 +38,15 @@ class GameLevelMenuView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            if !mainView.frame.contains(touch.location(in: self)) {
+                menuDelegate?.resumeAction()
+                self.removeFromSuperview()
+            }
+        }
+    }
+    
 }
 
 //MARK: - Subview Setup
@@ -44,19 +54,28 @@ extension GameLevelMenuView {
     
     fileprivate func loadSubviews() {
         
-        backgroundColor = UIColor.theme4
-        layer.cornerRadius = frame.width / 10.0
+        backgroundColor = UIColor.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.7)
+        loadMainView()
         loadExitButton()
         loadResumeButton()
         
     }
     
+    private func loadMainView() {
+        
+        mainView.frame = CGRect(x: frame.size.width * 0.2, y: frame.size.height * 0.1, width: frame.size.width * 0.6, height: frame.size.height * 0.6)
+        mainView.backgroundColor = UIColor.theme4
+        mainView.layer.cornerRadius = mainView.frame.width / 10.0
+        addSubview(mainView)
+        
+    }
+    
     private func loadExitButton() {
         
-        exitButton.frame = CGRect(x: frame.size.width * 0.25, y: frame.size.height * 0.5, width: frame.size.width * 0.5, height: frame.size.height * 0.15)
+        exitButton.frame = CGRect(x: mainView.frame.size.width * 0.25, y: mainView.frame.size.height * 0.5, width: mainView.frame.size.width * 0.5, height: mainView.frame.size.height * 0.15)
         exitButton.addTarget(self, action: #selector(exitButtonAction), for: .touchUpInside)
         exitButton.setToTheme(title: "Exit")
-        addSubview(exitButton)
+        mainView.addSubview(exitButton)
         
     }
     
@@ -69,10 +88,10 @@ extension GameLevelMenuView {
     
     private func loadResumeButton() {
         
-        resumeButton.frame = CGRect(x: frame.size.width * 0.25, y: frame.size.height * 0.25, width: frame.size.width * 0.5, height: frame.size.height * 0.15)
+        resumeButton.frame = CGRect(x: mainView.frame.size.width * 0.25, y: mainView.frame.size.height * 0.25, width: mainView.frame.size.width * 0.5, height: mainView.frame.size.height * 0.15)
         resumeButton.addTarget(self, action: #selector(resumeButtonAction), for: .touchUpInside)
         resumeButton.setToTheme(title: "Resume")
-        addSubview(resumeButton)
+        mainView.addSubview(resumeButton)
         
     }
     
@@ -82,10 +101,5 @@ extension GameLevelMenuView {
         self.removeFromSuperview()
         
     }
+    
 }
-
-
-
-
-
-
