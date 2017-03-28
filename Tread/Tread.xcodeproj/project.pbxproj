@@ -26,6 +26,7 @@
 		FD6F8C011E858E050079A663 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F8C001E858E050079A663 /* UIExtensions.swift */; };
 		FD6F8C031E85F4B60079A663 /* Level5.csv in Resources */ = {isa = PBXBuildFile; fileRef = FD6F8C021E85F4B60079A663 /* Level5.csv */; };
 		FD6F8C061E88502B0079A663 /* GameLevelOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F8C051E88502B0079A663 /* GameLevelOverView.swift */; };
+		FD6F8C081E8AA76C0079A663 /* HudHealthBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6F8C071E8AA76C0079A663 /* HudHealthBar.swift */; };
 		FDEF8C001E6DE35000492121 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF8BFF1E6DE35000492121 /* AppDelegate.swift */; };
 		FDEF8C041E6DE35000492121 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = FDEF8C031E6DE35000492121 /* Actions.sks */; };
 		FDEF8C061E6DE35000492121 /* GameLevelScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDEF8C051E6DE35000492121 /* GameLevelScene.swift */; };
@@ -65,6 +66,7 @@
 		FD6F8C001E858E050079A663 /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		FD6F8C021E85F4B60079A663 /* Level5.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Level5.csv; sourceTree = "<group>"; };
 		FD6F8C051E88502B0079A663 /* GameLevelOverView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLevelOverView.swift; sourceTree = "<group>"; };
+		FD6F8C071E8AA76C0079A663 /* HudHealthBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HudHealthBar.swift; sourceTree = "<group>"; };
 		FDEF8BFC1E6DE35000492121 /* Tread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tread.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDEF8BFF1E6DE35000492121 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FDEF8C031E6DE35000492121 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				FDEF8C1B1E6DE89E00492121 /* HudLayer.swift */,
+				FD6F8C071E8AA76C0079A663 /* HudHealthBar.swift */,
 			);
 			name = HudInterface;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				FDEF8C1A1E6DE41200492121 /* Obstacle.swift in Sources */,
 				FD6F8BFD1E84C04C0079A663 /* FinishLine.swift in Sources */,
 				FD6F8BE91E8431440079A663 /* GameLevelMenuView.swift in Sources */,
+				FD6F8C081E8AA76C0079A663 /* HudHealthBar.swift in Sources */,
 				FD6F8BE51E821F100079A663 /* CreditView.swift in Sources */,
 				FD6F8BED1E8432B50079A663 /* LevelSelectionView.swift in Sources */,
 				FDEF8C1C1E6DE89E00492121 /* HudLayer.swift in Sources */,

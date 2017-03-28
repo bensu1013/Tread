@@ -57,13 +57,10 @@ class HealthController {
 extension HealthController {
     
     func crateContact() {
-        current -= 1
+        current -= 5
         canHurt = false
     }
     
 }
-
-
-
 
 

@@ -17,6 +17,8 @@ class HudLayer {
     
     let view = UIView(frame: UIScreen.main.bounds)
     let bottomBar = UIView()
+    
+    var healthBar: HudHealthBar?
     let healthText = UILabel()
     let coinText = UILabel()
     
@@ -26,10 +28,15 @@ class HudLayer {
     
     init() {
         
+        
+        
         loadBottomBar()
+        healthBar = HudHealthBar(frame: CGRect(x: 50.0, y: 50.0, width: 100.0, height: 44.0))
+        bottomBar.addSubview(healthBar!)
         loadHealthText()
         loadCoinText()
         loadMenuButton()
+        
     }
     
 }

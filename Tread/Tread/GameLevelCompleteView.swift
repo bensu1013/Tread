@@ -21,7 +21,7 @@ class GameLevelCompleteView: UIView {
  */
     
     let coinsLabel = UILabel()
-    let expLabel = UILabel()
+    let starsLabel = UILabel()
     
     let mainView = UIView()
     let exitButton = UIButton()
@@ -101,26 +101,30 @@ extension GameLevelCompleteView {
     }
     
     private func loadExpLabel() {
-        expLabel.frame = CGRect(x: mainView.frame.size.width * 0.25, y: mainView.frame.size.height * 0.45, width: mainView.frame.size.width * 0.5, height: mainView.frame.size.height * 0.2)
-        expLabel.text = "10"
-        expLabel.textColor = UIColor.darkGray
-        mainView.addSubview(expLabel)
+        starsLabel.frame = CGRect(x: mainView.frame.size.width * 0.25, y: mainView.frame.size.height * 0.45, width: mainView.frame.size.width * 0.5, height: mainView.frame.size.height * 0.2)
+        starsLabel.text = "10"
+        starsLabel.textColor = UIColor.darkGray
+        mainView.addSubview(starsLabel)
     }
     
     private func loadExitButton() {
+        let viewSize = mainView.frame.size
+        let side = viewSize.width * 0.2
         
-        exitButton.frame = CGRect(x: mainView.frame.size.width * 0.1, y: mainView.frame.size.height * 0.7, width: mainView.frame.size.width * 0.2, height: mainView.frame.size.height * 0.15)
+        exitButton.frame = CGRect(x: viewSize.width * 0.1, y: viewSize.height * 0.7, width: side, height: side)
         exitButton.addTarget(self, action: #selector(exitButtonAction), for: .touchUpInside)
-        exitButton.setToTheme(title: "<")
+        exitButton.setTo(type: .cancel)
         mainView.addSubview(exitButton)
         
     }
     
     private func loadNextLevelButton() {
+        let viewSize = mainView.frame.size
+        let side = viewSize.width * 0.2
         
-        nextLevelButton.frame = CGRect(x: mainView.frame.size.width * 0.7, y: mainView.frame.size.height * 0.7, width: mainView.frame.size.width * 0.2, height: mainView.frame.size.height * 0.15)
+        nextLevelButton.frame = CGRect(x: viewSize.width * 0.7, y: viewSize.height * 0.7, width: side, height: side)
         nextLevelButton.addTarget(self, action: #selector(nextLevelButtonAction), for: .touchUpInside)
-        nextLevelButton.setToTheme(title: ">")
+        nextLevelButton.setTo(type: .next)
         if !isNextAvailable {
             nextLevelButton.isUserInteractionEnabled = false
         }
@@ -133,9 +137,12 @@ extension GameLevelCompleteView {
     }
     
     private func loadReplayButton() {
-        replayButton.frame = CGRect(x: mainView.frame.size.width * 0.4, y: mainView.frame.size.height * 0.7, width: mainView.frame.size.width * 0.2, height: mainView.frame.size.height * 0.15)
+        let viewSize = mainView.frame.size
+        let side = viewSize.width * 0.2
+        
+        replayButton.frame = CGRect(x: viewSize.width * 0.4, y: viewSize.height * 0.7, width: side, height: side)
         replayButton.addTarget(self, action: #selector(replayButtonAction), for: .touchUpInside)
-        replayButton.setToTheme(title: "@")
+        replayButton.setTo(type: .replay)
         mainView.addSubview(replayButton)
     }
 }

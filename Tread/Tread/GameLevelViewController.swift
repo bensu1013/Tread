@@ -18,31 +18,18 @@ class GameLevelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set view to appropriate frame
-        skView.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: self.view.frame.width, height: self.view.frame.height * 0.75))
-        
-        // Creates new instance of scene
-        let scene = GameLevelScene(size: CGSize(width: 640, height: 800))
-        
-        // Set the scale mode to scale to fit the window
-        scene.scaleMode = .aspectFill
-        
-        // Set delegates to communicate with VC
-        scene.gameSceneDelegate = self
         hud.hudDelegate = self
         
-        // Present the scene
-        skView.presentScene(scene)
-        
-        
+        // Set view to appropriate frame
+        skView.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: self.view.frame.width, height: self.view.frame.height * 0.75))
         skView.ignoresSiblingOrder = true
         skView.showsFPS = true
         skView.showsNodeCount = true
         
+        createNewScene()
         
         self.view.addSubview(hud.view)
         self.view.addSubview(skView)
-        
         
     }
 
@@ -57,6 +44,21 @@ class GameLevelViewController: UIViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    
+    fileprivate func createNewScene() {
+        
+        Player.main.sprite.removeFromParent()
+        // Creates new instance of scene
+        let scene = GameLevelScene(size: CGSize(width: 640, height: 800))
+        // Set the scale mode to scale to fit the window
+        scene.scaleMode = .aspectFill
+        // Set delegates to communicate with VC
+        scene.gameSceneDelegate = self
+        let transition = SKTransition.crossFade(withDuration: 1.0)
+        skView.presentScene(scene, transition: transition)
+        
+    }
+    
 }
 
 extension GameLevelViewController: GameSceneDelegate {
@@ -111,29 +113,13 @@ extension GameLevelViewController: GameMenuDelegate {
     
     func nextLevelAction() {
         
-        Player.main.sprite.removeFromParent()
-        // Creates new instance of scene
-        let scene = GameLevelScene(size: CGSize(width: 640, height: 800))
-        // Set the scale mode to scale to fit the window
-        scene.scaleMode = .aspectFill
-        // Set delegates to communicate with VC
-        scene.gameSceneDelegate = self
-        let transition = SKTransition.crossFade(withDuration: 1.0)
-        skView.presentScene(scene, transition: transition)
+        self.createNewScene()
         
     }
     
     func replayAction() {
         
-        Player.main.sprite.removeFromParent()
-        // Creates new instance of scene
-        let scene = GameLevelScene(size: CGSize(width: 640, height: 800))
-        // Set the scale mode to scale to fit the window
-        scene.scaleMode = .aspectFill
-        // Set delegates to communicate with VC
-        scene.gameSceneDelegate = self
-        let transition = SKTransition.crossFade(withDuration: 1.0)
-        skView.presentScene(scene, transition: transition)
+        self.createNewScene()
         
     }
     

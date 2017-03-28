@@ -29,6 +29,11 @@ extension UIColor {
     }
 }
 
+//Special button types
+enum BSButtonType {
+    case cancel, replay, next, menu
+}
+
 extension UIButton {
     
     //Method used to for uniformed button style
@@ -41,6 +46,20 @@ extension UIButton {
             self.layer.cornerRadius = self.frame.height / 5.0
         }
         
+    }
+    
+    func setTo(type: BSButtonType) {
+        self.backgroundColor = UIColor.clear
+        switch type {
+        case .cancel:
+            self.setImage(UIImage.init(named: "cancelIcon"), for: .normal)
+        case .replay:
+            self.setImage(UIImage.init(named: "replayIcon"), for: .normal)
+        case .next:
+            self.setImage(UIImage.init(named: "nextIcon"), for: .normal)
+        case . menu:
+            self.setImage(UIImage.init(named: "menuIcon"), for: .normal)
+        }
     }
     
 }
