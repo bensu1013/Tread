@@ -14,7 +14,6 @@ class Player {
     static var main = Player()
     
     var sprite: PlayerSprite!
-    var health = HealthController()
     var stats = PlayerStatistics()
     
     var isControlled = false
@@ -35,7 +34,7 @@ class Player {
     
     func reset() {
         sprite.position = CGPoint(x: 0.0, y: -200.0)
-        health.resetCurrent()
+        stats.health.resetCurrent()
         stats.coins = 0
     }
     
@@ -52,9 +51,9 @@ extension Player: PlayerSpriteDelegate {
         switch obstacle.type {
 
         case .redCrate:
-            self.health.gotHurt(by: obstacle.type)
+            self.stats.health.gotHurt(by: obstacle.type)
             self.sprite.contactHurtAnimation {
-                self.health.canHurt = true
+                self.stats.health.canHurt = true
             }
         case .goldCoin:
             self.stats.coins += 1
@@ -66,7 +65,7 @@ extension Player: PlayerSpriteDelegate {
     
     func gameOver(completion: @escaping () -> () ) -> Bool {
         
-        if health.getCurrent() == 0 {
+        if stats.health.getCurrent() == 0 {
             
             isControlled = false
             

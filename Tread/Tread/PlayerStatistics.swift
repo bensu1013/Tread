@@ -10,29 +10,12 @@ import Foundation
 
 struct PlayerStatistics {
     
-    var vitality = Vitality()
+    var health = HealthController()
     var strength = 1
     var speed = 100
     var coins = 0
     
 }
-
-
-struct Vitality {
-    
-    var currentVit = 1
-    
-    
-    
-    var description: String {
-        get {
-            return "Character's toughness. Trip on boxes more often!"
-        }
-    }
-    
-}
-
-
 
 
 

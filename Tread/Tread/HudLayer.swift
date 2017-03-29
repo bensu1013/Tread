@@ -18,8 +18,7 @@ class HudLayer {
     let view = UIView(frame: UIScreen.main.bounds)
     let bottomBar = UIView()
     
-    var healthBar: HudHealthBar?
-    let healthText = UILabel()
+    var healthBar: HudHealthBar!
     let coinText = UILabel()
     
     let menuButton = UIButton()
@@ -28,17 +27,17 @@ class HudLayer {
     
     init() {
         
-        
-        
         loadBottomBar()
         healthBar = HudHealthBar(frame: CGRect(x: 50.0, y: 50.0, width: 100.0, height: 44.0))
         bottomBar.addSubview(healthBar!)
-        loadHealthText()
         loadCoinText()
         loadMenuButton()
         
     }
     
+    func reloadCoins(amount: Int) {
+        coinText.text = "Coins: \(amount)"
+    }
 }
 
 //MARK: -Methods of interaction
@@ -59,13 +58,6 @@ extension HudLayer {
         bottomBar.backgroundColor = UIColor.theme1
         view.addSubview(bottomBar)
         
-    }
-    
-    fileprivate func loadHealthText() {
-        
-        healthText.frame = CGRect(x: 50.0, y: 50.0, width: 100.0, height: 44.0)
-        healthText.text = "\(Player.main.health.getCurrent())/\(Player.main.health.maximum)"
-        bottomBar.addSubview(healthText)
     }
     
     fileprivate func loadCoinText() {

@@ -65,8 +65,8 @@ extension GameLevelViewController: GameSceneDelegate {
     
     func updateHud() {
         
-        hud.healthText.text = "\(Player.main.health.getCurrent())/\(Player.main.health.maximum)"
-        hud.coinText.text = "Coins: \(Player.main.stats.coins)"
+        hud.healthBar.reloadHealthBar()
+        hud.reloadCoins(amount: Player.main.stats.coins)
         
     }
     

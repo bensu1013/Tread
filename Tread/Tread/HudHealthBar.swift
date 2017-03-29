@@ -9,37 +9,54 @@
 import UIKit
 
 class HudHealthBar: UIView {
-
-    var healthBar = UIView()
+    
+    let healthBar = UIView()
+    let healthText = UILabel()
+    var health = Player.main.stats.health
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = UIColor.black
-        
+        self.layer.cornerRadius = 10
         loadSubviews()
-        print("healthbar")
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    
+    func reloadHealthBar() {
+        healthText.text = "\(health.getCurrent())/\(health.maximum))"
+        
+        let barLoss = self.bounds.width / CGFloat(health.maximum) * CGFloat(health.healthLoss())
+        let barWidth = healthBar.bounds.width - barLoss >= 0 ? healthBar.bounds.width - barLoss : 0
+        healthBar.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: barWidth, height: self.bounds.height))
+    }
     
 }
 
 
-
+//MARK: - Load subviews
 extension HudHealthBar {
     
     fileprivate func loadSubviews() {
         loadHealthBar()
+        loadHealthText()
     }
     
     private func loadHealthBar() {
         healthBar.frame = self.bounds
         healthBar.backgroundColor = UIColor.red
+        healthBar.layer.cornerRadius = 10
         self.addSubview(healthBar)
     }
     
+    private func loadHealthText() {
+        
+        healthText.frame = self.bounds
+        healthText.textAlignment = .center
+        healthText.textColor = UIColor.white
+        healthText.text = "\(health.getCurrent())/\(health.maximum)"
+        self.addSubview(healthText)
+    }
 }

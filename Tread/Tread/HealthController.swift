@@ -14,6 +14,7 @@ class HealthController {
     var maximum: Int {
         get { return 10 + (vitality * 2) }
     }
+    fileprivate var previous: Int = 10
     fileprivate var current: Int = 10
     var vitality = 1
     var canHurt = true
@@ -30,10 +31,9 @@ class HealthController {
         current = maximum
     }
     
-    func setVitality(by vit: Vitality) {
-        vitality = vit.currentVit
+    func healthLoss() -> Int {
+        return previous - current
     }
-    
     
     func gotHurt(by type: ObstacleType) {
         if canHurt {
@@ -57,6 +57,7 @@ class HealthController {
 extension HealthController {
     
     func crateContact() {
+        previous = current
         current -= 5
         canHurt = false
     }
