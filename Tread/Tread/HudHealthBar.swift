@@ -26,11 +26,12 @@ class HudHealthBar: UIView {
     }
 
     func reloadHealthBar() {
-        healthText.text = "\(health.getCurrent())/\(health.maximum))"
+        healthText.text = "\(health.getCurrent())/\(health.maximum)"
         
-        let barLoss = self.bounds.width / CGFloat(health.maximum) * CGFloat(health.healthLoss())
-        let barWidth = healthBar.bounds.width - barLoss >= 0 ? healthBar.bounds.width - barLoss : 0
+        let barWidth = self.bounds.width / CGFloat(health.maximum) * CGFloat(health.getCurrent())
+        
         healthBar.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: barWidth, height: self.bounds.height))
+        
     }
     
 }
