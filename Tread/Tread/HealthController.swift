@@ -40,6 +40,8 @@ class HealthController {
             switch type {
             case .redCrate:
                 crateContact()
+            case .spikeTrap:
+                trapContact()
             default:
                 break
             }
@@ -57,6 +59,12 @@ class HealthController {
 extension HealthController {
     
     func crateContact() {
+        previous = current
+        current -= 2
+        canHurt = false
+    }
+    
+    func trapContact() {
         previous = current
         current -= 5
         canHurt = false

@@ -65,15 +65,15 @@ class ObstacleFactory {
             }
         }
         
-        //TODO: - add finish line with contact to trigger end stage logic
+        //Finish line used to trigger level completion logic
         let finish = FinishLine(texture: nil, color: UIColor.green, size: CGSize(width: 640, height: 50))
         finish.position = CGPoint(x: 0.0, y: scene.frame.height * 0.75 + stageSize)
         scene?.addChild(finish)
     }
     
     private func createObstacle(at point: CGPoint, as type: ObstacleType) {
-        guard let texture = getTexture(with: type) else { return }
-        let obstacle = Obstacle(texture: texture, color: UIColor.red, size: CGSize(width: 64.0, height: 64.0), type: type)
+        let texture = getTexture(with: type)
+        let obstacle = Obstacle(texture: texture, color: UIColor.blue, size: CGSize(width: 64.0, height: 64.0), type: type)
         
         obstacle.position = point
         

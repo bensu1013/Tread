@@ -57,6 +57,11 @@ extension Player: PlayerSpriteDelegate {
             }
         case .goldCoin:
             self.stats.coins += 1
+        case .spikeTrap:
+            self.stats.health.gotHurt(by: obstacle.type)
+            self.sprite.contactHurtAnimation {
+                self.stats.health.canHurt = true
+            }
         default:
             break
         }

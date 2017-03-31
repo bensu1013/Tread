@@ -50,7 +50,7 @@ class GameLevelViewController: UIViewController {
         Player.main.sprite.removeFromParent()
         Player.main.reset()
         hud.reloadCoins(amount: 0)
-        hud.healthBar.reloadHealthBar()
+        hud.healthBar.resetHealthBar()
         // Creates new instance of scene
         let scene = GameLevelScene(size: CGSize(width: 640, height: 800))
         // Set the scale mode to scale to fit the window

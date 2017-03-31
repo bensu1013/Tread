@@ -26,7 +26,6 @@ class LevelSelectionCollectionViewCell: UICollectionViewCell {
     }
     
     
-    
 }
 
 

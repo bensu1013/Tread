@@ -36,6 +36,8 @@ class Obstacle: SKSpriteNode {
         switch type {
         case .goldCoin:
             goldCoinTouch()
+        case .spikeTrap:
+            self.color = UIColor.red
         default:
             break
         }

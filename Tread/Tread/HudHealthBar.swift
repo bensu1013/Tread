@@ -24,13 +24,24 @@ class HudHealthBar: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
+    func resetHealthBar() {
+        healthText.text = "\(health.getCurrent())/\(health.maximum)"
+        healthBar.frame = self.bounds
+    }
+    
     func reloadHealthBar() {
         healthText.text = "\(health.getCurrent())/\(health.maximum)"
         
         let barWidth = self.bounds.width / CGFloat(health.maximum) * CGFloat(health.getCurrent())
         
-        healthBar.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: barWidth, height: self.bounds.height))
+        if !health.canHurt {
+            UIView.animate(withDuration: 1.0, animations: { 
+                self.healthBar.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: barWidth, height: self.bounds.height))
+            })
+        }
+        
+        
         
     }
     
