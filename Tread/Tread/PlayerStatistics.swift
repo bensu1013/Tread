@@ -14,7 +14,7 @@ struct PlayerStatistics {
     var strength = 1
     var speed = 100
     var coins = 0
-    
+    var stars = 0
 }
 
 

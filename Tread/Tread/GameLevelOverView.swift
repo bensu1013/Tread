@@ -99,7 +99,7 @@ extension GameLevelOverView {
         
         exitButton.frame = CGRect(x: mainView.frame.size.width * 0.1, y: mainView.frame.size.height * 0.7, width: mainView.frame.size.width * 0.2, height: mainView.frame.size.height * 0.15)
         exitButton.addTarget(self, action: #selector(exitButtonAction), for: .touchUpInside)
-        exitButton.setToTheme(title: "<")
+        exitButton.setTo(type: .cancel)
         mainView.addSubview(exitButton)
         
     }
@@ -108,7 +108,7 @@ extension GameLevelOverView {
         
         nextLevelButton.frame = CGRect(x: mainView.frame.size.width * 0.7, y: mainView.frame.size.height * 0.7, width: mainView.frame.size.width * 0.2, height: mainView.frame.size.height * 0.15)
         nextLevelButton.addTarget(self, action: #selector(nextLevelButtonAction), for: .touchUpInside)
-        nextLevelButton.setToTheme(title: ">")
+        nextLevelButton.setTo(type: .next)
         if !isNextAvailable {
             nextLevelButton.isUserInteractionEnabled = false
         }
@@ -123,7 +123,7 @@ extension GameLevelOverView {
     private func loadReplayButton() {
         replayButton.frame = CGRect(x: mainView.frame.size.width * 0.4, y: mainView.frame.size.height * 0.7, width: mainView.frame.size.width * 0.2, height: mainView.frame.size.height * 0.15)
         replayButton.addTarget(self, action: #selector(replayButtonAction), for: .touchUpInside)
-        replayButton.setToTheme(title: "@")
+        replayButton.setTo(type: .replay)
         mainView.addSubview(replayButton)
     }
 }

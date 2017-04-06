@@ -28,11 +28,11 @@ class GameLevelCompleteView: UIView {
     let nextLevelButton = UIButton()
     let replayButton = UIButton()
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, stars: Int) {
         super.init(frame: frame)
         
         loadSubviews()
-        
+        starsLabel.text = "Stars: \(stars)"
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -88,6 +88,14 @@ extension GameLevelCompleteView {
         mainView.backgroundColor = UIColor.theme4
         mainView.layer.cornerRadius = mainView.frame.width / 10.0
         addSubview(mainView)
+        
+    }
+    
+    private func loadStarsLabel() {
+        
+        starsLabel.frame = CGRect(x: mainView.frame.size.width * 0.25, y: mainView.frame.size.height * 0.2, width: mainView.frame.size.width * 0.5, height: mainView.frame.size.height * 0.2)
+        starsLabel.textColor = UIColor.darkGray
+        mainView.addSubview(starsLabel)
         
     }
     

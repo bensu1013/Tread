@@ -1,5 +1,5 @@
 //
-//  ObstacleFactory.swift
+//  SceneObstacles.swift
 //  Tread
 //
 //  Created by Benjamin Su on 3/6/17.
@@ -12,7 +12,7 @@ import SpriteKit
 
 
 
-class ObstacleFactory {
+class SceneObstacles {
     
     weak var scene: SKScene!
     
@@ -43,6 +43,7 @@ class ObstacleFactory {
     }
     
     func clearStage() {
+        totalCoins = 0
         for obs in obstacles {
             obstacles.remove(obs)
             obs.removeFromParent()
@@ -86,6 +87,7 @@ class ObstacleFactory {
         case .redCrate:
             return redCrateTexture
         case .goldCoin:
+            totalCoins += 1
             return goldCoinTexture
         default:
             return nil

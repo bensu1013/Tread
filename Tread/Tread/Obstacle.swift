@@ -13,12 +13,16 @@ enum ObstacleType: Int {
     case none, redCrate, goldCoin, spikeTrap
 }
 
+/*
+ might need to work on another class that will emcompass the logic behind different obstacles
+ ex. traps need to trigger off
+ */
+
 
 class Obstacle: SKSpriteNode {
     
     var type: ObstacleType = .none
     var willRemove = false
-    
     
     init(texture: SKTexture?, color: UIColor, size: CGSize, type: ObstacleType) {
         super.init(texture: texture, color: color, size: size)

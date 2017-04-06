@@ -73,10 +73,10 @@ extension GameLevelViewController: GameSceneDelegate {
         
     }
     
-    func levelCompleted() {
+    func levelCompleted(stars: Int) {
         
         skView.scene?.isPaused = true
-        let completeView = GameLevelCompleteView(frame: view.frame)
+        let completeView = GameLevelCompleteView(frame: view.frame, stars: stars)
         completeView.menuDelegate = self
         view.addSubview(completeView)
         

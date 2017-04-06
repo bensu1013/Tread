@@ -11,7 +11,7 @@ import GameplayKit
 
 protocol GameSceneDelegate: class {
     func updateHud()
-    func levelCompleted()
+    func levelCompleted(stars: Int)
     func gameOver()
 }
 
@@ -24,7 +24,7 @@ class GameLevelScene: SKScene {
     var bottomBorder: SKSpriteNode!
     var leftBorder: SKSpriteNode!
     var rightBorder: SKSpriteNode!
-    var obstacleFactory: ObstacleFactory!
+    var sceneObstacles: SceneObstacles!
     
     let screenNode = SKNode()
     var roundStarted = false
@@ -43,7 +43,7 @@ class GameLevelScene: SKScene {
         setupPhysicsWorld()
         
         self.addChild(player.sprite)
-        obstacleFactory = ObstacleFactory(scene: self)
+        sceneObstacles = SceneObstacles(scene: self)
         self.addChild(screenNode)
         
         let cam = SKCameraNode()
@@ -68,7 +68,7 @@ class GameLevelScene: SKScene {
     }
     
     func startScreenScrolling() {
-        let yDist = 640 + obstacleFactory.stageSize
+        let yDist = 640 + sceneObstacles.stageSize
         let dur: Double = Double(yDist) / 100.0
         bottomBorder.run(SKAction.moveBy(x: 0.0, y: yDist, duration: dur))
         leftBorder.run(SKAction.moveBy(x: 0.0, y: yDist, duration: dur))
@@ -91,6 +91,7 @@ class GameLevelScene: SKScene {
                 }
             }
         } else {
+            //turn this into its own view
             self.isPaused = false
             roundStarted = true
             startRound()
@@ -124,7 +125,7 @@ class GameLevelScene: SKScene {
             previousTime = currentTime
         }
         
-        obstacleFactory.update()
+        sceneObstacles.update()
         player.update(dt: dt)
         
     }
@@ -136,10 +137,10 @@ extension GameLevelScene {
     fileprivate func setupTilemap() {
         
         let tileSet = SKTileSet(named: "TileSet")
-        let tileMap = SKTileMapNode(tileSet: tileSet!, columns: 10, rows: Int(size.height / 64 * 2) + Int(obstacleFactory.stageSize / 64), tileSize: CGSize.init(width: 64.0, height: 64.0), fillWith: (tileSet?.tileGroups[0])!)
+        let tileMap = SKTileMapNode(tileSet: tileSet!, columns: 10, rows: Int(size.height / 64 * 2) + Int(sceneObstacles.stageSize / 64), tileSize: CGSize.init(width: 64.0, height: 64.0), fillWith: (tileSet?.tileGroups[0])!)
         self.addChild(tileMap)
         tileMap.fill(with: tileMap.tileSet.tileGroups.first)
-        tileMap.position = CGPoint.init(x: 0.0, y: obstacleFactory.stageSize / 2 + size.height/2)
+        tileMap.position = CGPoint.init(x: 0.0, y: sceneObstacles.stageSize / 2 + size.height/2)
         tileMap.zPosition = -50
         
     }
@@ -242,7 +243,9 @@ extension GameLevelScene: SKPhysicsContactDelegate {
                 if Player.main.sprite.position.y > line.position.y {
                     Player.main.isControlled = false
                     player.finishedLevel {
-                        self.gameSceneDelegate?.levelCompleted()
+                        //temporary fix for showing stars gained
+                        let stars = self.player.stats.coins * 3 / self.sceneObstacles.totalCoins
+                        self.gameSceneDelegate?.levelCompleted(stars: stars)
                     }
                 }
             }
