@@ -75,7 +75,7 @@ extension GameLevelCompleteView {
         backgroundColor = UIColor.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.7)
         loadMainView()
         loadCoinsLabel()
-        loadExpLabel()
+        loadStarsLabel()
         loadExitButton()
         loadNextLevelButton()
         loadReplayButton()
@@ -91,26 +91,17 @@ extension GameLevelCompleteView {
         
     }
     
-    private func loadStarsLabel() {
-        
-        starsLabel.frame = CGRect(x: mainView.frame.size.width * 0.25, y: mainView.frame.size.height * 0.2, width: mainView.frame.size.width * 0.5, height: mainView.frame.size.height * 0.2)
-        starsLabel.textColor = UIColor.darkGray
-        mainView.addSubview(starsLabel)
-        
-    }
-    
     private func loadCoinsLabel() {
         
         coinsLabel.frame = CGRect(x: mainView.frame.size.width * 0.25, y: mainView.frame.size.height * 0.2, width: mainView.frame.size.width * 0.5, height: mainView.frame.size.height * 0.2)
-        coinsLabel.text = "\(Player.main.stats.coins)"
+        coinsLabel.text = "Coins: \(Player.main.stats.coins)"
         coinsLabel.textColor = UIColor.darkGray
         mainView.addSubview(coinsLabel)
         
     }
     
-    private func loadExpLabel() {
+    private func loadStarsLabel() {
         starsLabel.frame = CGRect(x: mainView.frame.size.width * 0.25, y: mainView.frame.size.height * 0.45, width: mainView.frame.size.width * 0.5, height: mainView.frame.size.height * 0.2)
-        starsLabel.text = "10"
         starsLabel.textColor = UIColor.darkGray
         mainView.addSubview(starsLabel)
     }

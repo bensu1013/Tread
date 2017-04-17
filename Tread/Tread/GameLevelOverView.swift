@@ -89,7 +89,7 @@ extension GameLevelOverView {
     private func loadCoinsLabel() {
         
         coinsLabel.frame = CGRect(x: mainView.frame.size.width * 0.25, y: mainView.frame.size.height * 0.2, width: mainView.frame.size.width * 0.5, height: mainView.frame.size.height * 0.2)
-        coinsLabel.text = "\(Player.main.stats.coins)"
+        coinsLabel.text = "Coins: \(Player.main.stats.coins)"
         coinsLabel.textColor = UIColor.darkGray
         mainView.addSubview(coinsLabel)
         
